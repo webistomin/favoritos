@@ -1,7 +1,6 @@
 import * as pkg from '../../package.json';
 
 export const BANNER_TEXT = `/**
-*
 * ${pkg.name}
 *
 * @version ${pkg.version}

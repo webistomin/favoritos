@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="shortcut icon" href="./on-visible.png">
+  <style>
+    body {
+      background: cornflowerblue;
+      height: 500vh;
+    }
+
+    canvas {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+<body>
+
+<script src="../dist/favoritos.iife.js"></script>
+<script>
+  const lib = new Favoritos({
+    icon: {
+      // backgroundColor: ['#000fff', '#000000', '#ffffff']
+    },
+    badge: {
+    }
+  });
+  // setInterval(() => {
+    lib.drawBadge(100);
+  // }, 300)
+  // setTimeout(() => {
+  //   lib.reset();
+  // }, 2000)
+  console.log(lib)
+  // console.log(lib);
+  // console.log(lib.isPrefersColorSchemeDark())
+  // document.addEventListener('favoritos:visibilitychange', ({detail}) => {
+  //   if (detail === 'visible') {
+  //     lib.setIcon('./on-visible.png')
+  //   } else {
+  //     lib.setIcon('./on-hidden.png')
+  //   }
+  // })
+  // document.addEventListener('favoritos:themechange', ({detail}) => {
+  //   console.log(event.detail)
+  // })
+  // let count = 0;
+  // setInterval(() => {
+  //   // console.log(1);
+  //   console.log(count % 2)
+  //   lib.setIcon(count % 2 === 0 ? './on-hidden.png' : 'on-visible.png')
+  //   count++;
+  // }, 100);
+</script>
+</body>
+</html>

@@ -7,11 +7,12 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "strictNullChecks": false,
     "pretty": true,
     "lib": [
+      "webworker",
       "es2015",
       "es2016",
       "es2017",
@@ -28,6 +29,6 @@
     ]
   },
   "include": [
-    "src/lib.ts"
+    "src/favoritos.ts"
   ]
 }

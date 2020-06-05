@@ -16,11 +16,11 @@ Pull requests are the greatest contributions, so be sure they are focused in sco
 1. To begin, [fork this project], clone your fork, and add our upstream.
 	```bash
 	# Clone your fork of the repo into the current directory
-	git clone https://github.com/<your-username>/nanogram.js
+	git clone https://github.com/<your-username>/favoritos
 	# Navigate to the newly cloned directory
-	cd nanogram.js
+	cd favoritos
 	# Assign the original repo to a remote called "upstream"
-	git remote add upstream https://github.com/webistomin/nanogram.js
+	git remote add upstream https://github.com/webistomin/favoritos
 	# Install the tools necessary for development
 	npm install
 	```

@@ -1,16 +1,16 @@
 {
-  "name": "rollup-typescript-starter",
-  "version": "1.0.0",
-  "description": "Super library",
-  "main": "./dist/lib.cjs.js",
-  "module": "./dist/lib.esm.js",
+  "name": "favoritos",
+  "version": "0.0.1-beta.0",
+  "description": "TBD",
+  "main": "./dist/favoritos.cjs.js",
+  "module": "./dist/favoritos.esm.js",
   "browser": {
-    "dist/nanogram.js": "./dist/lib.iife.js",
-    "dist/nanogram.esm.js": "./dist/lib.esm.js"
+    "dist/favoritos.js": "./dist/favoritos.iife.js",
+    "dist/favoritos.esm.js": "./dist/favoritos.esm.js"
   },
-  "unpkg": "./dist/lib.iife.js",
-  "jsdelivr": "./dist/lib.iife.js",
-  "typings": "./dist/lib.d.ts",
+  "unpkg": "./dist/favoritos.iife.js",
+  "jsdelivr": "./dist/favoritos.iife.js",
+  "typings": "./dist/favoritos.d.ts",
   "files": [
     "dist/*",
     "src/*"
@@ -35,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webistomin/rollup-typescript-starter.git"
+    "url": "git+https://github.com/webistomin/favoritos.git"
   },
   "author": "webistomin",
   "email": "webistomin@gmail.com",
@@ -44,9 +44,9 @@
     "node": ">=10"
   },
   "bugs": {
-    "url": "https://github.com/webistomin/rollup-typescript-starter/issues"
+    "url": "https://github.com/webistomin/favoritos/issues"
   },
-  "homepage": "https://github.com/webistomin/rollup-typescript-starter#readme",
+  "homepage": "https://github.com/webistomin/favoritos#readme",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
@@ -84,6 +84,7 @@
     "rollup-plugin-sourcemaps": "^0.6.2",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript2": "^0.27.0",
+    "rollup-plugin-web-worker-loader": "^1.3.0",
     "scriptlint": "^2.1.1",
     "size-limit": "^4.4.5",
     "ts-jest": "^25.3.1",

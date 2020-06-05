@@ -8,9 +8,9 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier",
-    "prettier/@typescript-eslint"
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -27,6 +27,13 @@ module.exports = {
   rules: {
     "prettier/prettier": ["warn"],
     "@typescript-eslint/interface-name-prefix": 0,
-    "@typescript-eslint/camelcase": 0
+    "@typescript-eslint/camelcase": 0,
+    "@typescript-eslint/ban-ts-ignore": 0,
+    "@typescript-eslint/unbound-method": [
+      "error",
+      {
+        "ignoreStatic": true
+      }
+    ]
   }
 };

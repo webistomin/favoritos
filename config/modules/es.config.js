@@ -5,6 +5,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import fs from 'fs';
 import path from 'path';
+// import webWorkerLoader from 'rollup-plugin-web-worker-loader';
 
 import {baseConfig} from '../base.config';
 import * as pkg from '../../package.json';
@@ -30,6 +31,7 @@ export const esConfig = {
   },
   plugins: [
     ...baseConfig.plugins.common,
+    // webWorkerLoader(),
     babel({
       ...baseConfig.plugins.babel,
       presets: [
