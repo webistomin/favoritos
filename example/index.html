@@ -20,22 +20,33 @@
 </head>
 <body>
 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CCustomEvent%2Cfetch%2CBlob"></script>
 <script src="../dist/favoritos.iife.js"></script>
 <script>
-  const lib = new Favoritos({
+  var lib = new Favoritos({
     icon: {
-      // backgroundColor: ['#000fff', '#000000', '#ffffff']
+      shape: 'rectangle',
+      lineWidth: 8,
+      backgroundColor: ['#000fff', '#000000', '#ffffff', 'red']
     },
     badge: {
+      shape: 'circle',
+      fontSize: 20,
     }
   });
-  // setInterval(() => {
-    lib.drawBadge(100);
-  // }, 300)
+  lib.drawBadge();
+  document.addEventListener('favoritos:themechange', function() {
+    console.log('change')
+  })
+  // lib.initScrollingProgressBar()
+  // setInterval(function() {
+  //   lib.drawBadge();
+  //   console.log(1);
+  // }, 1000)
   // setTimeout(() => {
   //   lib.reset();
   // }, 2000)
-  console.log(lib)
+  // console.log(lib)
   // console.log(lib);
   // console.log(lib.isPrefersColorSchemeDark())
   // document.addEventListener('favoritos:visibilitychange', ({detail}) => {
@@ -48,13 +59,13 @@
   // document.addEventListener('favoritos:themechange', ({detail}) => {
   //   console.log(event.detail)
   // })
-  // let count = 0;
-  // setInterval(() => {
+  let count = 0;
+  // setInterval(function() {
   //   // console.log(1);
   //   console.log(count % 2)
   //   lib.setIcon(count % 2 === 0 ? './on-hidden.png' : 'on-visible.png')
   //   count++;
-  // }, 100);
+  // }, 1000);
 </script>
 </body>
 </html>

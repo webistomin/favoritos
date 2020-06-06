@@ -1,3 +1,4 @@
+import 'core-js/fn/object/assign';
 import { IFavoritosOption } from './types/options/options';
 export default class Favoritos {
     private options;
@@ -24,6 +25,10 @@ export default class Favoritos {
     isPrefersColorSchemeDark(): boolean;
     reset(): void;
     drawBadge(count?: number): void;
-    setScrollingProgressBar(): void;
-    drawLoader(): void;
+    private drawCircleBadge;
+    private drawRectBadge;
+    initScrollingProgressBar(): void;
+    private setScrollingProgressBar;
+    private drawCircleProgress;
+    private drawRectProgress;
 }

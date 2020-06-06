@@ -7,7 +7,7 @@ import fs from 'fs';
 import path from 'path';
 // import webWorkerLoader from 'rollup-plugin-web-worker-loader';
 
-import {baseConfig} from '../base.config';
+import { baseConfig } from '../base.config';
 import * as pkg from '../../package.json';
 import { LIBRARY_NAME } from '../partials/libraryName';
 import { BANNER_TEXT } from '../partials/bannerText';

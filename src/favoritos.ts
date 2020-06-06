@@ -1,3 +1,4 @@
+import 'core-js/fn/object/assign';
 import { IFavoritosOption } from './types/options/options';
 import { SSR_MESSAGE } from './helpers/ssr-message';
 import { DEFAULT_OPTIONS } from './helpers/default-options';
@@ -6,6 +7,8 @@ import { mediaDarkTheme } from './helpers/media-dark-theme';
 import { getContextGradientEntries } from './helpers/get-context-gradient-entries';
 import { mergeDeep } from './helpers/merge-deep';
 import { loadImage } from './helpers/load-image';
+import { roundedRect } from './helpers/rounded-rect';
+import { IFavoritosShape } from './types/options/shapes';
 
 export default class Favoritos {
   private options: IFavoritosOption;
@@ -49,13 +52,18 @@ export default class Favoritos {
   }
 
   private static detectThemeChange(event: MediaQueryListEvent): void {
+    console.log(event);
     const newColorScheme = event.matches ? 'dark' : 'light';
     fireEvent('favoritos:themechange', newColorScheme);
   }
 
   private static initListeners(): void {
     document.addEventListener('visibilitychange', Favoritos.detectVisibilityChange);
-    mediaDarkTheme.addEventListener('change', Favoritos.detectThemeChange);
+    try {
+      mediaDarkTheme.addEventListener('change', Favoritos.detectThemeChange);
+    } catch (error) {
+      mediaDarkTheme.addListener(Favoritos.detectThemeChange);
+    }
   }
 
   private initIconCanvas(): void {
@@ -123,6 +131,7 @@ export default class Favoritos {
   public destroy(): void {
     document.removeEventListener('visibilitychange', Favoritos.detectVisibilityChange.bind(Favoritos));
     mediaDarkTheme.removeEventListener('change', Favoritos.detectThemeChange.bind(Favoritos));
+    document.removeEventListener('scroll', this.setScrollingProgressBar.bind(this));
   }
 
   public setOptions(options: IFavoritosOption): void {
@@ -143,33 +152,6 @@ export default class Favoritos {
   }
 
   public drawBadge(count?: number): void {
-    // @ts-ignore
-    CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, radius) {
-      radius = Math.min(Math.max(width - 1, 1), Math.max(height - 1, 1), radius);
-      const rectX = x;
-      const rectY = y;
-      const rectWidth = width;
-      const rectHeight = height;
-      const cornerRadius = radius;
-
-      this.lineJoin = 'round';
-      this.lineWidth = cornerRadius;
-      this.strokeRect(
-        rectX + cornerRadius / 2,
-        rectY + cornerRadius / 2,
-        rectWidth - cornerRadius,
-        rectHeight - cornerRadius
-      );
-      this.fillRect(
-        rectX + cornerRadius / 2,
-        rectY + cornerRadius / 2,
-        rectWidth - cornerRadius,
-        rectHeight - cornerRadius
-      );
-      this.stroke();
-      this.fill();
-    };
-
     const setBadge = (img: HTMLImageElement): void => {
       let newValue = this.badgeCounter;
       const iconOptions = this.options.icon;
@@ -180,7 +162,7 @@ export default class Favoritos {
         this.badgeCounter = count;
       }
 
-      const additionalWidth = newValue >= 100 ? 6 : 0;
+      const additionalWidth = newValue >= 100 ? 10 : newValue >= 10 ? 7 : 0;
       this.iconCanvasContext.clearRect(0, 0, iconOptions.width, iconOptions.height);
       this.iconCanvasContext.drawImage(img, 0, 0, iconOptions.width, iconOptions.height);
       this.iconCanvasContext.fillStyle = this.getContextBackgroundColor(
@@ -190,37 +172,10 @@ export default class Favoritos {
       );
       this.iconCanvasContext.beginPath();
 
-      if (badgeOptions.shape === 'circle') {
-        if (newValue >= 10) {
-          this.iconCanvasContext.strokeStyle = this.getContextBackgroundColor(
-            badgeOptions.backgroundColor,
-            this.iconCanvasWidth,
-            this.iconCanvasHeight
-          );
-          // @ts-ignore
-          this.iconCanvasContext.roundRect(
-            iconOptions.width - badgeOptions.width - additionalWidth,
-            iconOptions.height - badgeOptions.height,
-            badgeOptions.width + additionalWidth,
-            badgeOptions.height,
-            10
-          );
-        } else {
-          this.iconCanvasContext.arc(
-            iconOptions.width - badgeOptions.width / 2,
-            iconOptions.height - badgeOptions.height / 2,
-            badgeOptions.width / 2,
-            0,
-            2 * Math.PI
-          );
-        }
+      if (badgeOptions.shape === IFavoritosShape.CIRCLE) {
+        this.drawCircleBadge(newValue, iconOptions, badgeOptions, additionalWidth);
       } else {
-        this.iconCanvasContext.rect(
-          iconOptions.width - badgeOptions.width - additionalWidth,
-          iconOptions.height - badgeOptions.height,
-          badgeOptions.width + additionalWidth,
-          badgeOptions.height
-        );
+        this.drawRectBadge(iconOptions, badgeOptions, additionalWidth);
       }
 
       this.iconCanvasContext.fill();
@@ -232,8 +187,9 @@ export default class Favoritos {
         iconOptions.width
       );
       this.iconCanvasContext.closePath();
-      document.body.append(this.iconCanvas);
-      this.iconElement.href = this.iconCanvas.toDataURL('image/png');
+
+      this.iconElement.href = this.iconCanvas.toDataURL('image/png', 1.0);
+      // document.body.append(this.iconCanvas);
 
       if (!count) {
         this.badgeCounter++;
@@ -250,70 +206,117 @@ export default class Favoritos {
     }
   }
 
-  public setScrollingProgressBar(): void {
+  private drawCircleBadge(
+    newValue: number,
+    iconOptions: IFavoritosOption['icon'],
+    badgeOptions: IFavoritosOption['badge'],
+    additionalWidth = 0
+  ): void {
+    if (newValue >= 10) {
+      this.iconCanvasContext.strokeStyle = this.getContextBackgroundColor(
+        badgeOptions.backgroundColor,
+        this.iconCanvasWidth,
+        this.iconCanvasHeight
+      );
+      roundedRect(
+        this.iconCanvasContext,
+        iconOptions.width - badgeOptions.width - additionalWidth,
+        iconOptions.height - badgeOptions.height,
+        badgeOptions.width + additionalWidth,
+        badgeOptions.height,
+        10
+      );
+    } else {
+      this.iconCanvasContext.arc(
+        iconOptions.width - badgeOptions.width / 2,
+        iconOptions.height - badgeOptions.height / 2,
+        badgeOptions.width / 2,
+        0,
+        2 * Math.PI
+      );
+    }
+  }
+
+  private drawRectBadge(
+    iconOptions: IFavoritosOption['icon'],
+    badgeOptions: IFavoritosOption['badge'],
+    additionalWidth = 0
+  ): void {
+    this.iconCanvasContext.rect(
+      iconOptions.width - badgeOptions.width - additionalWidth,
+      iconOptions.height - badgeOptions.height,
+      badgeOptions.width + additionalWidth,
+      badgeOptions.height
+    );
+  }
+
+  public initScrollingProgressBar(): void {
+    document.addEventListener('scroll', this.setScrollingProgressBar.bind(this));
+  }
+
+  private setScrollingProgressBar(): void {
     const iconOptions = this.options.icon;
     const scrollTop = document.documentElement.scrollTop;
     const pageHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrolled = (scrollTop / pageHeight) * 100;
+
+    fireEvent('favoritos:scrolled', scrolled);
+
     this.iconCanvasContext.clearRect(0, 0, iconOptions.width, iconOptions.height);
     this.iconCanvasContext.beginPath();
     this.iconCanvasContext.lineWidth = iconOptions.lineWidth;
+
+    if (iconOptions.shape === IFavoritosShape.CIRCLE) {
+      this.drawCircleProgress(scrolled, iconOptions);
+    } else {
+      this.drawRectProgress(scrolled);
+    }
+
+    this.iconCanvasContext.strokeStyle = this.getContextBackgroundColor(iconOptions.backgroundColor, 32, 32);
+    this.iconCanvasContext.stroke();
+    this.iconElement.href = this.iconCanvas.toDataURL('image/png', 1.0);
+    // document.body.append(this.iconCanvas);
+  }
+
+  private drawCircleProgress(progress: number, iconOptions: IFavoritosOption['icon']): void {
     this.iconCanvasContext.arc(
       iconOptions.width / 2,
       iconOptions.height / 2,
       iconOptions.width / 2 - iconOptions.lineWidth / 2,
       1.5 * Math.PI,
-      (scrolled * 2 * Math.PI) / 100 + 1.5 * Math.PI
+      (progress * 2 * Math.PI) / 100 + 1.5 * Math.PI
     );
-    this.iconCanvasContext.strokeStyle = this.getContextBackgroundColor(iconOptions.backgroundColor, 32, 32);
-    this.iconCanvasContext.stroke();
-    this.iconElement.href = this.iconCanvas.toDataURL('image/png', 1.0);
-    document.body.append(this.iconCanvas);
   }
 
-  public drawLoader(): void {
-    // this.iconCanvasContext.clearRect(0, 0, 32, 32);
-    // this.iconCanvasContext.beginPath();
-    // this.iconCanvasContext.arc(16, 16, 12, 1.5 * Math.PI, (this.iconCounter * 2 * Math.PI) / 100 + 1.5 * Math.PI);
-    // this.iconCanvasContext.stroke();
-    // this.iconCounter++;
-    // this.iconElement.href = this.iconCanvas.toDataURL('image/png');
-    //
-    // if (this.n >= 100) {
-    //   // this.worker.terminate();
-    //   // this.setIcon('./on-visible.png');
-    //   return;
-    // }
-    // const step = () => {
-    //   if (this.n <= 25) {
-    //     this.context.moveTo(0, 0);
-    //     this.context.lineTo((32 / 25) * this.n, 0);
-    //   } else if (this.n > 25 && this.n <= 50) {
-    //     this.context.moveTo(0, 0);
-    //     this.context.lineTo(32, 0);
-    //     this.context.moveTo(32, 0);
-    //     this.context.lineTo(32, (32 / 25) * (this.n - 25));
-    //   } else if (this.n > 50 && this.n <= 75) {
-    //     this.context.moveTo(0, 0);
-    //     this.context.lineTo(32, 0);
-    //     this.context.moveTo(32, 0);
-    //     this.context.lineTo(32, 32);
-    //     this.context.moveTo(32, 32);
-    //     this.context.lineTo(-((32 / 25) * (this.n - 75)), 32);
-    //   } else if (this.n > 75 && this.n <= 100) {
-    //     this.context.moveTo(0, 0);
-    //     this.context.lineTo(32, 0);
-    //     this.context.moveTo(32, 0);
-    //     this.context.lineTo(32, 32);
-    //     this.context.moveTo(32, 32);
-    //     this.context.lineTo(0, 32);
-    //     this.context.moveTo(0, 32);
-    //     this.context.lineTo(0, -((32 / 25) * (this.n - 100)));
-    //   }
-    //
-    //   this.context.stroke();
-    //   this.icon.href = this.canvas.toDataURL('image/png');
-    // };
-    // step();
+  private drawRectProgress(progress: number): void {
+    const context = this.iconCanvasContext;
+    const step = (): void => {
+      if (progress <= 25) {
+        context.moveTo(0, 0);
+        context.lineTo((32 / 25) * progress, 0);
+      } else if (progress > 25 && progress <= 50) {
+        context.moveTo(0, 0);
+        context.lineTo(32, 0);
+        context.moveTo(32, 0);
+        context.lineTo(32, (32 / 25) * (progress - 25));
+      } else if (progress > 50 && progress <= 75) {
+        context.moveTo(0, 0);
+        context.lineTo(32, 0);
+        context.moveTo(32, 0);
+        context.lineTo(32, 32);
+        context.moveTo(32, 32);
+        context.lineTo(-((32 / 25) * (progress - 75)), 32);
+      } else if (progress > 75 && progress <= 100) {
+        context.moveTo(0, 0);
+        context.lineTo(32, 0);
+        context.moveTo(32, 0);
+        context.lineTo(32, 32);
+        context.moveTo(32, 32);
+        context.lineTo(0, 32);
+        context.moveTo(0, 32);
+        context.lineTo(0, -((32 / 25) * (progress - 100)));
+      }
+    };
+    step();
   }
 }

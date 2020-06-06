@@ -1,9 +1,9 @@
 export default interface IntervalWork {
-    id: string;
-    name: string;
-    delay?: number;
+  id: string;
+  name: string;
+  delay?: number;
 }
 export interface ScheduledIntervalWork {
-    id: string;
-    intervalId: number;
+  id: string;
+  intervalId: number;
 }

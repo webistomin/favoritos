@@ -1,8 +1,8 @@
 import minimist from 'minimist';
 
-import {esConfig} from './modules/es.config';
-import {cjsConfig} from './modules/cjs.config';
-import {unpkgConfig} from './modules/iife.config';
+import { esConfig } from './modules/es.config';
+import { cjsConfig } from './modules/cjs.config';
+import { unpkgConfig } from './modules/iife.config';
 
 const argv = minimist(process.argv.slice(2));
 
