@@ -25,24 +25,22 @@
 <script>
   var lib = new Favoritos({
     icon: {
-      shape: 'rectangle',
-      lineWidth: 8,
       backgroundColor: ['#000fff', '#000000', '#ffffff', 'red']
     },
     badge: {
-      shape: 'circle',
-      fontSize: 20,
+      shape: 'rectangle',
+      // shape: 'circle',
+      // position: 'top-left',
+      // position: 'top-right',
+      // position: 'bottom-left',
+      position: 'bottom-right',
     }
   });
-  lib.drawBadge();
-  document.addEventListener('favoritos:themechange', function() {
-    console.log('change')
-  })
+  lib.drawBadge(2);
   // lib.initScrollingProgressBar()
   // setInterval(function() {
   //   lib.drawBadge();
-  //   console.log(1);
-  // }, 1000)
+  // }, 100)
   // setTimeout(() => {
   //   lib.reset();
   // }, 2000)

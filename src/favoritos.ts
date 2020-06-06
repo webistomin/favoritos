@@ -1,5 +1,6 @@
 import 'core-js/fn/object/assign';
 import { IFavoritosOption } from './types/options/options';
+import { IFavoritosPositions } from './types/options/positions';
 import { SSR_MESSAGE } from './helpers/ssr-message';
 import { DEFAULT_OPTIONS } from './helpers/default-options';
 import { fireEvent } from './helpers/fire-event';
@@ -52,7 +53,6 @@ export default class Favoritos {
   }
 
   private static detectThemeChange(event: MediaQueryListEvent): void {
-    console.log(event);
     const newColorScheme = event.matches ? 'dark' : 'light';
     fireEvent('favoritos:themechange', newColorScheme);
   }
@@ -151,6 +151,109 @@ export default class Favoritos {
     this.setIcon(this.userIconHref);
   }
 
+  private getBadgeXPosition(additionalWidth = 0, newBadgeValue: number): number {
+    const options = this.options;
+    const badgePosition = options.badge.position;
+    const iconWidth = options.icon.width;
+    const badgeWidth = options.badge.width;
+    const shape = options.badge.shape;
+    const isMoreOrEqualThan10 = newBadgeValue >= 10;
+
+    switch (badgePosition) {
+      case IFavoritosPositions.TOP_LEFT:
+      case IFavoritosPositions.BOTTOM_LEFT:
+        switch (shape) {
+          case IFavoritosShape.CIRCLE:
+            if (isMoreOrEqualThan10) {
+              return 0;
+            }
+            return badgeWidth / 2;
+          case IFavoritosShape.RECT:
+            return 0;
+        }
+        break;
+      case IFavoritosPositions.TOP_RIGHT:
+      case IFavoritosPositions.BOTTOM_RIGHT:
+        switch (shape) {
+          case IFavoritosShape.CIRCLE:
+            if (isMoreOrEqualThan10) {
+              return iconWidth - badgeWidth - additionalWidth;
+            }
+            return iconWidth - badgeWidth / 2;
+          case IFavoritosShape.RECT:
+            return iconWidth - badgeWidth - additionalWidth;
+        }
+        break;
+    }
+  }
+
+  private getBadgeYPosition(newBadgeValue: number): number {
+    const options = this.options;
+    const badgePosition = options.badge.position;
+    const iconHeight = options.icon.height;
+    const badgeHeight = options.badge.height;
+    const shape = options.badge.shape;
+    const isMoreOrEqualThan10 = newBadgeValue >= 10;
+
+    switch (badgePosition) {
+      case IFavoritosPositions.TOP_LEFT:
+      case IFavoritosPositions.TOP_RIGHT:
+        switch (shape) {
+          case IFavoritosShape.CIRCLE:
+            if (isMoreOrEqualThan10) {
+              return 0;
+            }
+            return badgeHeight / 2;
+          case IFavoritosShape.RECT:
+            return 0;
+        }
+        break;
+      case IFavoritosPositions.BOTTOM_LEFT:
+      case IFavoritosPositions.BOTTOM_RIGHT:
+        switch (shape) {
+          case IFavoritosShape.CIRCLE:
+            if (isMoreOrEqualThan10) {
+              return iconHeight - badgeHeight;
+            }
+            return iconHeight - badgeHeight / 2;
+          case IFavoritosShape.RECT:
+            return iconHeight - badgeHeight;
+        }
+    }
+  }
+
+  private getBadgeTextXPosition(additionalWidth = 0): number {
+    const options = this.options;
+    const badgePosition = options.badge.position;
+    const iconWidth = options.icon.width;
+    const badgeWidth = options.badge.width;
+
+    switch (badgePosition) {
+      case IFavoritosPositions.TOP_RIGHT:
+      case IFavoritosPositions.BOTTOM_RIGHT:
+        return Math.abs(iconWidth - additionalWidth / 2 - badgeWidth / 2);
+      case IFavoritosPositions.TOP_LEFT:
+      case IFavoritosPositions.BOTTOM_LEFT:
+        return Math.abs(additionalWidth / 2 + badgeWidth / 2);
+    }
+  }
+
+  private getBadgeTextYPosition(): number {
+    const options = this.options;
+    const badgePosition = options.badge.position;
+    const iconHeight = options.icon.height;
+    const badgeHeight = options.badge.height;
+
+    switch (badgePosition) {
+      case IFavoritosPositions.TOP_RIGHT:
+      case IFavoritosPositions.TOP_LEFT:
+        return Math.abs(badgeHeight / 2 + 1);
+      case IFavoritosPositions.BOTTOM_RIGHT:
+      case IFavoritosPositions.BOTTOM_LEFT:
+        return Math.abs(iconHeight - badgeHeight / 2 + 1.75);
+    }
+  }
+
   public drawBadge(count?: number): void {
     const setBadge = (img: HTMLImageElement): void => {
       let newValue = this.badgeCounter;
@@ -170,26 +273,27 @@ export default class Favoritos {
         this.iconCanvasWidth,
         this.iconCanvasHeight
       );
+
       this.iconCanvasContext.beginPath();
 
       if (badgeOptions.shape === IFavoritosShape.CIRCLE) {
         this.drawCircleBadge(newValue, iconOptions, badgeOptions, additionalWidth);
       } else {
-        this.drawRectBadge(iconOptions, badgeOptions, additionalWidth);
+        this.drawRectBadge(newValue, iconOptions, badgeOptions, additionalWidth);
       }
 
       this.iconCanvasContext.fill();
       this.iconCanvasContext.fillStyle = badgeOptions.color;
       this.iconCanvasContext.fillText(
         String(newValue),
-        iconOptions.width - additionalWidth / 2 - badgeOptions.width / 2,
-        iconOptions.height - badgeOptions.height / 2 + 1.75,
+        this.getBadgeTextXPosition(additionalWidth),
+        this.getBadgeTextYPosition(),
         iconOptions.width
       );
       this.iconCanvasContext.closePath();
 
       this.iconElement.href = this.iconCanvas.toDataURL('image/png', 1.0);
-      // document.body.append(this.iconCanvas);
+      document.body.append(this.iconCanvas);
 
       if (!count) {
         this.badgeCounter++;
@@ -220,16 +324,16 @@ export default class Favoritos {
       );
       roundedRect(
         this.iconCanvasContext,
-        iconOptions.width - badgeOptions.width - additionalWidth,
-        iconOptions.height - badgeOptions.height,
+        this.getBadgeXPosition(additionalWidth, newValue),
+        this.getBadgeYPosition(newValue),
         badgeOptions.width + additionalWidth,
         badgeOptions.height,
         10
       );
     } else {
       this.iconCanvasContext.arc(
-        iconOptions.width - badgeOptions.width / 2,
-        iconOptions.height - badgeOptions.height / 2,
+        this.getBadgeXPosition(additionalWidth, newValue),
+        this.getBadgeYPosition(newValue),
         badgeOptions.width / 2,
         0,
         2 * Math.PI
@@ -238,13 +342,14 @@ export default class Favoritos {
   }
 
   private drawRectBadge(
+    newValue: number,
     iconOptions: IFavoritosOption['icon'],
     badgeOptions: IFavoritosOption['badge'],
     additionalWidth = 0
   ): void {
     this.iconCanvasContext.rect(
-      iconOptions.width - badgeOptions.width - additionalWidth,
-      iconOptions.height - badgeOptions.height,
+      this.getBadgeXPosition(additionalWidth, newValue),
+      this.getBadgeYPosition(newValue),
       badgeOptions.width + additionalWidth,
       badgeOptions.height
     );
@@ -275,7 +380,7 @@ export default class Favoritos {
     this.iconCanvasContext.strokeStyle = this.getContextBackgroundColor(iconOptions.backgroundColor, 32, 32);
     this.iconCanvasContext.stroke();
     this.iconElement.href = this.iconCanvas.toDataURL('image/png', 1.0);
-    // document.body.append(this.iconCanvas);
+    document.body.append(this.iconCanvas);
   }
 
   private drawCircleProgress(progress: number, iconOptions: IFavoritosOption['icon']): void {

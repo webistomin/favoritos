@@ -24,6 +24,10 @@ export default class Favoritos {
     setIcon(newIcon: string): void;
     isPrefersColorSchemeDark(): boolean;
     reset(): void;
+    private getBadgeXPosition;
+    private getBadgeYPosition;
+    private getBadgeTextXPosition;
+    private getBadgeTextYPosition;
     drawBadge(count?: number): void;
     private drawCircleBadge;
     private drawRectBadge;
