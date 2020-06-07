@@ -20,7 +20,7 @@ export const DEFAULT_OPTIONS: IFavoritosOption = {
     position: IFavoritosPositions.BOTTOM_RIGHT,
     animation: IFavoritosAnimations.NONE,
     shape: IFavoritosShape.CIRCLE,
-    width: 22,
-    height: 22,
+    minWidth: 22,
+    minHeight: 22,
   },
 };

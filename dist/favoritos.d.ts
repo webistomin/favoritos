@@ -1,4 +1,3 @@
-import 'core-js/fn/object/assign';
 import { IFavoritosOption } from './types/options/options';
 export default class Favoritos {
     private options;
@@ -9,9 +8,9 @@ export default class Favoritos {
     private iconCanvasHeight;
     private iconCanvas;
     private iconCanvasContext;
-    private badgeCounter;
-    private badgeCanvasWidth;
-    private badgeCanvasHeight;
+    private badgeCanvasMinWidth;
+    private badgeCanvasMinHeight;
+    private badgeContent;
     constructor(options: IFavoritosOption);
     private static detectVisibilityChange;
     private static detectThemeChange;

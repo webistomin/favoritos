@@ -19,7 +19,7 @@ export interface IFavoritosOption {
     position?: IFavoritosPositions;
     animation?: IFavoritosAnimations;
     shape?: IFavoritosShape;
-    width?: number;
-    height?: number;
+    minWidth?: number;
+    minHeight?: number;
   };
 }

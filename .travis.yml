@@ -5,10 +5,10 @@ node_js:
 
 install:
   - npm i
-  - npm i -g codecov
+#  - npm i -g codecov
 
-after_success:
-  bash <(curl -s https://codecov.io/bash);
+#after_success:
+#  bash <(curl -s https://codecov.io/bash);
 
 notifications:
   email: false

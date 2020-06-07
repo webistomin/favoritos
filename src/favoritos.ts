@@ -1,4 +1,3 @@
-import 'core-js/fn/object/assign';
 import { IFavoritosOption } from './types/options/options';
 import { IFavoritosPositions } from './types/options/positions';
 import { SSR_MESSAGE } from './helpers/ssr-message';
@@ -22,9 +21,9 @@ export default class Favoritos {
   private iconCanvas: HTMLCanvasElement;
   private iconCanvasContext: CanvasRenderingContext2D;
 
-  private badgeCounter = 0;
-  private badgeCanvasWidth: number;
-  private badgeCanvasHeight: number;
+  private badgeCanvasMinWidth: number;
+  private badgeCanvasMinHeight: number;
+  private badgeContent: string | number;
 
   constructor(options: IFavoritosOption) {
     if (typeof window === 'undefined') {
@@ -71,21 +70,24 @@ export default class Favoritos {
     const iconOptions = options.icon;
     const badgeOptions = options.badge;
 
-    const badgeWidth = badgeOptions.width;
-    const badgeHeight = badgeOptions.height;
+    const badgeMinWidth = badgeOptions.minWidth;
+    const badgeMinHeight = badgeOptions.minHeight;
 
     const iconWidth = iconOptions.width;
     const iconHeight = iconOptions.height;
 
-    this.badgeCanvasWidth = badgeWidth;
-    this.badgeCanvasHeight = badgeHeight;
+    this.badgeCanvasMinWidth = badgeMinWidth;
+    this.badgeCanvasMinHeight = badgeMinHeight;
 
     this.iconCanvas = document.createElement('canvas');
+
     this.iconCanvasWidth = iconWidth;
     this.iconCanvasHeight = iconHeight;
     this.iconCanvas.width = iconWidth;
     this.iconCanvas.height = iconHeight;
+
     this.iconCanvasContext = this.iconCanvas.getContext('2d');
+
     this.iconCanvasContext.font = `${badgeOptions.fontSize}px ${badgeOptions.fontFamily}`;
     this.iconCanvasContext.textAlign = 'center';
     this.iconCanvasContext.textBaseline = 'middle';
@@ -151,23 +153,28 @@ export default class Favoritos {
     this.setIcon(this.userIconHref);
   }
 
-  private getBadgeXPosition(additionalWidth = 0, newBadgeValue: number): number {
+  private getBadgeXPosition(textWidth: number): number {
     const options = this.options;
+    const badgeMinWidth = options.badge.minWidth;
     const badgePosition = options.badge.position;
     const iconWidth = options.icon.width;
-    const badgeWidth = options.badge.width;
     const shape = options.badge.shape;
-    const isMoreOrEqualThan10 = newBadgeValue >= 10;
+    const badgeMaxWidth = iconWidth;
+    const badgeValue = this.badgeContent;
+    const isBadgeValueMoreOrEqual10 = badgeValue >= 10;
+
+    const finalBadgeWidth =
+      badgeMinWidth >= textWidth ? badgeMinWidth : textWidth >= badgeMaxWidth ? badgeMaxWidth : textWidth;
 
     switch (badgePosition) {
       case IFavoritosPositions.TOP_LEFT:
       case IFavoritosPositions.BOTTOM_LEFT:
         switch (shape) {
           case IFavoritosShape.CIRCLE:
-            if (isMoreOrEqualThan10) {
+            if (isBadgeValueMoreOrEqual10) {
               return 0;
             }
-            return badgeWidth / 2;
+            return finalBadgeWidth / 2;
           case IFavoritosShape.RECT:
             return 0;
         }
@@ -176,34 +183,37 @@ export default class Favoritos {
       case IFavoritosPositions.BOTTOM_RIGHT:
         switch (shape) {
           case IFavoritosShape.CIRCLE:
-            if (isMoreOrEqualThan10) {
-              return iconWidth - badgeWidth - additionalWidth;
+            if (isBadgeValueMoreOrEqual10) {
+              return iconWidth - finalBadgeWidth;
             }
-            return iconWidth - badgeWidth / 2;
+            return iconWidth - finalBadgeWidth / 2;
           case IFavoritosShape.RECT:
-            return iconWidth - badgeWidth - additionalWidth;
+            return iconWidth - finalBadgeWidth;
         }
         break;
     }
   }
 
-  private getBadgeYPosition(newBadgeValue: number): number {
+  private getBadgeYPosition(textHeight: number): number {
     const options = this.options;
     const badgePosition = options.badge.position;
     const iconHeight = options.icon.height;
-    const badgeHeight = options.badge.height;
+    const badgeMinHeight = options.badge.minHeight;
     const shape = options.badge.shape;
-    const isMoreOrEqualThan10 = newBadgeValue >= 10;
+    const badgeValue = this.badgeContent;
+    const isBadgeValueMoreOrEqual10 = badgeValue >= 10;
+
+    const finalBadgeHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
 
     switch (badgePosition) {
       case IFavoritosPositions.TOP_LEFT:
       case IFavoritosPositions.TOP_RIGHT:
         switch (shape) {
           case IFavoritosShape.CIRCLE:
-            if (isMoreOrEqualThan10) {
+            if (isBadgeValueMoreOrEqual10) {
               return 0;
             }
-            return badgeHeight / 2;
+            return finalBadgeHeight / 2;
           case IFavoritosShape.RECT:
             return 0;
         }
@@ -212,60 +222,70 @@ export default class Favoritos {
       case IFavoritosPositions.BOTTOM_RIGHT:
         switch (shape) {
           case IFavoritosShape.CIRCLE:
-            if (isMoreOrEqualThan10) {
-              return iconHeight - badgeHeight;
+            if (isBadgeValueMoreOrEqual10) {
+              return iconHeight - finalBadgeHeight;
             }
-            return iconHeight - badgeHeight / 2;
+            return iconHeight - finalBadgeHeight / 2;
           case IFavoritosShape.RECT:
-            return iconHeight - badgeHeight;
+            return iconHeight - finalBadgeHeight;
         }
     }
   }
 
-  private getBadgeTextXPosition(additionalWidth = 0): number {
+  private getBadgeTextXPosition(textWidth: number): number {
     const options = this.options;
     const badgePosition = options.badge.position;
     const iconWidth = options.icon.width;
-    const badgeWidth = options.badge.width;
+    const badgeMinWidth = options.badge.minWidth;
+    const badgeMaxWidth = iconWidth;
+
+    const finalBadgeTextWidth =
+      badgeMinWidth >= textWidth ? badgeMinWidth : textWidth >= badgeMaxWidth ? badgeMaxWidth : textWidth;
 
     switch (badgePosition) {
       case IFavoritosPositions.TOP_RIGHT:
       case IFavoritosPositions.BOTTOM_RIGHT:
-        return Math.abs(iconWidth - additionalWidth / 2 - badgeWidth / 2);
+        return Math.abs(iconWidth - finalBadgeTextWidth / 2);
       case IFavoritosPositions.TOP_LEFT:
       case IFavoritosPositions.BOTTOM_LEFT:
-        return Math.abs(additionalWidth / 2 + badgeWidth / 2);
+        return Math.abs(finalBadgeTextWidth / 2);
     }
   }
 
-  private getBadgeTextYPosition(): number {
+  private getBadgeTextYPosition(textHeight: number): number {
     const options = this.options;
     const badgePosition = options.badge.position;
     const iconHeight = options.icon.height;
-    const badgeHeight = options.badge.height;
+    const badgeMinHeight = options.badge.minHeight;
+    const badgeValue = this.badgeContent;
+
+    const isBadgeValueNumber = typeof badgeValue === 'number';
+    const additionalHeight = isBadgeValueNumber ? textHeight * 0.085 : 0;
+
+    const finalHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
 
     switch (badgePosition) {
       case IFavoritosPositions.TOP_RIGHT:
       case IFavoritosPositions.TOP_LEFT:
-        return Math.abs(badgeHeight / 2 + 1);
+        return Math.abs(finalHeight / 2 + additionalHeight);
       case IFavoritosPositions.BOTTOM_RIGHT:
       case IFavoritosPositions.BOTTOM_LEFT:
-        return Math.abs(iconHeight - badgeHeight / 2 + 1.75);
+        return Math.abs(iconHeight - finalHeight / 2 + additionalHeight);
     }
   }
 
-  public drawBadge(count?: number): void {
+  public drawBadge(count = 0): void {
+    this.badgeContent = count;
+
     const setBadge = (img: HTMLImageElement): void => {
-      let newValue = this.badgeCounter;
+      const newValue = count;
       const iconOptions = this.options.icon;
       const badgeOptions = this.options.badge;
 
-      if (count) {
-        newValue = count;
-        this.badgeCounter = count;
-      }
+      const textParams = this.iconCanvasContext.measureText(String(newValue));
+      const textWidth = textParams.width;
+      const textHeight = badgeOptions.fontSize;
 
-      const additionalWidth = newValue >= 100 ? 10 : newValue >= 10 ? 7 : 0;
       this.iconCanvasContext.clearRect(0, 0, iconOptions.width, iconOptions.height);
       this.iconCanvasContext.drawImage(img, 0, 0, iconOptions.width, iconOptions.height);
       this.iconCanvasContext.fillStyle = this.getContextBackgroundColor(
@@ -275,29 +295,24 @@ export default class Favoritos {
       );
 
       this.iconCanvasContext.beginPath();
-
       if (badgeOptions.shape === IFavoritosShape.CIRCLE) {
-        this.drawCircleBadge(newValue, iconOptions, badgeOptions, additionalWidth);
+        this.drawCircleBadge(textWidth, textHeight, newValue);
       } else {
-        this.drawRectBadge(newValue, iconOptions, badgeOptions, additionalWidth);
+        this.drawRectBadge(textWidth, textHeight);
       }
-
       this.iconCanvasContext.fill();
       this.iconCanvasContext.fillStyle = badgeOptions.color;
+
       this.iconCanvasContext.fillText(
         String(newValue),
-        this.getBadgeTextXPosition(additionalWidth),
-        this.getBadgeTextYPosition(),
+        this.getBadgeTextXPosition(textWidth),
+        this.getBadgeTextYPosition(textHeight),
         iconOptions.width
       );
       this.iconCanvasContext.closePath();
 
       this.iconElement.href = this.iconCanvas.toDataURL('image/png', 1.0);
       document.body.append(this.iconCanvas);
-
-      if (!count) {
-        this.badgeCounter++;
-      }
     };
 
     if (!this.userIconCache) {
@@ -310,48 +325,58 @@ export default class Favoritos {
     }
   }
 
-  private drawCircleBadge(
-    newValue: number,
-    iconOptions: IFavoritosOption['icon'],
-    badgeOptions: IFavoritosOption['badge'],
-    additionalWidth = 0
-  ): void {
+  private drawCircleBadge(textWidth: number, textHeight: number, newValue: number): void {
+    const options = this.options;
+    const iconWidth = options.icon.width;
+    const badgeMaxWidth = iconWidth;
+    const badgeMinWidth = options.badge.minWidth;
+    const badgeMinHeight = options.badge.minHeight;
+
+    const finalBadgeWidth =
+      badgeMinWidth >= textWidth ? badgeMinWidth : textWidth >= badgeMaxWidth ? badgeMaxWidth : textWidth;
+    const finalBadgeHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
+
     if (newValue >= 10) {
       this.iconCanvasContext.strokeStyle = this.getContextBackgroundColor(
-        badgeOptions.backgroundColor,
+        options.badge.backgroundColor,
         this.iconCanvasWidth,
         this.iconCanvasHeight
       );
       roundedRect(
         this.iconCanvasContext,
-        this.getBadgeXPosition(additionalWidth, newValue),
-        this.getBadgeYPosition(newValue),
-        badgeOptions.width + additionalWidth,
-        badgeOptions.height,
+        this.getBadgeXPosition(textWidth),
+        this.getBadgeYPosition(textHeight),
+        finalBadgeWidth,
+        finalBadgeHeight,
         10
       );
     } else {
       this.iconCanvasContext.arc(
-        this.getBadgeXPosition(additionalWidth, newValue),
-        this.getBadgeYPosition(newValue),
-        badgeOptions.width / 2,
+        this.getBadgeXPosition(textWidth),
+        this.getBadgeYPosition(textHeight),
+        finalBadgeWidth / 2,
         0,
         2 * Math.PI
       );
     }
   }
 
-  private drawRectBadge(
-    newValue: number,
-    iconOptions: IFavoritosOption['icon'],
-    badgeOptions: IFavoritosOption['badge'],
-    additionalWidth = 0
-  ): void {
+  private drawRectBadge(textWidth: number, textHeight: number): void {
+    const options = this.options;
+    const iconWidth = options.icon.width;
+    const badgeMaxWidth = iconWidth;
+    const badgeMinWidth = options.badge.minWidth;
+    const badgeMinHeight = options.badge.minHeight;
+
+    const finalBadgeWidth =
+      badgeMinWidth >= textWidth ? badgeMinWidth : textWidth >= badgeMaxWidth ? badgeMaxWidth : textWidth;
+    const finalBadgeHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
+
     this.iconCanvasContext.rect(
-      this.getBadgeXPosition(additionalWidth, newValue),
-      this.getBadgeYPosition(newValue),
-      badgeOptions.width + additionalWidth,
-      badgeOptions.height
+      this.getBadgeXPosition(textWidth),
+      this.getBadgeYPosition(textHeight),
+      finalBadgeWidth,
+      finalBadgeHeight
     );
   }
 
