@@ -1,9 +1,19 @@
-export const loadImage = (src: string): Promise<HTMLImageElement> => {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.addEventListener('load', () => resolve(img), { once: true });
-    img.addEventListener('error', (err) => reject(err), { once: true });
-    img.src = src;
-  });
+export const loadImage = (src: string, callback: Function): void => {
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.addEventListener(
+    'load',
+    () => {
+      return callback(img);
+    },
+    { once: true }
+  );
+  img.addEventListener(
+    'error',
+    (err) => {
+      return callback(img);
+    },
+    { once: true }
+  );
+  img.src = src;
 };

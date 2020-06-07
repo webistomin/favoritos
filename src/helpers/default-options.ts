@@ -1,7 +1,7 @@
 import { IFavoritosOption } from '../types/options/options';
 import { IFavoritosShape } from '../types/options/shapes';
 import { IFavoritosPositions } from '../types/options/positions';
-import { IFavoritosAnimations } from '../types/options/animations';
+// import { IFavoritosAnimations } from '../types/options/animations';
 
 export const DEFAULT_OPTIONS: IFavoritosOption = {
   icon: {
@@ -18,7 +18,7 @@ export const DEFAULT_OPTIONS: IFavoritosOption = {
     backgroundColor: '#d21f3c',
     color: '#ffffff',
     position: IFavoritosPositions.BOTTOM_RIGHT,
-    animation: IFavoritosAnimations.NONE,
+    // animation: IFavoritosAnimations.NONE,
     shape: IFavoritosShape.CIRCLE,
     minWidth: 22,
     minHeight: 22,

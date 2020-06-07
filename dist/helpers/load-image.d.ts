@@ -1,1 +1,1 @@
-export declare const loadImage: (src: string) => Promise<HTMLImageElement>;
+export declare const loadImage: (src: string, callback: Function) => void;

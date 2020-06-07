@@ -8,6 +8,7 @@ export default class Favoritos {
     private iconCanvasContext;
     private badgeContent;
     private boundScrollProgressListener;
+    private scrollProgressOptions;
     private readonly arcDegrees;
     constructor(options: IFavoritosOption);
     private initIconCanvas;
@@ -24,7 +25,9 @@ export default class Favoritos {
     drawBadge(count?: number): void;
     private drawCircleBadge;
     private drawRectBadge;
-    initScrollingProgressBar(): void;
+    initScrollingProgressBar(scrollingOptions?: {
+        useFavicon: boolean;
+    }): void;
     private setScrollingProgressBar;
     private drawCircleProgress;
     private drawRectProgress;

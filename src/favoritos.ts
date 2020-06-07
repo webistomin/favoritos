@@ -21,6 +21,9 @@ export default class Favoritos {
   private badgeContent: string | number;
 
   private boundScrollProgressListener = this.setScrollingProgressBar.bind(this);
+  private scrollProgressOptions = {
+    useFavicon: false,
+  };
 
   private readonly arcDegrees = {
     '0': 0,
@@ -97,7 +100,7 @@ export default class Favoritos {
     this.iconElement = document.querySelector(iconOptions.iconSelector);
     this.userIconHref = this.iconElement.href;
 
-    loadImage(this.userIconHref).then((img) => {
+    loadImage(this.userIconHref, (img: HTMLImageElement) => {
       this.userIconCache = img;
     });
 
@@ -114,6 +117,9 @@ export default class Favoritos {
 
   public setIcon(newIcon: string): void {
     this.iconElement.href = newIcon;
+    loadImage(newIcon, (img: HTMLImageElement) => {
+      this.userIconCache = img;
+    });
   }
 
   public reset(): void {
@@ -279,11 +285,11 @@ export default class Favoritos {
       );
       context.closePath();
 
-      this.iconElement.href = this.iconCanvas.toDataURL('image/png', 1.0);
+      this.iconElement.href = this.iconCanvas.toDataURL('image/webp', 1.0);
     };
 
     if (!this.userIconCache) {
-      loadImage(this.userIconHref).then((img) => {
+      loadImage(this.userIconHref, (img: HTMLImageElement) => {
         this.userIconCache = img;
         setBadge(img);
       });
@@ -345,40 +351,63 @@ export default class Favoritos {
     );
   }
 
-  public initScrollingProgressBar(): void {
+  public initScrollingProgressBar(scrollingOptions: { useFavicon: boolean } = { useFavicon: false }): void {
+    this.scrollProgressOptions.useFavicon = scrollingOptions.useFavicon;
     document.addEventListener('scroll', this.boundScrollProgressListener);
   }
 
   private setScrollingProgressBar(): void {
-    const iconOptions = this.options.icon;
-    const scrollTopInPx = document.documentElement.scrollTop;
-    const pageHeightInPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrollPercent = (scrollTopInPx / pageHeightInPx) * 100;
-    const scrollPercentRounded = Math.round(scrollPercent);
-    const context = this.iconCanvasContext;
+    const shouldUseFavicon = this.scrollProgressOptions.useFavicon;
+    const userIconCache = this.userIconCache;
+    const setProgress = (img?: HTMLImageElement): void => {
+      const iconOptions = this.options.icon;
+      const scrollTopInPx = document.documentElement.scrollTop;
+      const pageHeightInPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercent = (scrollTopInPx / pageHeightInPx) * 100;
+      const scrollPercentRounded = Math.round(scrollPercent);
+      const context = this.iconCanvasContext;
 
-    const evt = document.createEvent('CustomEvent');
-    evt.initCustomEvent('build', true, true, {
-      pageHeightInPx,
-      scrollTopInPx,
-      scrollPercent,
-      scrollPercentRounded,
-    });
-    document.dispatchEvent(evt);
+      context.clearRect(0, 0, iconOptions.width, iconOptions.height);
 
-    context.clearRect(0, 0, iconOptions.width, iconOptions.height);
-    context.beginPath();
-    context.lineWidth = iconOptions.lineWidth;
+      if (img) {
+        context.drawImage(img, 0, 0, iconOptions.width, iconOptions.height);
+      }
 
-    if (iconOptions.shape === IFavoritosShape.CIRCLE) {
-      this.drawCircleProgress(scrollPercent);
+      context.beginPath();
+      context.lineWidth = iconOptions.lineWidth;
+
+      if (iconOptions.shape === IFavoritosShape.CIRCLE) {
+        this.drawCircleProgress(scrollPercent);
+      } else {
+        this.drawRectProgress(scrollPercent);
+      }
+
+      context.strokeStyle = this.getContextBackgroundColor(iconOptions.backgroundColor, 32, 32);
+      context.stroke();
+      this.iconElement.href = this.iconCanvas.toDataURL('image/webp', 1.0);
+
+      const evt = document.createEvent('CustomEvent');
+      evt.initCustomEvent('favoritos:scroll', true, true, {
+        pageHeightInPx,
+        scrollTopInPx,
+        scrollPercent,
+        scrollPercentRounded,
+      });
+      document.dispatchEvent(evt);
+    };
+
+    if (shouldUseFavicon) {
+      if (!userIconCache) {
+        loadImage(this.userIconHref, (img: HTMLImageElement) => {
+          this.userIconCache = img;
+          setProgress(img);
+        });
+      } else {
+        setProgress(userIconCache);
+      }
     } else {
-      this.drawRectProgress(scrollPercent);
+      setProgress();
     }
-
-    context.strokeStyle = this.getContextBackgroundColor(iconOptions.backgroundColor, 32, 32);
-    context.stroke();
-    this.iconElement.href = this.iconCanvas.toDataURL('image/png', 1.0);
   }
 
   private drawCircleProgress(progress: number): void {

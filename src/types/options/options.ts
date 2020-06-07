@@ -1,5 +1,5 @@
 import { IFavoritosPositions } from './positions';
-import { IFavoritosAnimations } from './animations';
+// import { IFavoritosAnimations } from './animations';
 import { IFavoritosShape } from './shapes';
 
 export interface IFavoritosOption {
@@ -17,7 +17,7 @@ export interface IFavoritosOption {
     backgroundColor?: string | string[];
     color?: string;
     position?: IFavoritosPositions;
-    animation?: IFavoritosAnimations;
+    //animation?: IFavoritosAnimations;
     shape?: IFavoritosShape;
     minWidth?: number;
     minHeight?: number;
