@@ -61,16 +61,19 @@ export default class Favoritos {
     const iconWidth = iconOptions.width;
     const iconHeight = iconOptions.height;
 
+    const DPR = window.devicePixelRatio || 1;
+
     this.iconCanvas = document.createElement('canvas');
 
-    this.iconCanvas.width = iconWidth;
-    this.iconCanvas.height = iconHeight;
+    this.iconCanvas.width = iconWidth * DPR;
+    this.iconCanvas.height = iconHeight * DPR;
 
     this.iconCanvasContext = this.iconCanvas.getContext('2d');
 
     this.iconCanvasContext.font = `${badgeOptions.fontSize}px ${badgeOptions.fontFamily}`;
     this.iconCanvasContext.textAlign = 'center';
     this.iconCanvasContext.textBaseline = 'middle';
+    this.iconCanvasContext.scale(DPR, DPR);
   }
 
   private getContextBackgroundColor(
