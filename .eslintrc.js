@@ -29,11 +29,11 @@ module.exports = {
     "@typescript-eslint/interface-name-prefix": 0,
     "@typescript-eslint/camelcase": 0,
     "@typescript-eslint/ban-ts-ignore": 0,
-    "@typescript-eslint/unbound-method": [
-      "error",
-      {
-        "ignoreStatic": true
-      }
-    ]
+    // "@typescript-eslint/unbound-method": [
+    //   "error",
+    //   {
+    //     "ignoreStatic": true
+    //   }
+    // ]
   }
 };

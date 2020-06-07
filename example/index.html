@@ -20,15 +20,19 @@
 </head>
 <body>
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CCustomEvent%2Cfetch%2CBlob"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CCustomEvent%2Cfetch%2CBlob%2CObject.assign"></script>
 <script src="../dist/favoritos.iife.js"></script>
 <script>
   var lib = new Favoritos({
     icon: {
-      backgroundColor: ['#000fff', '#000000', '#ffffff', 'red']
+      // width: 20,
+      // height: 20,
+      // shape: 'rectangle',
+      backgroundColor: 'red',
+      lineWidth: 6,
     },
     badge: {
-      // shape: 'rectangle',
+      shape: 'rectangle',
       // shape: 'circle',
       // position: 'top-left',
       // position: 'top-right',
@@ -40,23 +44,44 @@
       // fontSize: 3,
     }
   });
+  document.addEventListener('build', function(e) {
+    console.log(e.detail)
+  })
   // lib.drawBadge(2);
-  // lib.initScrollingProgressBar()
+  lib.initScrollingProgressBar()
   // lib.drawBadge();
-  lib.drawBadge(1);
-  console.log(lib)
+  lib.drawBadge(123);
+  setTimeout(function() {
+    // console.log('destroy');
+    // lib.destroy();
+    console.log('set')
+    lib.setOptions({
+      icon: {
+        backgroundColor: 'green'
+      }
+    })
+    const event = new CustomEvent("scroll", { "detail": "Example of an event" });
+    document.dispatchEvent(event);
+    // lib.drawBadge(123);
+    // console.log(lib)
+  }, 1000)
+
+  // lib.initScrollingProgressBar();
+  // console.log(lib)
   // console.log(lib.isPrefersColorSchemeDark())
-  // document.addEventListener('favoritos:visibilitychange', ({detail}) => {
-  //   if (detail === 'visible') {
-  //     lib.setIcon('./on-visible.png')
+  // document.addEventListener('visibilitychange', () => {
+  //   if (document.visibilityState === 'visible') {
+  //     lib.drawBadge(123);
+  //     document.title = 'Title';
   //   } else {
   //     lib.setIcon('./on-hidden.png')
+  //     document.title = 'I Miss You!';
   //   }
   // })
-  // document.addEventListener('favoritos:themechange', ({detail}) => {
+  // document.addEventListener('themechange', ({detail}) => {
   //   console.log(event.detail)
   // })
-  let count = 0;
+  // let count = 0;
   // setInterval(function() {
   //   // console.log(1);
   //   console.log(count % 2)

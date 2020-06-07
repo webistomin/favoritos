@@ -3,7 +3,7 @@ import { IFavoritosAnimations } from './animations';
 import { IFavoritosShape } from './shapes';
 
 export interface IFavoritosOption {
-  icon: {
+  icon?: {
     iconSelector?: string;
     backgroundColor?: string | string[];
     shape?: IFavoritosShape;
@@ -11,7 +11,7 @@ export interface IFavoritosOption {
     width?: number;
     height?: number;
   };
-  badge: {
+  badge?: {
     fontSize?: number;
     fontFamily?: string;
     backgroundColor?: string | string[];
