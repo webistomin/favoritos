@@ -29,12 +29,12 @@
       // width: 20,
       // height: 20,
       // shape: 'rectangle',
-      backgroundColor: 'red',
-      lineWidth: 6,
+      // backgroundColor: 'red',
+      // lineWidth: 6,
     },
     badge: {
-      shape: 'rectangle',
-      // shape: 'circle',
+      // shape: 'rectangle',
+      shape: 'circle',
       // position: 'top-left',
       // position: 'top-right',
       // position: 'bottom-left',
@@ -48,15 +48,18 @@
       enabled: true
     }
   });
-  lib.initScrollingProgressBar()
-  console.log(lib);
-  document.addEventListener('favoritos:scroll', function(e) {
-    if (e.detail.scrollPercentRounded === 100) {
-      console.log('draw')
-      // lib.drawBadge(123);
-    }
-  })
-  lib.drawBadge(2);
+  // lib.initScrollingProgressBar()
+  // setTimeout(() => {
+  //   lib.destroy();
+  // }, 1000)
+  // console.log(lib);
+  // document.addEventListener('favoritos:scroll', function(e) {
+  //   if (e.detail.scrollPercentRounded === 100) {
+  //     console.log('draw')
+  //     // lib.drawBadge(123);
+  //   }
+  // })
+  lib.drawBadge();
   // lib.drawBadge();
   // lib.drawBadge(123);
   // setTimeout(function() {
@@ -77,8 +80,8 @@
   // console.log(lib.isPrefersColorSchemeDark())
   // document.addEventListener('visibilitychange', () => {
   //   if (document.visibilityState === 'visible') {
-  //     lib.drawBadge(123);
   //     document.title = 'Title';
+  //     lib.setIcon('./on-visible.png')
   //   } else {
   //     lib.setIcon('./on-hidden.png')
   //     document.title = 'I Miss You!';

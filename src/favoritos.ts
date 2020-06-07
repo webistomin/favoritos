@@ -125,9 +125,6 @@ export default class Favoritos {
 
   public setIcon(newIcon: string): void {
     this.iconElement.href = newIcon;
-    loadImage(newIcon, (img: HTMLImageElement) => {
-      this.userIconCache = img;
-    });
   }
 
   public reset(): void {
@@ -143,7 +140,7 @@ export default class Favoritos {
     const shape = options.badge.shape;
     const badgeMaxWidth = iconWidth;
     const badgeValue = this.badgeContent;
-    const isBadgeValueMoreOrEqual10 = badgeValue >= 10;
+    const shouldUseShape = typeof badgeValue === 'number' ? badgeValue >= 10 : badgeValue.length >= 1;
 
     const finalBadgeWidth =
       badgeMinWidth >= textWidth ? badgeMinWidth : textWidth >= badgeMaxWidth ? badgeMaxWidth : textWidth;
@@ -153,7 +150,7 @@ export default class Favoritos {
       case IFavoritosPositions.BOTTOM_LEFT:
         switch (shape) {
           case IFavoritosShape.CIRCLE:
-            if (isBadgeValueMoreOrEqual10) {
+            if (shouldUseShape) {
               return 0;
             }
             return finalBadgeWidth / 2;
@@ -165,7 +162,7 @@ export default class Favoritos {
       case IFavoritosPositions.BOTTOM_RIGHT:
         switch (shape) {
           case IFavoritosShape.CIRCLE:
-            if (isBadgeValueMoreOrEqual10) {
+            if (shouldUseShape) {
               return iconWidth - finalBadgeWidth;
             }
             return iconWidth - finalBadgeWidth / 2;
@@ -183,7 +180,7 @@ export default class Favoritos {
     const badgeMinHeight = options.badge.minHeight;
     const shape = options.badge.shape;
     const badgeValue = this.badgeContent;
-    const isBadgeValueMoreOrEqual10 = badgeValue >= 10;
+    const shouldUseShape = typeof badgeValue === 'number' ? badgeValue >= 10 : badgeValue.length >= 1;
 
     const finalBadgeHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
 
@@ -192,7 +189,7 @@ export default class Favoritos {
       case IFavoritosPositions.TOP_RIGHT:
         switch (shape) {
           case IFavoritosShape.CIRCLE:
-            if (isBadgeValueMoreOrEqual10) {
+            if (shouldUseShape) {
               return 0;
             }
             return finalBadgeHeight / 2;
@@ -204,7 +201,7 @@ export default class Favoritos {
       case IFavoritosPositions.BOTTOM_RIGHT:
         switch (shape) {
           case IFavoritosShape.CIRCLE:
-            if (isBadgeValueMoreOrEqual10) {
+            if (shouldUseShape) {
               return iconHeight - finalBadgeHeight;
             }
             return iconHeight - finalBadgeHeight / 2;
@@ -256,7 +253,7 @@ export default class Favoritos {
     }
   }
 
-  public drawBadge(count = 0): void {
+  public drawBadge(count: number | string = ''): void {
     const setBadge = (img: HTMLImageElement): void => {
       const context = this.iconCanvasContext;
       this.badgeContent = count;
@@ -311,7 +308,7 @@ export default class Favoritos {
     }
   }
 
-  private drawCircleBadge(textWidth: number, textHeight: number, newValue: number): void {
+  private drawCircleBadge(textWidth: number, textHeight: number, newValue: number | string): void {
     const options = this.options;
     const iconWidth = options.icon.width;
     const iconHeight = options.icon.height;
@@ -324,7 +321,10 @@ export default class Favoritos {
       badgeMinWidth >= textWidth ? badgeMinWidth : textWidth >= badgeMaxWidth ? badgeMaxWidth : textWidth;
     const finalBadgeHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
 
-    if (newValue >= 10) {
+    if (typeof newValue === 'number' ? newValue >= 10 : newValue.length >= 1) {
+      console.log(textWidth, textHeight, 'text parms');
+      console.log(finalBadgeWidth, finalBadgeHeight, 'final');
+      console.log(this.getBadgeXPosition(textWidth), this.getBadgeYPosition(textHeight), 'positions')
       context.strokeStyle = this.getContextBackgroundColor(options.badge.backgroundColor, iconWidth, iconHeight);
       roundedRect(
         context,

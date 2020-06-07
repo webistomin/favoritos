@@ -23,7 +23,7 @@ export default class Favoritos {
     private getBadgeYPosition;
     private getBadgeTextXPosition;
     private getBadgeTextYPosition;
-    drawBadge(count?: number): void;
+    drawBadge(count?: number | string): void;
     private drawCircleBadge;
     private drawRectBadge;
     initScrollingProgressBar(scrollingOptions?: {
