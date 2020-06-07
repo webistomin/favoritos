@@ -19,7 +19,7 @@
   </style>
 </head>
 <body>
-
+<div id="favoritos-debug"></div>
 <!--<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CCustomEvent%2Cfetch%2CBlob%2CObject.assign"></script>-->
 <script src="https://polyfill.io/v3/polyfill.min.js?features=Object.assign"></script>
 <script src="../dist/favoritos.iife.js"></script>
@@ -43,6 +43,9 @@
       // minWidth: 16,
       // minHeight: 16,
       // fontSize: 3,
+    },
+    debug: {
+      enabled: true
     }
   });
   lib.initScrollingProgressBar()
@@ -53,7 +56,7 @@
       // lib.drawBadge(123);
     }
   })
-  // lib.drawBadge(2);
+  lib.drawBadge(2);
   // lib.drawBadge();
   // lib.drawBadge(123);
   // setTimeout(function() {

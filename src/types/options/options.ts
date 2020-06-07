@@ -22,4 +22,8 @@ export interface IFavoritosOption {
     minWidth?: number;
     minHeight?: number;
   };
+  debug?: {
+    enabled?: boolean;
+    debugSelector?: string;
+  };
 }

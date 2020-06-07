@@ -9,6 +9,7 @@ export default class Favoritos {
     private badgeContent;
     private boundScrollProgressListener;
     private scrollProgressOptions;
+    private debugElement;
     private readonly arcDegrees;
     constructor(options: IFavoritosOption);
     private initIconCanvas;

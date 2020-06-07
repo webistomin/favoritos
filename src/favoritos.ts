@@ -25,6 +25,8 @@ export default class Favoritos {
     useFavicon: false,
   };
 
+  private debugElement: HTMLElement | null = null;
+
   private readonly arcDegrees = {
     '0': 0,
     '90': 0.5 * Math.PI,
@@ -96,9 +98,12 @@ export default class Favoritos {
   private init(): void {
     const options = this.options;
     const iconOptions = options.icon;
+    const debugOptions = options.debug;
 
     this.iconElement = document.querySelector(iconOptions.iconSelector);
     this.userIconHref = this.iconElement.href;
+
+    this.debugElement = document.querySelector(debugOptions.debugSelector);
 
     loadImage(this.userIconHref, (img: HTMLImageElement) => {
       this.userIconCache = img;
@@ -255,6 +260,7 @@ export default class Favoritos {
       const newValue = count;
       const iconOptions = this.options.icon;
       const badgeOptions = this.options.badge;
+      const debugOptions = this.options.debug;
 
       const textParams = this.iconCanvasContext.measureText(String(newValue));
       const textWidth = textParams.width;
@@ -286,6 +292,10 @@ export default class Favoritos {
       context.closePath();
 
       this.iconElement.href = this.iconCanvas.toDataURL('image/webp', 1.0);
+
+      if (debugOptions.enabled && this.debugElement) {
+        this.debugElement.appendChild(this.iconCanvas);
+      }
     };
 
     if (!this.userIconCache) {
@@ -361,6 +371,7 @@ export default class Favoritos {
     const userIconCache = this.userIconCache;
     const setProgress = (img?: HTMLImageElement): void => {
       const iconOptions = this.options.icon;
+      const debugOptions = this.options.debug;
       const scrollTopInPx = document.documentElement.scrollTop;
       const pageHeightInPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrollPercent = (scrollTopInPx / pageHeightInPx) * 100;
@@ -385,6 +396,10 @@ export default class Favoritos {
       context.strokeStyle = this.getContextBackgroundColor(iconOptions.backgroundColor, 32, 32);
       context.stroke();
       this.iconElement.href = this.iconCanvas.toDataURL('image/webp', 1.0);
+
+      if (debugOptions.enabled && this.debugElement) {
+        this.debugElement.appendChild(this.iconCanvas);
+      }
 
       const evt = document.createEvent('CustomEvent');
       evt.initCustomEvent('favoritos:scroll', true, true, {

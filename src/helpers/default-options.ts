@@ -23,4 +23,8 @@ export const DEFAULT_OPTIONS: IFavoritosOption = {
     minWidth: 22,
     minHeight: 22,
   },
+  debug: {
+    enabled: false,
+    debugSelector: '#favoritos-debug',
+  },
 };
