@@ -46,7 +46,12 @@
 
 ## Key Features ✨
 
-TBD
+* **Small.** ~ 2.31KB (minified and gzipped). <a href="https://github.com/ai/size-limit">Size Limit</a> controls the size.
+* **No dependencies.**
+* **Friendly and flexible configuration**
+* **Easy to use**
+* **Typescript** support
+* **Tree shakeable**
 
 ## Demo 👀
 
