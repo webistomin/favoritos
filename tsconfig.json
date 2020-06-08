@@ -12,7 +12,6 @@
     "strictNullChecks": false,
     "pretty": true,
     "lib": [
-      "webworker",
       "es2015",
       "es2016",
       "es2017",

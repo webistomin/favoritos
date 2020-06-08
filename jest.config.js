@@ -16,4 +16,5 @@ module.exports = {
     '.(ts|tsx)': 'ts-jest',
     '^.+\\.js$': 'babel-jest',
   },
+  setupFiles: ['jest-canvas-mock'],
 };

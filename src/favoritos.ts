@@ -30,7 +30,7 @@ export default class Favoritos {
     '360': 2 * Math.PI,
   };
 
-  constructor(options: IFavoritosOption) {
+  constructor(options: IFavoritosOption = {}) {
     /*
       Check SSR
      */
@@ -101,7 +101,13 @@ export default class Favoritos {
     this.iconElement = document.querySelector(iconOptions.iconSelector);
     this.userIconHref = this.iconElement.href;
 
-    this.debugElement = document.querySelector(debugOptions.debugSelector);
+    if (debugOptions.enabled) {
+      this.debugElement = document.querySelector(debugOptions.debugSelector);
+
+      if (!this.debugElement) {
+        console.warn(`Favoritos: debugger was enabled but debug element wasn't found`);
+      }
+    }
 
     loadImage(this.userIconHref, (img: HTMLImageElement) => {
       this.userIconCache = img;
@@ -125,6 +131,21 @@ export default class Favoritos {
     delete this.badgeContent;
   }
 
+  public drawImage(content: CanvasImageSource): void {
+    const context = this.iconCanvasContext;
+    const iconOptions = this.options.icon;
+
+    if ('crossOrigin' in content) {
+      content.crossOrigin = 'anonymous';
+    }
+
+    context.drawImage(content, 0, 0, iconOptions.width, iconOptions.height);
+
+    this.iconElement.href = this.iconCanvas.toDataURL('image/webp', 1.0);
+
+    this.setDebugger();
+  }
+
   public drawBadge(count: number | string = ''): void {
     const setBadge = (img: HTMLImageElement): void => {
       const context = this.iconCanvasContext;
@@ -132,7 +153,6 @@ export default class Favoritos {
       const newValue = count;
       const iconOptions = this.options.icon;
       const badgeOptions = this.options.badge;
-      const debugOptions = this.options.debug;
 
       const textParams = this.iconCanvasContext.measureText(String(newValue));
       const textWidth = textParams.width;
@@ -165,9 +185,7 @@ export default class Favoritos {
 
       this.iconElement.href = this.iconCanvas.toDataURL('image/webp', 1.0);
 
-      if (debugOptions.enabled && this.debugElement) {
-        this.debugElement.appendChild(this.iconCanvas);
-      }
+      this.setDebugger();
     };
 
     if (!this.userIconCache) {
@@ -186,7 +204,6 @@ export default class Favoritos {
     const setProgress = (img?: HTMLImageElement): void => {
       const context = this.iconCanvasContext;
       const iconOptions = this.options.icon;
-      const debugOptions = this.options.debug;
 
       context.clearRect(0, 0, iconOptions.width, iconOptions.height);
 
@@ -211,9 +228,7 @@ export default class Favoritos {
       context.stroke();
       this.iconElement.href = this.iconCanvas.toDataURL('image/webp', 1.0);
 
-      if (debugOptions.enabled && this.debugElement) {
-        this.debugElement.appendChild(this.iconCanvas);
-      }
+      this.setDebugger();
     };
 
     if (shouldUseFavicon) {
@@ -453,5 +468,12 @@ export default class Favoritos {
       }
     };
     step();
+  }
+
+  private setDebugger(): void {
+    const debugOptions = this.options.debug;
+    if (debugOptions.enabled && this.debugElement) {
+      this.debugElement.appendChild(this.iconCanvas);
+    }
   }
 }

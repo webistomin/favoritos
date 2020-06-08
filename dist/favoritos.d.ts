@@ -9,13 +9,14 @@ export default class Favoritos {
     private badgeContent;
     private debugElement;
     private readonly arcDegrees;
-    constructor(options: IFavoritosOption);
+    constructor(options?: IFavoritosOption);
     private initIconCanvas;
     private getContextBackgroundColor;
     private init;
     setOptions(options: IFavoritosOption): void;
     setIcon(newIcon: string): void;
     reset(): void;
+    drawImage(content: CanvasImageSource): void;
     drawBadge(count?: number | string): void;
     drawProgressBar(progress: number, shouldUseFavicon?: boolean): void;
     private getBadgeXPosition;
@@ -26,4 +27,5 @@ export default class Favoritos {
     private drawRectBadge;
     private drawCircleProgressBar;
     private drawRectProgressBar;
+    private setDebugger;
 }
