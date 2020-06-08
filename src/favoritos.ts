@@ -99,6 +99,12 @@ export default class Favoritos {
     const debugOptions = options.debug;
 
     this.iconElement = document.querySelector(iconOptions.iconSelector);
+
+    if (!this.iconElement) {
+      console.warn(`Favoritos: favicon element wasn't found`);
+      return;
+    }
+
     this.userIconHref = this.iconElement.href;
 
     if (debugOptions.enabled) {
