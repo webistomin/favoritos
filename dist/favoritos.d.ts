@@ -7,29 +7,23 @@ export default class Favoritos {
     private iconCanvas;
     private iconCanvasContext;
     private badgeContent;
-    private boundScrollProgressListener;
-    private scrollProgressOptions;
     private debugElement;
     private readonly arcDegrees;
     constructor(options: IFavoritosOption);
     private initIconCanvas;
     private getContextBackgroundColor;
     private init;
-    destroy(): void;
     setOptions(options: IFavoritosOption): void;
     setIcon(newIcon: string): void;
     reset(): void;
+    drawBadge(count?: number | string): void;
+    drawProgressBar(progress: number, shouldUseFavicon?: boolean): void;
     private getBadgeXPosition;
     private getBadgeYPosition;
     private getBadgeTextXPosition;
     private getBadgeTextYPosition;
-    drawBadge(count?: number | string): void;
     private drawCircleBadge;
     private drawRectBadge;
-    initScrollingProgressBar(scrollingOptions?: {
-        useFavicon: boolean;
-    }): void;
-    private setScrollingProgressBar;
-    private drawCircleProgress;
-    private drawRectProgress;
+    private drawCircleProgressBar;
+    private drawRectProgressBar;
 }
