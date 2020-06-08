@@ -173,6 +173,7 @@ export default class Favoritos {
       );
 
       context.beginPath();
+      console.log(badgeOptions.shape, 'ehere')
       if (badgeOptions.shape === IFavoritosShape.CIRCLE) {
         this.drawCircleBadge(textWidth, textHeight, newValue);
       } else {
