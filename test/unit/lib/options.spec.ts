@@ -8,7 +8,7 @@ describe('Favoritos: options', () => {
     jest.resetModules();
   });
 
-  it('merge user and default options correctly', () => {
+  it('merge user and default options on init correctly', () => {
     const expectedResult = {
       icon: {
         iconSelector: 'link[rel*="icon"]',
@@ -42,6 +42,41 @@ describe('Favoritos: options', () => {
       },
       badge: {
         fontSize: 12,
+      },
+    });
+    expect(lib['options']).toEqual(expectedResult);
+  });
+
+  it('merge user and default options via setOptions method correctly', () => {
+    const expectedResult = {
+      icon: {
+        iconSelector: 'link[rel*="icon"]',
+        backgroundColor: 'red',
+        shape: IFavoritosShape.CIRCLE,
+        lineWidth: 8,
+        width: 20,
+        height: 20,
+      },
+      badge: {
+        fontSize: 12,
+        fontFamily: 'Helvetica, Arial, sans-serif',
+        backgroundColor: 'blue',
+        color: 'black',
+        position: IFavoritosPositions.BOTTOM_RIGHT,
+        shape: IFavoritosShape.CIRCLE,
+        minWidth: 22,
+        minHeight: 22,
+      },
+      debug: {
+        enabled: false,
+        debugSelector: '#favoritos-debug',
+      },
+    };
+    const lib = new Favoritos();
+    lib['setOptions']({
+      badge: {
+        backgroundColor: 'blue',
+        color: 'black',
       },
     });
     expect(lib['options']).toEqual(expectedResult);
