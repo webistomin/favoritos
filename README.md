@@ -53,6 +53,7 @@
 * **Easy to use**
 * **Typescript** support
 * **Tree shakeable**
+* **SSR friendly**
 
 ## Demo 👀
 
