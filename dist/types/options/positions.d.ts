@@ -4,4 +4,3 @@ export declare enum IFavoritosPositions {
     BOTTOM_LEFT = "bottom-left",
     BOTTOM_RIGHT = "bottom-right"
 }
-//# sourceMappingURL=positions.d.ts.map

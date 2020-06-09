@@ -29,4 +29,3 @@ export default class Favoritos {
     private drawRectProgressBar;
     private setDebugger;
 }
-//# sourceMappingURL=favoritos.d.ts.map

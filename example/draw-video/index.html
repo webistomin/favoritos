@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Favoritos: circle progress</title>
+  <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" href="./prism.css">
+  <link rel="shortcut icon" href="./favicon.png">
+</head>
+<body>
+
+<div class="example">
+  <h1 class="example__title">Play the video and look at your favicon</h1>
+  <video id="video" src="http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv" controls="false" crossorigin="anonymous"></video>
+  <div class="example__code">
+    <pre data-src="prism.js">
+    <code class="language-js">
+      var lib = new Favoritos({
+        icon: {
+          shape: 'rect',
+          lineWidth: 10,
+        }
+      });
+
+      var video = document.getElementById('video');
+
+      video.addEventListener('play', function () {
+        function step() {
+          lib.drawImage(video)
+          requestAnimationFrame(step)
+        }
+        requestAnimationFrame(step);
+      })
+    </code>
+  </pre>
+  </div>
+</div>
+
+<script src="../../dist/favoritos.iife.js"></script>
+<script src="./prism.js"></script>
+<script>
+  var lib = new Favoritos({
+    icon: {
+      shape: 'rect',
+      lineWidth: 10,
+    }
+  });
+
+  var video = document.getElementById('video');
+
+  video.addEventListener('play', function () {
+    function step() {
+      lib.drawImage(video)
+      requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step);
+  })
+</script>
+</body>
+</html>

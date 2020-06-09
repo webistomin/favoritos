@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Favoritos: circle progress</title>
+  <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" href="./prism.css">
+  <link rel="shortcut icon" href="./favicon.png">
+</head>
+<body>
+
+<div class="example">
+  <h1 class="example__title">Scroll page and look at your favicon</h1>
+  <div class="example__code">
+    <pre data-src="prism.js">
+    <code class="language-js">
+      var lib = new Favoritos({
+        icon: {
+          shape: 'circle',
+        }
+      });
+
+      document.addEventListener('scroll', function() {
+        var root = document.documentElement;
+        var scrollTopInPx = root.scrollTop;
+        var pageHeightInPx = root.scrollHeight - root.clientHeight;
+        var scrollPercent = (scrollTopInPx / pageHeightInPx) * 100;
+        var scrollPercentRounded = Math.round(scrollPercent);
+
+        lib.drawProgressBar(scrollPercentRounded);
+      })
+    </code>
+  </pre>
+  </div>
+</div>
+
+<script src="../../dist/favoritos.iife.js"></script>
+<script src="./prism.js"></script>
+<script>
+  var lib = new Favoritos({
+    icon: {
+      shape: 'circle',
+    }
+  });
+
+  document.addEventListener('scroll', function() {
+    var root = document.documentElement;
+    var scrollTopInPx = root.scrollTop;
+    var pageHeightInPx = root.scrollHeight - root.clientHeight;
+    var scrollPercent = (scrollTopInPx / pageHeightInPx) * 100;
+    var scrollPercentRounded = Math.round(scrollPercent);
+
+    lib.drawProgressBar(scrollPercentRounded);
+  })
+</script>
+</body>
+</html>
