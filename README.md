@@ -35,7 +35,6 @@
 <p align="center">
   <a href="#key-features-">Key Features</a> •
   <a href="#demo-">Demo</a> •
-  <a href="#documentation-">Documentation</a> •
   <a href="#installation-">Installation</a> •
   <a href="#how-to-use-">How To Use</a> •
   <a href="#browsers-support-">Browsers support</a> •
@@ -73,7 +72,7 @@ $ npm install favoritos --save
 $ yarn add favoritos
 ```
 
-#### via CDN
+### via CDN
 
 Add script right before closing `</body>` tag
 
@@ -315,7 +314,7 @@ requestAnimationFrame(step);
 })
 ```
 
-Draws a picture or video instead of your favicon. Takes one argument - the content to be drawn.
+Draws a picture or video instead of your favicon. Takes one argument - the content to be drawn. Image or video **must have** `crossorigin="anonymous"` attribute
 
 ---
 
@@ -439,6 +438,4 @@ Found a bug? Missing a specific feature?
 Your contributions are always welcome! Please have a look at the [contribution guidelines](https://github.com/webistomin/favoritos/blob/master/CONTRIBUTING.md) first.
 
 ## Contributors ✨
-
-TBD
 
