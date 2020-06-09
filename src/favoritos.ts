@@ -49,8 +49,8 @@ export default class Favoritos {
 
   private init(): void {
     const options = this.options;
-    const iconOptions = options.icon;
-    const debugOptions = options.debug;
+    const { icon: iconOptions, debug: debugOptions } = options;
+    const { enabled: isDebugEnabled, debugSelector } = debugOptions;
 
     this.iconElement = document.querySelector(iconOptions.iconSelector);
 
@@ -63,8 +63,8 @@ export default class Favoritos {
       });
     }
 
-    if (debugOptions.enabled) {
-      this.debugElement = document.querySelector(debugOptions.debugSelector);
+    if (isDebugEnabled) {
+      this.debugElement = document.querySelector(debugSelector);
 
       if (!this.debugElement) {
         console.warn(DEBUG_NOT_FOUND);
@@ -79,11 +79,8 @@ export default class Favoritos {
       Set default canvas params
      */
     const options = this.options;
-    const iconOptions = options.icon;
-    const badgeOptions = options.badge;
-
-    const iconWidth = iconOptions.width;
-    const iconHeight = iconOptions.height;
+    const { icon: iconOptions, badge: badgeOptions } = options;
+    const { width: iconWidth, height: iconHeight } = iconOptions;
 
     /*
       Fix retina blur with DPR calculation
@@ -108,8 +105,8 @@ export default class Favoritos {
     width: number,
     height: number
   ): string | CanvasGradient {
-    const context = this.iconCanvasContext;
     let resultBackground;
+    const context = this.iconCanvasContext;
 
     if (Array.isArray(backgroundColor)) {
       const gradient = context.createLinearGradient(0, 0, width, height);
@@ -146,12 +143,13 @@ export default class Favoritos {
      */
     const context = this.iconCanvasContext;
     const iconOptions = this.options.icon;
+    const { width: iconWidth, height: iconHeight } = iconOptions;
 
     if ('crossOrigin' in content) {
       content.crossOrigin = 'anonymous';
     }
 
-    context.drawImage(content, 0, 0, iconOptions.width, iconOptions.height);
+    context.drawImage(content, 0, 0, iconWidth, iconHeight);
 
     this.iconElement.href = this.iconCanvas.toDataURL('image/webp', 1.0);
 
@@ -160,38 +158,43 @@ export default class Favoritos {
 
   public drawBadge(count: number | string = ''): void {
     const setBadge = (img: HTMLImageElement): void => {
-      const context = this.iconCanvasContext;
       this.badgeContent = count;
       const newValue = count;
+
+      const context = this.iconCanvasContext;
       const iconOptions = this.options.icon;
       const badgeOptions = this.options.badge;
 
+      const {
+        fontSize: badgeFontSize,
+        backgroundColor: badgeBackgroundColor,
+        shape: badgeShape,
+        color: badgeColor,
+      } = badgeOptions;
+      const { width: iconWidth, height: iconHeight } = iconOptions;
+
       const textParams = this.iconCanvasContext.measureText(String(newValue));
       const textWidth = textParams.width;
-      const textHeight = badgeOptions.fontSize;
+      const textHeight = badgeFontSize;
 
-      context.clearRect(0, 0, iconOptions.width, iconOptions.height);
-      context.drawImage(img, 0, 0, iconOptions.width, iconOptions.height);
-      context.fillStyle = this.getContextBackgroundColor(
-        badgeOptions.backgroundColor,
-        iconOptions.width,
-        iconOptions.height
-      );
+      context.clearRect(0, 0, iconWidth, iconHeight);
+      context.drawImage(img, 0, 0, iconWidth, iconHeight);
+      context.fillStyle = this.getContextBackgroundColor(badgeBackgroundColor, iconWidth, iconHeight);
 
       context.beginPath();
-      if (badgeOptions.shape === IFavoritosShape.CIRCLE) {
+      if (badgeShape === IFavoritosShape.CIRCLE) {
         this.drawCircleBadge(textWidth, textHeight, newValue);
       } else {
         this.drawRectBadge(textWidth, textHeight);
       }
       context.fill();
-      context.fillStyle = badgeOptions.color;
+      context.fillStyle = badgeColor;
 
       context.fillText(
         String(newValue),
         this.getBadgeTextXPosition(textWidth),
         this.getBadgeTextYPosition(textHeight),
-        iconOptions.width
+        iconWidth
       );
       context.closePath();
 
@@ -216,15 +219,21 @@ export default class Favoritos {
     const setProgress = (img?: HTMLImageElement): void => {
       const context = this.iconCanvasContext;
       const iconOptions = this.options.icon;
+      const {
+        width: iconWidth,
+        height: iconHeight,
+        backgroundColor: iconBackgroundColor,
+        lineWidth: iconLineWidth,
+      } = iconOptions;
 
-      context.clearRect(0, 0, iconOptions.width, iconOptions.height);
+      context.clearRect(0, 0, iconWidth, iconHeight);
 
       if (img) {
-        context.drawImage(img, 0, 0, iconOptions.width, iconOptions.height);
+        context.drawImage(img, 0, 0, iconWidth, iconHeight);
       }
 
       context.beginPath();
-      context.lineWidth = iconOptions.lineWidth;
+      context.lineWidth = iconLineWidth;
 
       if (iconOptions.shape === IFavoritosShape.CIRCLE) {
         this.drawCircleProgressBar(progress);
@@ -232,11 +241,7 @@ export default class Favoritos {
         this.drawRectProgressBar(progress);
       }
 
-      context.strokeStyle = this.getContextBackgroundColor(
-        iconOptions.backgroundColor,
-        iconOptions.width,
-        iconOptions.height
-      );
+      context.strokeStyle = this.getContextBackgroundColor(iconBackgroundColor, iconWidth, iconHeight);
       context.stroke();
       this.iconElement.href = this.iconCanvas.toDataURL('image/webp', 1.0);
 
@@ -258,10 +263,9 @@ export default class Favoritos {
 
   private getBadgeXPosition(textWidth: number): number {
     const options = this.options;
-    const badgeMinWidth = options.badge.minWidth;
-    const badgePosition = options.badge.position;
-    const iconWidth = options.icon.width;
-    const shape = options.badge.shape;
+    const { minWidth: badgeMinWidth, position: badgePosition } = options.badge;
+    const { width: iconWidth } = options.icon;
+    const { shape: badgeShape } = options.badge;
     const badgeMaxWidth = iconWidth;
     const badgeValue = this.badgeContent;
     const shouldUseShape = typeof badgeValue === 'number' ? badgeValue >= 10 : badgeValue.length >= 1;
@@ -272,7 +276,7 @@ export default class Favoritos {
     switch (badgePosition) {
       case IFavoritosPositions.TOP_LEFT:
       case IFavoritosPositions.BOTTOM_LEFT:
-        switch (shape) {
+        switch (badgeShape) {
           case IFavoritosShape.CIRCLE:
             if (shouldUseShape) {
               return 0;
@@ -284,7 +288,7 @@ export default class Favoritos {
         break;
       case IFavoritosPositions.TOP_RIGHT:
       case IFavoritosPositions.BOTTOM_RIGHT:
-        switch (shape) {
+        switch (badgeShape) {
           case IFavoritosShape.CIRCLE:
             if (shouldUseShape) {
               return iconWidth - finalBadgeWidth;
@@ -299,11 +303,9 @@ export default class Favoritos {
 
   private getBadgeYPosition(textHeight: number): number {
     const options = this.options;
-    const badgePosition = options.badge.position;
-    const iconHeight = options.icon.height;
-    const badgeMinHeight = options.badge.minHeight;
-    const shape = options.badge.shape;
     const badgeValue = this.badgeContent;
+    const { position: badgePosition, minHeight: badgeMinHeight, shape: badgeShape } = options.badge;
+    const { height: iconHeight } = options.icon;
     const shouldUseShape = typeof badgeValue === 'number' ? badgeValue >= 10 : badgeValue.length >= 1;
 
     const finalBadgeHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
@@ -311,7 +313,7 @@ export default class Favoritos {
     switch (badgePosition) {
       case IFavoritosPositions.TOP_LEFT:
       case IFavoritosPositions.TOP_RIGHT:
-        switch (shape) {
+        switch (badgeShape) {
           case IFavoritosShape.CIRCLE:
             if (shouldUseShape) {
               return 0;
@@ -323,7 +325,7 @@ export default class Favoritos {
         break;
       case IFavoritosPositions.BOTTOM_LEFT:
       case IFavoritosPositions.BOTTOM_RIGHT:
-        switch (shape) {
+        switch (badgeShape) {
           case IFavoritosShape.CIRCLE:
             if (shouldUseShape) {
               return iconHeight - finalBadgeHeight;
@@ -337,9 +339,8 @@ export default class Favoritos {
 
   private getBadgeTextXPosition(textWidth: number): number {
     const options = this.options;
-    const badgePosition = options.badge.position;
-    const iconWidth = options.icon.width;
-    const badgeMinWidth = options.badge.minWidth;
+    const { position: badgePosition, minWidth: badgeMinWidth } = options.badge;
+    const { width: iconWidth } = options.icon;
     const badgeMaxWidth = iconWidth;
 
     const finalBadgeTextWidth =
@@ -357,9 +358,8 @@ export default class Favoritos {
 
   private getBadgeTextYPosition(textHeight: number): number {
     const options = this.options;
-    const badgePosition = options.badge.position;
-    const iconHeight = options.icon.height;
-    const badgeMinHeight = options.badge.minHeight;
+    const { position: badgePosition, minHeight: badgeMinHeight } = options.badge;
+    const { height: iconHeight } = options.icon;
     const badgeValue = this.badgeContent;
 
     const isBadgeValueNumber = typeof badgeValue === 'number';
@@ -379,11 +379,9 @@ export default class Favoritos {
 
   private drawCircleBadge(textWidth: number, textHeight: number, newValue: number | string): void {
     const options = this.options;
-    const iconWidth = options.icon.width;
-    const iconHeight = options.icon.height;
+    const { width: iconWidth, height: iconHeight } = options.icon;
+    const { minWidth: badgeMinWidth, minHeight: badgeMinHeight, backgroundColor: badgeBackgroundColor } = options.badge;
     const badgeMaxWidth = iconWidth;
-    const badgeMinWidth = options.badge.minWidth;
-    const badgeMinHeight = options.badge.minHeight;
     const context = this.iconCanvasContext;
 
     const finalBadgeWidth =
@@ -391,7 +389,7 @@ export default class Favoritos {
     const finalBadgeHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
 
     if (typeof newValue === 'number' ? newValue >= 10 : newValue.length >= 1) {
-      context.strokeStyle = this.getContextBackgroundColor(options.badge.backgroundColor, iconWidth, iconHeight);
+      context.strokeStyle = this.getContextBackgroundColor(badgeBackgroundColor, iconWidth, iconHeight);
       roundedRect(
         context,
         this.getBadgeXPosition(textWidth),
@@ -413,10 +411,9 @@ export default class Favoritos {
 
   private drawRectBadge(textWidth: number, textHeight: number): void {
     const options = this.options;
-    const iconWidth = options.icon.width;
+    const { width: iconWidth } = options.icon;
+    const { minWidth: badgeMinWidth, minHeight: badgeMinHeight } = options.badge;
     const badgeMaxWidth = iconWidth;
-    const badgeMinWidth = options.badge.minWidth;
-    const badgeMinHeight = options.badge.minHeight;
 
     const finalBadgeWidth =
       badgeMinWidth >= textWidth ? badgeMinWidth : textWidth >= badgeMaxWidth ? badgeMaxWidth : textWidth;
@@ -433,9 +430,7 @@ export default class Favoritos {
   private drawCircleProgressBar(progress: number): void {
     const options = this.options;
     const context = this.iconCanvasContext;
-    const iconWidth = options.icon.width;
-    const iconHeight = options.icon.height;
-    const iconLineWidth = options.icon.lineWidth;
+    const { width: iconWidth, height: iconHeight, lineWidth: iconLineWidth } = options.icon;
 
     context.arc(
       iconWidth / 2,
@@ -449,8 +444,7 @@ export default class Favoritos {
   private drawRectProgressBar(progress: number): void {
     const options = this.options;
     const context = this.iconCanvasContext;
-    const iconWidth = options.icon.width;
-    const iconHeight = options.icon.height;
+    const { width: iconWidth, height: iconHeight } = options.icon;
 
     const step = (): void => {
       if (progress <= 25) {
