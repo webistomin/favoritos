@@ -22,7 +22,7 @@
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/webistomin/favoritos">
   <img alt="npm type definitions" src="https://img.shields.io/npm/types/favoritos">
   <a href="https://bundlephobia.com/result?p=favoritos@0.0.1-beta.0">
-  <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/favoritos/0.0.1-beta.0">
+  <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/favoritos/1.0.0">
   </a>
 </p>
 
@@ -47,7 +47,7 @@
 
 ## Key Features ✨
 
-* **Small.** ~ 2.31KB (minified and gzipped). <a href="https://github.com/ai/size-limit">Size Limit</a> controls the size.
+* **Small.** ~ 2.76KB (minified and gzipped). <a href="https://github.com/ai/size-limit">Size Limit</a> controls the size.
 * **No dependencies.**
 * **Friendly and flexible configuration**
 * **Easy to use**
