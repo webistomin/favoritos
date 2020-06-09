@@ -38,7 +38,6 @@
   <a href="#documentation-">Documentation</a> •
   <a href="#installation-">Installation</a> •
   <a href="#how-to-use-">How To Use</a> •
-  <a href="#examples-">Examples</a> •
   <a href="#browsers-support-">Browsers support</a> •
   <a href="#license-">License</a>  •
   <a href="#contributing-">Contributing</a>
@@ -55,7 +54,10 @@
 
 ## Demo 👀
 
-TBD
+### [BADGE MAGIC](https://webistomin.github.io/favoritos/example/badge/)
+### [CIRCULAR PROGRESS](https://webistomin.github.io/favoritos/example/circle-progress/)
+### [RECTANGLE PROGRESS](https://webistomin.github.io/favoritos/example/rect-progress/)
+### [VIDEO MAGIC](https://webistomin.github.io/favoritos/example/draw-video/)
 
 ## Installation 🚀
 
@@ -138,7 +140,7 @@ const favoritos = new Favoritos({
 
 **Option C: Using CDN:**
 ```js
-/* Nanogram is available from global namespace */
+/* Favoritos is available from global namespace */
 const favoritos = new Favoritos({
   icon: {
     // Your options
@@ -221,12 +223,12 @@ const favoritos = new Favoritos({
     <tr>
       <td><code>backgroundColor</code></td>
       <td><code>'#d21f3c'</code></td>
-      <td>Background color for the badge./td>
+      <td>Background color for the badge.</td>
     </tr>
     <tr>
       <td><code>fontFamily</code></td>
       <td><code>'Helvetica, Arial, sans-serif'</code></td>
-      <td>Font family for the badge text./td>
+      <td>Font family for the badge text.</td>
     </tr>
     <tr>
       <td><code>shape</code></td>
@@ -366,7 +368,7 @@ favoritos.setOptions({
 })
 ```
 
-You can change any options for the library. But after the change, you must definitely call the icon renderer with the method of which you use (drawBadge() or drawProgress()).
+You can change any options for the library. But after the change, you must definitely call the icon renderer with the method of which you use (<code>drawBadge()</code> or <code>drawProgress()</code>).
 
 ---
 
@@ -386,12 +388,12 @@ document.addEventListener('visibilitychange', () => {
 
 /* Change favicon on theme change */
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-    const newColorScheme = event.matches ? "dark" : "light";
-    if (newColorScheme === 'dark') {
-      favoritos.setIcon('./dark-favicon.png')
-    } else {
-      favoritos.setIcon('./light-favicon.png')
-    }
+  const newColorScheme = event.matches ? "dark" : "light";
+  if (newColorScheme === 'dark') {
+    favoritos.setIcon('./dark-favicon.png')
+  } else {
+    favoritos.setIcon('./light-favicon.png')
+  }
 });
 ```
 
@@ -424,8 +426,7 @@ If you want to send a polyfill only to browsers that need it, there's a handy se
 Here's an example of using [polyfill.io](https://polyfill.io/v3/url-builder/) to polyfill only the `Object.assign`  feature, so if we put this right before closing `</body>` tag of `index.html` and `Favoritos` script, Polyfill.io will read the user agent and use that information to determine if the browser requires a polyfill for the feature or features listed. Since I'm using Chrome it will send back an empty response since my browser doesn't need it, pretty slick.
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=Object.assign
-"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Object.assign"></script>
 ```
 
 ## License 📄
