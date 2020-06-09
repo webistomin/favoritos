@@ -8,8 +8,7 @@ install:
   - npm i -g codecov
 
 script:
-  - npm run e2e:server
-  - npm run cypress:run
+  - npm run test:unit
 
 after_success:
   bash <(curl -s https://codecov.io/bash);
