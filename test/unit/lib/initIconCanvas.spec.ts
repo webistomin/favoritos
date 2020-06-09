@@ -1,5 +1,5 @@
-import Favoritos from '../../../src/favoritos';
-import { DEFAULT_OPTIONS } from '../../../src/helpers/default-options';
+import Favoritos from 'src/favoritos';
+import { DEFAULT_OPTIONS } from 'src/helpers/default-options';
 
 describe('Favoritos: initIconCanvas method', () => {
   let windowSpy: any;
@@ -9,7 +9,7 @@ describe('Favoritos: initIconCanvas method', () => {
     jest.clearAllMocks();
   });
 
-  it('correctly work with high devicePixelRatio', () => {
+  it('Works with high devicePixelRatio correctly', () => {
     const DPR = 2;
     windowSpy = jest.spyOn(global as any, 'window', 'get');
     windowSpy.mockImplementation((): { devicePixelRatio: number } => {
@@ -25,7 +25,7 @@ describe('Favoritos: initIconCanvas method', () => {
     expect(canvas.width).toEqual(DEFAULT_OPTIONS.icon.width * DPR);
   });
 
-  it('correctly set default devicePixelRatio', () => {
+  it('Set default devicePixelRatio correctly', () => {
     windowSpy = jest.spyOn(global as any, 'window', 'get');
     windowSpy.mockImplementation((): { devicePixelRatio: number } => {
       return {

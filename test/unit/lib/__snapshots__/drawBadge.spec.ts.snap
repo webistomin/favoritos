@@ -1,6 +1,130 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Favoritos: drawBadge method correctly draw badge with favicon from cache 1`] = `
+exports[`Favoritos: drawBadge method Draw badge if "count" param is correct 1`] = `
+Array [
+  Object {
+    "props": Object {
+      "value": "18px Helvetica, Arial, sans-serif",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "font",
+  },
+  Object {
+    "props": Object {
+      "value": "center",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "textAlign",
+  },
+  Object {
+    "props": Object {
+      "value": "middle",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "textBaseline",
+  },
+  Object {
+    "props": Object {
+      "x": 1,
+      "y": 1,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "scale",
+  },
+]
+`;
+
+exports[`Favoritos: drawBadge method Draw badge with circle shape 1`] = `
+Array [
+  Object {
+    "props": Object {
+      "value": "18px Helvetica, Arial, sans-serif",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "font",
+  },
+  Object {
+    "props": Object {
+      "value": "center",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "textAlign",
+  },
+  Object {
+    "props": Object {
+      "value": "middle",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "textBaseline",
+  },
+  Object {
+    "props": Object {
+      "x": 1,
+      "y": 1,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "scale",
+  },
+]
+`;
+
+exports[`Favoritos: drawBadge method Draw badge with favicon from cache correctly 1`] = `
 Array [
   Object {
     "props": Object {
@@ -624,7 +748,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawBadge method draw badge if params are correct 1`] = `
+exports[`Favoritos: drawBadge method Draw badge with rect shape 1`] = `
 Array [
   Object {
     "props": Object {
@@ -686,131 +810,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawBadge method draw badge with circle shape 1`] = `
-Array [
-  Object {
-    "props": Object {
-      "value": "18px Helvetica, Arial, sans-serif",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "value": "center",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "textAlign",
-  },
-  Object {
-    "props": Object {
-      "value": "middle",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "textBaseline",
-  },
-  Object {
-    "props": Object {
-      "x": 1,
-      "y": 1,
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "scale",
-  },
-]
-`;
-
-exports[`Favoritos: drawBadge method draw badge with rect shape 1`] = `
-Array [
-  Object {
-    "props": Object {
-      "value": "18px Helvetica, Arial, sans-serif",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "value": "center",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "textAlign",
-  },
-  Object {
-    "props": Object {
-      "value": "middle",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "textBaseline",
-  },
-  Object {
-    "props": Object {
-      "x": 1,
-      "y": 1,
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "scale",
-  },
-]
-`;
-
-exports[`Favoritos: drawBadge method draw badge without count param 1`] = `
+exports[`Favoritos: drawBadge method Draw badge without count param 1`] = `
 Array [
   Object {
     "props": Object {

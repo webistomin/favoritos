@@ -56,6 +56,9 @@ export default class Favoritos {
     const iconWidth = iconOptions.width;
     const iconHeight = iconOptions.height;
 
+    /*
+      Fix retina blur with DPR calculation
+     */
     const DPR = window.devicePixelRatio || 1;
 
     this.iconCanvas = document.createElement('canvas');
@@ -138,6 +141,9 @@ export default class Favoritos {
   }
 
   public drawImage(content: CanvasImageSource): void {
+    /*
+      Draw video, image, etc. to context
+     */
     const context = this.iconCanvasContext;
     const iconOptions = this.options.icon;
 
@@ -173,7 +179,6 @@ export default class Favoritos {
       );
 
       context.beginPath();
-      console.log(badgeOptions.shape, 'ehere')
       if (badgeOptions.shape === IFavoritosShape.CIRCLE) {
         this.drawCircleBadge(textWidth, textHeight, newValue);
       } else {

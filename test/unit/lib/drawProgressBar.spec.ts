@@ -1,12 +1,12 @@
-import Favoritos from '../../../src/favoritos';
-import { IFavoritosShape } from '../../../src/types/options/shapes';
+import Favoritos from 'src/favoritos';
+import { IFavoritosShape } from 'src/types/options/shapes';
 
 describe('Favoritos: drawProgressBar method', () => {
   beforeEach(() => {
     document.head.innerHTML = `<link rel="shortcut icon" href="#">`;
   });
 
-  it('draw progress bar if params are correct', () => {
+  it('Draw progress bar if "progress" param is correct', () => {
     const lib = new Favoritos();
     expect(() => lib['drawProgressBar'](50)).not.toThrow(TypeError);
     expect(() => lib['drawProgressBar'](50)).not.toThrow(DOMException);
@@ -14,7 +14,7 @@ describe('Favoritos: drawProgressBar method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('correctly draw progress bar with favicon', () => {
+  it('Draw progress bar with favicon correctly', () => {
     const lib = new Favoritos();
     expect(() => lib['drawProgressBar'](50, true)).not.toThrow(TypeError);
     expect(() => lib['drawProgressBar'](50, true)).not.toThrow(DOMException);
@@ -22,7 +22,7 @@ describe('Favoritos: drawProgressBar method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('correctly draw progress bar with favicon from cache', () => {
+  it('Draw progress bar with favicon from cache correctly', () => {
     const lib = new Favoritos();
     const image = new Image();
     lib['userIconCache'] = image;
@@ -32,7 +32,7 @@ describe('Favoritos: drawProgressBar method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('correctly draw progress bar with circle shape', () => {
+  it('Draw progress bar with circle shape correctly', () => {
     const lib = new Favoritos({
       icon: {
         shape: IFavoritosShape.CIRCLE,
@@ -44,7 +44,7 @@ describe('Favoritos: drawProgressBar method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('correctly draw progress bar with rect shape', () => {
+  it('Draw progress bar with rect shape correctly', () => {
     const lib = new Favoritos({
       icon: {
         shape: IFavoritosShape.RECT,

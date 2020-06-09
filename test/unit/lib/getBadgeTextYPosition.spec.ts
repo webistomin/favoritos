@@ -1,12 +1,12 @@
-import Favoritos from '../../../src/favoritos';
-import { IFavoritosPositions } from '../../../src/types/options/positions';
+import Favoritos from 'src/favoritos';
+import { IFavoritosPositions } from 'src/types/options/positions';
 
 describe('Favoritos: getBadgeTextYPosition method', () => {
   beforeEach(() => {
     document.head.innerHTML = `<link rel="shortcut icon" href="#">`;
   });
 
-  it('return correct Y coord for number and "top-left" position', () => {
+  it('Return correct Y coord for number and "top-left" position', () => {
     const lib = new Favoritos({
       badge: {
         position: IFavoritosPositions.TOP_LEFT,
@@ -19,7 +19,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('return correct Y coord for string and "top-left" position', () => {
+  it('Return correct Y coord for string and "top-left" position', () => {
     const lib = new Favoritos({
       badge: {
         position: IFavoritosPositions.TOP_LEFT,
@@ -32,7 +32,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('return correct Y coord for number and "top-right" position', () => {
+  it('Return correct Y coord for number and "top-right" position', () => {
     const lib = new Favoritos({
       badge: {
         position: IFavoritosPositions.TOP_RIGHT,
@@ -45,7 +45,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('return correct Y coord for string and "top-right" position', () => {
+  it('Return correct Y coord for string and "top-right" position', () => {
     const lib = new Favoritos({
       badge: {
         position: IFavoritosPositions.TOP_RIGHT,
@@ -58,7 +58,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('return correct Y coord for number and "bottom-right" position', () => {
+  it('Return correct Y coord for number and "bottom-right" position', () => {
     const lib = new Favoritos({
       badge: {
         position: IFavoritosPositions.BOTTOM_RIGHT,
@@ -71,7 +71,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('return correct Y coord for string and "bottom-right" position', () => {
+  it('Return correct Y coord for string and "bottom-right" position', () => {
     const lib = new Favoritos({
       badge: {
         position: IFavoritosPositions.BOTTOM_RIGHT,
@@ -84,7 +84,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('return correct Y coord for number and "bottom-left" position', () => {
+  it('Return correct Y coord for number and "bottom-left" position', () => {
     const lib = new Favoritos({
       badge: {
         position: IFavoritosPositions.BOTTOM_LEFT,
@@ -97,7 +97,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('return correct Y coord for string and "bottom-left" position', () => {
+  it('Return correct Y coord for string and "bottom-left" position', () => {
     const lib = new Favoritos({
       badge: {
         position: IFavoritosPositions.BOTTOM_LEFT,
@@ -110,7 +110,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('return correct Y coord if text width more than badge min width', () => {
+  it('Return correct Y coord if text width more than badge min width', () => {
     const lib = new Favoritos({
       badge: {
         minWidth: 22,

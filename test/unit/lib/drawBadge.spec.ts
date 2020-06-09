@@ -1,12 +1,12 @@
-import Favoritos from '../../../src/favoritos';
-import { IFavoritosShape } from '../../../src/types/options/shapes';
+import Favoritos from 'src/favoritos';
+import { IFavoritosShape } from 'src/types/options/shapes';
 
 describe('Favoritos: drawBadge method', () => {
   beforeEach(() => {
     document.head.innerHTML = `<link rel="shortcut icon" href="#">`;
   });
 
-  it('draw badge without count param', () => {
+  it('Draw badge without count param', () => {
     const lib = new Favoritos();
     expect(() => lib['drawBadge']()).not.toThrow(TypeError);
     expect(() => lib['drawBadge']()).not.toThrow(DOMException);
@@ -14,7 +14,7 @@ describe('Favoritos: drawBadge method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('draw badge if params are correct', () => {
+  it('Draw badge if "count" param is correct', () => {
     const lib = new Favoritos();
     expect(() => lib['drawBadge'](50)).not.toThrow(TypeError);
     expect(() => lib['drawBadge'](50)).not.toThrow(DOMException);
@@ -22,7 +22,7 @@ describe('Favoritos: drawBadge method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('correctly draw badge with favicon from cache', () => {
+  it('Draw badge with favicon from cache correctly', () => {
     const lib = new Favoritos();
     const image = new Image();
     lib['userIconCache'] = image;
@@ -32,7 +32,7 @@ describe('Favoritos: drawBadge method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('draw badge with circle shape', () => {
+  it('Draw badge with circle shape', () => {
     const lib = new Favoritos({
       badge: {
         shape: IFavoritosShape.CIRCLE,
@@ -44,7 +44,7 @@ describe('Favoritos: drawBadge method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('draw badge with rect shape', () => {
+  it('Draw badge with rect shape', () => {
     const lib = new Favoritos({
       badge: {
         shape: IFavoritosShape.RECT,

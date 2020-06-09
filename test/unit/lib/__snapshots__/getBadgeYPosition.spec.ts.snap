@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for number and "bottom-left" position 1`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for number and "bottom-left" position 1`] = `
 Array [
   Object {
     "props": Object {
@@ -62,7 +62,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for number and "bottom-left" position 2`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for number and "bottom-left" position 2`] = `
 Array [
   Object {
     "props": Object {
@@ -124,7 +124,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for number and "bottom-right" position 1`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for number and "bottom-right" position 1`] = `
 Array [
   Object {
     "props": Object {
@@ -186,7 +186,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for number and "bottom-right" position 2`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for number and "bottom-right" position 2`] = `
 Array [
   Object {
     "props": Object {
@@ -248,7 +248,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for number and "top-left" position 1`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for number and "top-left" position 1`] = `
 Array [
   Object {
     "props": Object {
@@ -310,7 +310,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for number and "top-left" position 2`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for number and "top-left" position 2`] = `
 Array [
   Object {
     "props": Object {
@@ -372,7 +372,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for number and "top-right" position 1`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for number and "top-right" position 1`] = `
 Array [
   Object {
     "props": Object {
@@ -434,7 +434,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for number and "top-right" position 2`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for number and "top-right" position 2`] = `
 Array [
   Object {
     "props": Object {
@@ -496,7 +496,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for string and "bottom-left" position 1`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for string and "bottom-left" position 1`] = `
 Array [
   Object {
     "props": Object {
@@ -558,7 +558,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for string and "bottom-left" position 2`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for string and "bottom-left" position 2`] = `
 Array [
   Object {
     "props": Object {
@@ -620,7 +620,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for string and "bottom-right" position 1`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for string and "bottom-right" position 1`] = `
 Array [
   Object {
     "props": Object {
@@ -682,7 +682,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for string and "bottom-right" position 2`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for string and "bottom-right" position 2`] = `
 Array [
   Object {
     "props": Object {
@@ -744,7 +744,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for string and "top-left" position 1`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for string and "top-left" position 1`] = `
 Array [
   Object {
     "props": Object {
@@ -806,7 +806,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for string and "top-left" position 2`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for string and "top-left" position 2`] = `
 Array [
   Object {
     "props": Object {
@@ -868,7 +868,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for string and "top-right" position 1`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for string and "top-right" position 1`] = `
 Array [
   Object {
     "props": Object {
@@ -930,7 +930,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord for string and "top-right" position 2`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord for string and "top-right" position 2`] = `
 Array [
   Object {
     "props": Object {
@@ -992,7 +992,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord if text width more than badge min width 1`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord if text width more than badge min width 1`] = `
 Array [
   Object {
     "props": Object {
@@ -1054,7 +1054,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: getBadgeYPosition method return correct Y coord if text width more than badge min width 2`] = `
+exports[`Favoritos: getBadgeYPosition method Return correct Y coord if text width more than badge min width 2`] = `
 Array [
   Object {
     "props": Object {

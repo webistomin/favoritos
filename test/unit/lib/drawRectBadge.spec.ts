@@ -1,11 +1,11 @@
-import Favoritos from '../../../src/favoritos';
+import Favoritos from 'src/favoritos';
 
 describe('Favoritos: drawRectBadge method', () => {
   beforeEach(() => {
     document.head.innerHTML = `<link rel="shortcut icon" href="#">`;
   });
 
-  it('draw rect badge if params are correct', () => {
+  it('Draw rect badge if params are correct', () => {
     const lib = new Favoritos();
     lib['badgeContent'] = 1;
     expect(() => lib['drawRectBadge'](10, 22)).not.toThrow(TypeError);
@@ -14,7 +14,7 @@ describe('Favoritos: drawRectBadge method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('correctly calculate final badge width with huge text width', () => {
+  it('Calculate final badge width with huge text width correctly', () => {
     const lib = new Favoritos();
     lib['badgeContent'] = 1;
     lib['options']['icon']['width'] = 32;
@@ -24,7 +24,7 @@ describe('Favoritos: drawRectBadge method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('correctly calculate final badge width if text width more than badge min width', () => {
+  it('Calculate final badge width if text width more than badge min width correctly', () => {
     const lib = new Favoritos();
     lib['badgeContent'] = 1;
     lib['options']['badge']['minWidth'] = 22;
@@ -34,7 +34,7 @@ describe('Favoritos: drawRectBadge method', () => {
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
   });
 
-  it('correctly calculate final badge height', () => {
+  it('calculate final badge height correctly', () => {
     const lib = new Favoritos();
     lib['badgeContent'] = 1;
     lib['options']['badge']['minHeight'] = 22;

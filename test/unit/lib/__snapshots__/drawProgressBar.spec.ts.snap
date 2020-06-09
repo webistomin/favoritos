@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Favoritos: drawProgressBar method correctly draw progress bar with circle shape 1`] = `
+exports[`Favoritos: drawProgressBar method Draw progress bar if "progress" param is correct 1`] = `
 Array [
   Object {
     "props": Object {
@@ -306,7 +306,313 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawProgressBar method correctly draw progress bar with favicon 1`] = `
+exports[`Favoritos: drawProgressBar method Draw progress bar with circle shape correctly 1`] = `
+Array [
+  Object {
+    "props": Object {
+      "value": "18px Helvetica, Arial, sans-serif",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "font",
+  },
+  Object {
+    "props": Object {
+      "value": "center",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "textAlign",
+  },
+  Object {
+    "props": Object {
+      "value": "middle",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "textBaseline",
+  },
+  Object {
+    "props": Object {
+      "x": 1,
+      "y": 1,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "scale",
+  },
+  Object {
+    "props": Object {
+      "height": 32,
+      "width": 32,
+      "x": 0,
+      "y": 0,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "clearRect",
+  },
+  Object {
+    "props": Object {},
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "beginPath",
+  },
+  Object {
+    "props": Object {
+      "value": 4,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "lineWidth",
+  },
+  Object {
+    "props": Object {
+      "anticlockwise": false,
+      "endAngle": 7.853981633974483,
+      "radius": 14,
+      "startAngle": 4.71238898038469,
+      "x": 16,
+      "y": 16,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "arc",
+  },
+  Object {
+    "props": Object {
+      "value": "#d21f3c",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "strokeStyle",
+  },
+  Object {
+    "props": Object {
+      "path": Array [
+        Object {
+          "props": Object {},
+          "transform": Array [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+          ],
+          "type": "beginPath",
+        },
+        Object {
+          "props": Object {
+            "anticlockwise": false,
+            "endAngle": 7.853981633974483,
+            "radius": 14,
+            "startAngle": 4.71238898038469,
+            "x": 16,
+            "y": 16,
+          },
+          "transform": Array [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+          ],
+          "type": "arc",
+        },
+      ],
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "stroke",
+  },
+  Object {
+    "props": Object {
+      "height": 32,
+      "width": 32,
+      "x": 0,
+      "y": 0,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "clearRect",
+  },
+  Object {
+    "props": Object {},
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "beginPath",
+  },
+  Object {
+    "props": Object {
+      "value": 4,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "lineWidth",
+  },
+  Object {
+    "props": Object {
+      "anticlockwise": false,
+      "endAngle": 7.853981633974483,
+      "radius": 14,
+      "startAngle": 4.71238898038469,
+      "x": 16,
+      "y": 16,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "arc",
+  },
+  Object {
+    "props": Object {
+      "value": "#d21f3c",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "strokeStyle",
+  },
+  Object {
+    "props": Object {
+      "path": Array [
+        Object {
+          "props": Object {},
+          "transform": Array [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+          ],
+          "type": "beginPath",
+        },
+        Object {
+          "props": Object {
+            "anticlockwise": false,
+            "endAngle": 7.853981633974483,
+            "radius": 14,
+            "startAngle": 4.71238898038469,
+            "x": 16,
+            "y": 16,
+          },
+          "transform": Array [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+          ],
+          "type": "arc",
+        },
+      ],
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "stroke",
+  },
+]
+`;
+
+exports[`Favoritos: drawProgressBar method Draw progress bar with favicon correctly 1`] = `
 Array [
   Object {
     "props": Object {
@@ -368,7 +674,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawProgressBar method correctly draw progress bar with favicon from cache 1`] = `
+exports[`Favoritos: drawProgressBar method Draw progress bar with favicon from cache correctly 1`] = `
 Array [
   Object {
     "props": Object {
@@ -718,7 +1024,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawProgressBar method correctly draw progress bar with rect shape 1`] = `
+exports[`Favoritos: drawProgressBar method Draw progress bar with rect shape correctly 1`] = `
 Array [
   Object {
     "props": Object {
@@ -1172,312 +1478,6 @@ Array [
             0,
           ],
           "type": "lineTo",
-        },
-      ],
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "stroke",
-  },
-]
-`;
-
-exports[`Favoritos: drawProgressBar method draw progress bar if params are correct 1`] = `
-Array [
-  Object {
-    "props": Object {
-      "value": "18px Helvetica, Arial, sans-serif",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "value": "center",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "textAlign",
-  },
-  Object {
-    "props": Object {
-      "value": "middle",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "textBaseline",
-  },
-  Object {
-    "props": Object {
-      "x": 1,
-      "y": 1,
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "scale",
-  },
-  Object {
-    "props": Object {
-      "height": 32,
-      "width": 32,
-      "x": 0,
-      "y": 0,
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "clearRect",
-  },
-  Object {
-    "props": Object {},
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "beginPath",
-  },
-  Object {
-    "props": Object {
-      "value": 4,
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "lineWidth",
-  },
-  Object {
-    "props": Object {
-      "anticlockwise": false,
-      "endAngle": 7.853981633974483,
-      "radius": 14,
-      "startAngle": 4.71238898038469,
-      "x": 16,
-      "y": 16,
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "arc",
-  },
-  Object {
-    "props": Object {
-      "value": "#d21f3c",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "strokeStyle",
-  },
-  Object {
-    "props": Object {
-      "path": Array [
-        Object {
-          "props": Object {},
-          "transform": Array [
-            1,
-            0,
-            0,
-            1,
-            0,
-            0,
-          ],
-          "type": "beginPath",
-        },
-        Object {
-          "props": Object {
-            "anticlockwise": false,
-            "endAngle": 7.853981633974483,
-            "radius": 14,
-            "startAngle": 4.71238898038469,
-            "x": 16,
-            "y": 16,
-          },
-          "transform": Array [
-            1,
-            0,
-            0,
-            1,
-            0,
-            0,
-          ],
-          "type": "arc",
-        },
-      ],
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "stroke",
-  },
-  Object {
-    "props": Object {
-      "height": 32,
-      "width": 32,
-      "x": 0,
-      "y": 0,
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "clearRect",
-  },
-  Object {
-    "props": Object {},
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "beginPath",
-  },
-  Object {
-    "props": Object {
-      "value": 4,
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "lineWidth",
-  },
-  Object {
-    "props": Object {
-      "anticlockwise": false,
-      "endAngle": 7.853981633974483,
-      "radius": 14,
-      "startAngle": 4.71238898038469,
-      "x": 16,
-      "y": 16,
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "arc",
-  },
-  Object {
-    "props": Object {
-      "value": "#d21f3c",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "strokeStyle",
-  },
-  Object {
-    "props": Object {
-      "path": Array [
-        Object {
-          "props": Object {},
-          "transform": Array [
-            1,
-            0,
-            0,
-            1,
-            0,
-            0,
-          ],
-          "type": "beginPath",
-        },
-        Object {
-          "props": Object {
-            "anticlockwise": false,
-            "endAngle": 7.853981633974483,
-            "radius": 14,
-            "startAngle": 4.71238898038469,
-            "x": 16,
-            "y": 16,
-          },
-          "transform": Array [
-            1,
-            0,
-            0,
-            1,
-            0,
-            0,
-          ],
-          "type": "arc",
         },
       ],
     },

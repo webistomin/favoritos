@@ -1,12 +1,12 @@
-import Favoritos from '../../../src/favoritos';
-import { DEFAULT_OPTIONS } from '../../../src/helpers/default-options';
+import Favoritos from 'src/favoritos';
+import { DEFAULT_OPTIONS } from 'src/helpers/default-options';
 
 describe('Favoritos: reset method', () => {
   beforeEach(() => {
     document.head.innerHTML = `<link rel="shortcut icon" href="#">`;
   });
 
-  it('reset state to default', () => {
+  it('Reset state to default', () => {
     const lib = new Favoritos({
       badge: {
         fontSize: 100,

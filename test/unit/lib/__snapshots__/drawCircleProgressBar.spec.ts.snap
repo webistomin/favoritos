@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Favoritos: drawCircleProgressBar method draw circle progress if content is correct 1`] = `
+exports[`Favoritos: drawCircleProgressBar method Draw circle progress if "progress" param is correct 1`] = `
 Array [
   Object {
     "props": Object {

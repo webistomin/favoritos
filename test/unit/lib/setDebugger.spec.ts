@@ -1,4 +1,4 @@
-import Favoritos from '../../../src/favoritos';
+import Favoritos from 'src/favoritos';
 
 describe('Favoritos: setDebugger method', () => {
   beforeEach(() => {
@@ -7,14 +7,14 @@ describe('Favoritos: setDebugger method', () => {
     jest.resetModules();
   });
 
-  it("doesn't append canvas if debug option is not enabled", () => {
+  it("Doesn't append canvas if debug option is not enabled", () => {
     const lib = new Favoritos();
     const debugEl = document.getElementById('favoritos-debug');
     lib['setDebugger']();
     expect(debugEl.children.length).toEqual(0);
   });
 
-  it('append canvas if debug option is enabled', () => {
+  it('Append canvas if debug option is enabled', () => {
     const lib = new Favoritos({
       debug: {
         enabled: true,

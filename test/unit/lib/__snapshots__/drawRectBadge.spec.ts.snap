@@ -1,102 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Favoritos: drawRectBadge method correctly calculate final badge height 1`] = `
-Array [
-  Object {
-    "props": Object {
-      "value": "18px Helvetica, Arial, sans-serif",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "value": "center",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "textAlign",
-  },
-  Object {
-    "props": Object {
-      "value": "middle",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "textBaseline",
-  },
-  Object {
-    "props": Object {
-      "x": 1,
-      "y": 1,
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "scale",
-  },
-  Object {
-    "props": Object {
-      "height": 64,
-      "width": 32,
-      "x": 16,
-      "y": 0,
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "rect",
-  },
-  Object {
-    "props": Object {
-      "height": 64,
-      "width": 32,
-      "x": 16,
-      "y": 0,
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "rect",
-  },
-]
-`;
-
-exports[`Favoritos: drawRectBadge method correctly calculate final badge width if text width more than badge min width 1`] = `
+exports[`Favoritos: drawRectBadge method Calculate final badge width if text width more than badge min width correctly 1`] = `
 Array [
   Object {
     "props": Object {
@@ -192,7 +96,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawRectBadge method correctly calculate final badge width with huge text width 1`] = `
+exports[`Favoritos: drawRectBadge method Calculate final badge width with huge text width correctly 1`] = `
 Array [
   Object {
     "props": Object {
@@ -288,7 +192,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawRectBadge method draw rect badge if params are correct 1`] = `
+exports[`Favoritos: drawRectBadge method Draw rect badge if params are correct 1`] = `
 Array [
   Object {
     "props": Object {
@@ -370,6 +274,102 @@ Array [
       "width": 22,
       "x": 21,
       "y": 21,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "rect",
+  },
+]
+`;
+
+exports[`Favoritos: drawRectBadge method calculate final badge height correctly 1`] = `
+Array [
+  Object {
+    "props": Object {
+      "value": "18px Helvetica, Arial, sans-serif",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "font",
+  },
+  Object {
+    "props": Object {
+      "value": "center",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "textAlign",
+  },
+  Object {
+    "props": Object {
+      "value": "middle",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "textBaseline",
+  },
+  Object {
+    "props": Object {
+      "x": 1,
+      "y": 1,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "scale",
+  },
+  Object {
+    "props": Object {
+      "height": 64,
+      "width": 32,
+      "x": 16,
+      "y": 0,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "rect",
+  },
+  Object {
+    "props": Object {
+      "height": 64,
+      "width": 32,
+      "x": 16,
+      "y": 0,
     },
     "transform": Array [
       1,

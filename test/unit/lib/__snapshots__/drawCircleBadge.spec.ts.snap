@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Favoritos: drawCircleBadge method correctly calculate final badge height 1`] = `
+exports[`Favoritos: drawCircleBadge method Calculate final badge height correctly 1`] = `
 Array [
   Object {
     "props": Object {
@@ -100,7 +100,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawCircleBadge method correctly calculate final badge width if text width more than badge min width 1`] = `
+exports[`Favoritos: drawCircleBadge method Calculate final badge width if text width more than badge min width correctly 1`] = `
 Array [
   Object {
     "props": Object {
@@ -200,7 +200,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawCircleBadge method correctly calculate final badge width with huge text width 1`] = `
+exports[`Favoritos: drawCircleBadge method Calculate final badge width with huge text width correctly 1`] = `
 Array [
   Object {
     "props": Object {
@@ -300,7 +300,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawCircleBadge method draw circle badge if params are correct 1`] = `
+exports[`Favoritos: drawCircleBadge method Draw circle badge if params are correct 1`] = `
 Array [
   Object {
     "props": Object {
@@ -400,7 +400,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawCircleBadge method draw rounded rectangle if value is number and more or equal 10 1`] = `
+exports[`Favoritos: drawCircleBadge method Draw rounded rectangle if value is number and more or equal 10 1`] = `
 Array [
   Object {
     "props": Object {
@@ -724,7 +724,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawCircleBadge method draw rounded rectangle if value is string and string length more or equal 1 1`] = `
+exports[`Favoritos: drawCircleBadge method Draw rounded rectangle if value is string and string length more or equal 1 1`] = `
 Array [
   Object {
     "props": Object {

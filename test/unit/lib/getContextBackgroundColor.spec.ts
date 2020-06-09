@@ -6,14 +6,14 @@ describe('Favoritos: getContextBackgroundColor method', () => {
     jest.clearAllMocks();
   });
 
-  it('return color string if background option is string', () => {
+  it('Return color string if "backgroundColor" param is string', () => {
     const lib = new Favoritos();
     const backgroundColor = '#000000';
     const result = lib['getContextBackgroundColor'](backgroundColor, 32, 32);
     expect(result).toEqual(backgroundColor);
   });
 
-  it('return gradient if background option is array', () => {
+  it('Return gradient if "backgroundColor" param is array', () => {
     const lib = new Favoritos();
     const backgroundColor = ['#000000', '#ffffff'];
     const result = lib['getContextBackgroundColor'](backgroundColor, 32, 32);

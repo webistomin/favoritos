@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Favoritos: drawRectProgressBar method does not draw progress > 100 1`] = `
+exports[`Favoritos: drawRectProgressBar method Does not draw progress > 100 1`] = `
 Array [
   Object {
     "props": Object {
@@ -62,7 +62,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawRectProgressBar method draw progress <= 25 if param is correct 1`] = `
+exports[`Favoritos: drawRectProgressBar method Draw progress <= 25 if param is correct 1`] = `
 Array [
   Object {
     "props": Object {
@@ -184,7 +184,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawRectProgressBar method draw progress > 25 and <= 50 if param is correct 1`] = `
+exports[`Favoritos: drawRectProgressBar method Draw progress > 25 and <= 50 if param is correct 1`] = `
 Array [
   Object {
     "props": Object {
@@ -366,7 +366,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawRectProgressBar method draw progress > 50 and <= 75 if param is correct 1`] = `
+exports[`Favoritos: drawRectProgressBar method Draw progress > 50 and <= 75 if param is correct 1`] = `
 Array [
   Object {
     "props": Object {
@@ -608,7 +608,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawRectProgressBar method draw progress > 75 and <= 100 if param is correct 1`] = `
+exports[`Favoritos: drawRectProgressBar method Draw progress > 75 and <= 100 if param is correct 1`] = `
 Array [
   Object {
     "props": Object {

@@ -1,6 +1,6 @@
-import { IFavoritosShape } from '../../../src/types/options/shapes';
-import { IFavoritosPositions } from '../../../src/types/options/positions';
-import Favoritos from '../../../src/favoritos';
+import { IFavoritosShape } from 'src/types/options/shapes';
+import { IFavoritosPositions } from 'src/types/options/positions';
+import Favoritos from 'src/favoritos';
 
 describe('Favoritos: options', () => {
   beforeEach(() => {
@@ -8,7 +8,7 @@ describe('Favoritos: options', () => {
     jest.resetModules();
   });
 
-  it('merge user and default options on init correctly', () => {
+  it('Merge user and default options on init correctly', () => {
     const expectedResult = {
       icon: {
         iconSelector: 'link[rel*="icon"]',
@@ -47,7 +47,7 @@ describe('Favoritos: options', () => {
     expect(lib['options']).toEqual(expectedResult);
   });
 
-  it('merge user and default options via setOptions method correctly', () => {
+  it('Merge user and default options via setOptions method correctly', () => {
     const expectedResult = {
       icon: {
         iconSelector: 'link[rel*="icon"]',

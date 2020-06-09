@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Favoritos: drawImage method draw image to canvas if content is correct 1`] = `
+exports[`Favoritos: drawImage method Draw image to canvas if content is correct 1`] = `
 Array [
   Object {
     "props": Object {
@@ -86,7 +86,7 @@ Array [
 ]
 `;
 
-exports[`Favoritos: drawImage method throw error if content is not CanvasImageSource type 1`] = `
+exports[`Favoritos: drawImage method Throw error if content is not "CanvasImageSource" type 1`] = `
 Array [
   Object {
     "props": Object {
