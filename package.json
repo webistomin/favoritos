@@ -1,7 +1,15 @@
 {
   "name": "favoritos",
-  "version": "0.0.1-beta.0",
-  "description": "TBD",
+  "version": "1.0.0",
+  "description": "Favoritos is a JavaScript plugin that adds some HTML5 canvas magic to your favicon. With just a wee bit of code, we can make some really cool effects.",
+  "reveal": true,
+  "keywords": [
+    "favicon",
+    "favicons",
+    "favicon-badge",
+    "favicon-manager",
+    "favicon-dynamic"
+  ],
   "main": "./dist/favoritos.cjs.js",
   "module": "./dist/favoritos.esm.js",
   "browser": {

@@ -1,7 +1,4 @@
-<!-- An easy-to-use and simple Instagram package that allows you to fetch media content without API and access token -->
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!-- Favoritos is a JavaScript plugin that adds some HTML5 canvas magic to your favicon. With just a wee bit of code, we can make some really cool effects. -->
 
 <p align="center">
   <img width="130" height="120" src="https://raw.githubusercontent.com/webistomin/favoritos/master/assets/logo.png" alt="Favoritos">
@@ -33,6 +30,9 @@
 <a href="https://www.npmjs.com/package/favoritos"><img alt="npm" src="https://img.shields.io/npm/v/favoritos" /></a>
 <a href="https://www.npmjs.com/package/favoritos"><img alt="downloads" src="https://img.shields.io/npm/dm/favoritos" /></a>
   <a href="https://www.jsdelivr.com/package/npm/favoritos"><img alt="jsdeliver" src="https://data.jsdelivr.com/v1/package/npm/favoritos/badge?style=rounded"/></a>
+  <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+  <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="contributors"> 
+  <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
 <p align="center">
@@ -442,6 +442,7 @@ Your contributions are always welcome! Please have a look at the [contribution g
 
 ## Contributors ✨
 
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -455,3 +456,5 @@ Your contributions are always welcome! Please have a look at the [contribution g
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
