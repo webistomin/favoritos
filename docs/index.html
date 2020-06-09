@@ -2781,7 +2781,7 @@ img {
 <div class="container container-main">
 	<div class="content-wrap">
 		<div class="tsd-panel tsd-typography">
-			<!-- An easy-to-use and simple Instagram package that allows you to fetch media content without API and access token -->
+			<!-- Favoritos is a JavaScript plugin that adds some HTML5 canvas magic to your favicon. With just a wee bit of code, we can make some really cool effects. -->
 			<p align="center">
 				<img width="130" height="120" src="https://raw.githubusercontent.com/webistomin/favoritos/master/assets/logo.png" alt="Favoritos">
 			</p>
@@ -2808,14 +2808,15 @@ img {
 				<a href="https://www.npmjs.com/package/favoritos"><img alt="npm" src="https://img.shields.io/npm/v/favoritos" /></a>
 				<a href="https://www.npmjs.com/package/favoritos"><img alt="downloads" src="https://img.shields.io/npm/dm/favoritos" /></a>
 				<a href="https://www.jsdelivr.com/package/npm/favoritos"><img alt="jsdeliver" src="https://data.jsdelivr.com/v1/package/npm/favoritos/badge?style=rounded"/></a>
+				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+				<img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="contributors">
+				<!-- ALL-CONTRIBUTORS-BADGE:END -->
 			</p>
 			<p align="center">
 				<a href="#key-features-">Key Features</a> •
 				<a href="#demo-">Demo</a> •
-				<a href="#documentation-">Documentation</a> •
 				<a href="#installation-">Installation</a> •
 				<a href="#how-to-use-">How To Use</a> •
-				<a href="#examples-">Examples</a> •
 				<a href="#browsers-support-">Browsers support</a> •
 				<a href="#license-">License</a>  •
 				<a href="#contributing-">Contributing</a>
@@ -2834,7 +2835,18 @@ img {
 			<a href="#demo-👀" id="demo-👀" style="color: inherit; text-decoration: none;">
 				<h2>Demo 👀</h2>
 			</a>
-			<p>TBD</p>
+			<a href="#badge-magic" id="badge-magic" style="color: inherit; text-decoration: none;">
+				<h3><a href="https://webistomin.github.io/favoritos/example/badge/">BADGE MAGIC</a></h3>
+			</a>
+			<a href="#circular-progress" id="circular-progress" style="color: inherit; text-decoration: none;">
+				<h3><a href="https://webistomin.github.io/favoritos/example/circle-progress/">CIRCULAR PROGRESS</a></h3>
+			</a>
+			<a href="#rectangle-progress" id="rectangle-progress" style="color: inherit; text-decoration: none;">
+				<h3><a href="https://webistomin.github.io/favoritos/example/rect-progress/">RECTANGLE PROGRESS</a></h3>
+			</a>
+			<a href="#video-magic" id="video-magic" style="color: inherit; text-decoration: none;">
+				<h3><a href="https://webistomin.github.io/favoritos/example/draw-video/">VIDEO MAGIC</a></h3>
+			</a>
 			<a href="#installation-🚀" id="installation-🚀" style="color: inherit; text-decoration: none;">
 				<h2>Installation 🚀</h2>
 			</a>
@@ -2850,7 +2862,7 @@ img {
 			</a>
 			<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> yarn add favoritos</span></code></pre>
 			<a href="#via-cdn" id="via-cdn" style="color: inherit; text-decoration: none;">
-				<h4>via CDN</h4>
+				<h3>via CDN</h3>
 			</a>
 			<p>Add script right before closing <code>&lt;/body&gt;</code> tag</p>
 			<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/favoritos@1.0.0/dist/favoritos.iife.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
@@ -2872,15 +2884,303 @@ or
 			<a href="#how-to-use-🤔" id="how-to-use-🤔" style="color: inherit; text-decoration: none;">
 				<h2>How to use 🤔</h2>
 			</a>
-			<p>TDB</p>
-			<a href="#examples-☺" id="examples-☺" style="color: inherit; text-decoration: none;">
-				<h2>Examples ☺</h2>
+			<a href="#1-initialize-favoritos" id="1-initialize-favoritos" style="color: inherit; text-decoration: none;">
+				<h3>1. Initialize favoritos</h3>
 			</a>
-			<p>TDB</p>
+			<p><strong>Option A: Using ES 2015:</strong></p>
+			<pre><code class="language-js"><span class="hljs-keyword">import</span> Favoritos <span class="hljs-keyword">from</span> <span class="hljs-string">'favoritos'</span>;
+
+<span class="hljs-keyword">const</span> favoritos = <span class="hljs-keyword">new</span> Favoritos({
+  <span class="hljs-attr">icon</span>: {
+    <span class="hljs-comment">// Your options</span>
+  },
+  <span class="hljs-attr">badge</span>: {
+    <span class="hljs-comment">// Your options</span>
+  },
+  <span class="hljs-attr">debug</span>: {
+    <span class="hljs-comment">// Your options</span>
+  },
+});</code></pre>
+			<p><strong>Option B: Using CommonJS:</strong></p>
+			<pre><code class="language-js"><span class="hljs-keyword">const</span> Favoritos = <span class="hljs-built_in">require</span>(<span class="hljs-string">'favoritos'</span>);
+
+<span class="hljs-keyword">const</span> favoritos = <span class="hljs-keyword">new</span> Favoritos({
+  <span class="hljs-attr">icon</span>: {
+    <span class="hljs-comment">// Your options</span>
+  },
+  <span class="hljs-attr">badge</span>: {
+    <span class="hljs-comment">// Your options</span>
+  },
+  <span class="hljs-attr">debug</span>: {
+    <span class="hljs-comment">// Your options</span>
+  },
+});</code></pre>
+			<p><strong>Option C: Using CDN:</strong></p>
+			<pre><code class="language-js"><span class="hljs-comment">/* Favoritos is available from global namespace */</span>
+<span class="hljs-keyword">const</span> favoritos = <span class="hljs-keyword">new</span> Favoritos({
+  <span class="hljs-attr">icon</span>: {
+    <span class="hljs-comment">// Your options</span>
+  },
+  <span class="hljs-attr">badge</span>: {
+    <span class="hljs-comment">// Your options</span>
+  },
+  <span class="hljs-attr">debug</span>: {
+    <span class="hljs-comment">// Your options</span>
+  },
+});</code></pre>
+			<a href="#2-add-magic-to-your-favicon" id="2-add-magic-to-your-favicon" style="color: inherit; text-decoration: none;">
+				<h3>2. Add magic to your favicon</h3>
+			</a>
+			<a href="#options" id="options" style="color: inherit; text-decoration: none;">
+				<h4>Options</h4>
+			</a>
+			<a href="#icon-options" id="icon-options" style="color: inherit; text-decoration: none;">
+				<h4>Icon options</h4>
+			</a>
+			<table>
+				<thead>
+					<tr>
+						<th>Option</th>
+						<th>Default value</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>iconSelector</code></td>
+						<td><code>'link[rel*="icon"]'</code></td>
+						<td>A selector for your favicon where magic will be drawn.</td>
+					</tr>
+					<tr>
+						<td><code>backgroundColor</code></td>
+						<td><code>'#d21f3c'</code></td>
+						<td>Background color for the icon. Used when rendering the progress bar. May be a string or an array. If an array is passed, a gradient will be drawn.
+						</td>
+					</tr>
+					<tr>
+						<td><code>shape</code></td>
+						<td><code>'circle'</code></td>
+						<td>The shape for the icon. Can take the following values: <code>​​circle</code>, <code>rect</code>.
+						</td>
+					</tr>
+					<tr>
+						<td><code>lineWidth</code></td>
+						<td><code>4</code></td>
+						<td>Line width for your icon.</td>
+					</tr>
+					<tr>
+						<td><code>width</code></td>
+						<td><code>32</code></td>
+						<td>Width for your icon. Initially, there is the width of a standard favicon.
+						</td>
+					</tr>
+					<tr>
+						<td><code>height</code></td>
+						<td><code>32</code></td>
+						<td>Height for your icon. Initially, there is the height of a standard favicon.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="#badge-options" id="badge-options" style="color: inherit; text-decoration: none;">
+				<h4>Badge options</h4>
+			</a>
+			<table>
+				<thead>
+					<tr>
+						<th>Option</th>
+						<th>Default value</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>fontSize</code></td>
+						<td><code>18</code></td>
+						<td>Font size of badge text.</td>
+					</tr>
+					<tr>
+						<td><code>backgroundColor</code></td>
+						<td><code>'#d21f3c'</code></td>
+						<td>Background color for the badge.</td>
+					</tr>
+					<tr>
+						<td><code>fontFamily</code></td>
+						<td><code>'Helvetica, Arial, sans-serif'</code></td>
+						<td>Font family for the badge text.</td>
+					</tr>
+					<tr>
+						<td><code>shape</code></td>
+						<td><code>'circle'</code></td>
+						<td>The shape for the icon. Can take the following values: <code>​​circle</code>, <code>rect</code>.
+						</td>
+					</tr>
+					<tr>
+						<td><code>position</code></td>
+						<td><code>'bottom-right'</code></td>
+						<td>Position for your badge. Can take the following values: <code>top-left</code>, <code>top-right</code>, <code>bottom-left</code>, <code>bottom-right</code>.
+						</td>
+					</tr>
+					<tr>
+						<td><code>minWidth</code></td>
+						<td><code>22</code></td>
+						<td>Minimal width for your badge.</td>
+					</tr>
+					<tr>
+						<td><code>minHeight</code></td>
+						<td><code>22</code></td>
+						<td>Minimal height for your icon.</td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="#debug-options" id="debug-options" style="color: inherit; text-decoration: none;">
+				<h4>Debug options</h4>
+			</a>
+			<p><em>Debug mode can be useful if you want to look at the favicon near</em></p>
+			<table>
+				<thead>
+					<tr>
+						<th>Option</th>
+						<th>Default value</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>enabled</code></td>
+						<td><code>false</code></td>
+						<td>Turns debugging on and off.</td>
+					</tr>
+					<tr>
+						<td><code>debugSelector</code></td>
+						<td><code>'#favoritos-debug'</code></td>
+						<td>Element selector where the canvas will be drawn.</td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="#3-call-methods" id="3-call-methods" style="color: inherit; text-decoration: none;">
+				<h2>3. Call methods</h2>
+			</a>
+			<p><strong>favoritos.drawBadge()</strong></p>
+			<pre><code class="language-js">favoritos.drawBadge(<span class="hljs-string">''</span>)
+
+favoritos.drawBadge(<span class="hljs-number">1</span>)
+
+favoritos.drawBadge(<span class="hljs-number">123</span>)</code></pre>
+			<p>Draws a badge on top of the favicon. With an empty string – an empty badge will be drawn. You can also pass numbers.</p>
+			<hr>
+			<p><strong>favoritos.drawImage()</strong></p>
+			<pre><code class="language-js"><span class="hljs-comment">/* Image example */</span>
+<span class="hljs-keyword">const</span> img = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.my-image'</span>);
+favoritos.drawImage(img)
+
+<span class="hljs-comment">/* Video example */</span>
+<span class="hljs-keyword">const</span> video = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.my-video'</span>);
+video.addEventListener(<span class="hljs-string">'play'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step</span>(<span class="hljs-params"></span>) </span>{
+  favoritos.drawImage(video)
+  requestAnimationFrame(step)
+}
+requestAnimationFrame(step);
+})</code></pre>
+			<p>Draws a picture or video instead of your favicon. Takes one argument - the content to be drawn. Image or video <strong>must have</strong> <code>crossorigin=&quot;anonymous&quot;</code> attribute</p>
+			<hr>
+			<p><strong>favoritos.drawProgress()</strong></p>
+			<pre><code class="language-js"><span class="hljs-comment">/* Scroll progress example */</span>
+<span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">'scroll'</span>, () =&gt; {
+  <span class="hljs-keyword">const</span> root = <span class="hljs-built_in">document</span>.documentElement;
+  <span class="hljs-keyword">const</span> scrollTopInPx = root.scrollTop;
+  <span class="hljs-keyword">const</span> pageHeightInPx = root.scrollHeight - root.clientHeight;
+  <span class="hljs-keyword">const</span> scrollPercent = (scrollTopInPx / pageHeightInPx) * <span class="hljs-number">100</span>;
+  <span class="hljs-keyword">const</span> scrollPercentRounded = <span class="hljs-built_in">Math</span>.round(scrollPercent);
+
+  favoritos.drawProgressBar(scrollPercentRounded);
+})
+
+<span class="hljs-comment">/* XHR example */</span>
+<span class="hljs-keyword">const</span> formData = <span class="hljs-keyword">new</span> FormData();
+formData.append(<span class="hljs-string">'files'</span>, <span class="hljs-comment">/* Your data */</span>);
+<span class="hljs-keyword">const</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+
+xhr.open(<span class="hljs-string">'POST'</span>, <span class="hljs-string">''</span>);
+xhr.setRequestHeader(<span class="hljs-string">'X-Requested-With'</span>, <span class="hljs-string">'XMLHttpRequest'</span>);
+
+xhr.upload.addEventListener(<span class="hljs-string">'progress'</span>, (event) =&gt; {
+  <span class="hljs-keyword">if</span> (event.lengthComputable) {
+    <span class="hljs-keyword">const</span> complete = (event.loaded / event.total * <span class="hljs-number">100</span> | <span class="hljs-number">0</span>);
+    favoritos.drawProgressBar(complete);
+  }
+});
+
+xhr.send(formData);</code></pre>
+			<p>Allows you to draw a progress bar instead of your icon. The progress bar shape depends on the option <code>shape</code> passed during library initialization.</p>
+			<p>The method takes two arguments: <code>progress</code> and  <code>useFavicon</code>. <code>progress</code> indicates how much has already been completed. Value from 0 to 100. <code>useFavicon</code> indicates whether to draw the progress bar on top of the favicon.</p>
+			<hr>
+			<p><strong>favoritos.setOptions()</strong></p>
+			<pre><code class="language-js"><span class="hljs-comment">/* For example, set icon background color to green if task was done */</span>
+favoritos.setOptions({
+  <span class="hljs-attr">icon</span>: {
+    <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">'green'</span>
+  }
+})</code></pre>
+			<p>You can change any options for the library. But after the change, you must definitely call the icon renderer with the method of which you use (<code>drawBadge()</code> or <code>drawProgress()</code>).</p>
+			<hr>
+			<p><strong>favoritos.setIcon()</strong></p>
+			<pre><code class="language-js"><span class="hljs-comment">/* Change favicon on tab change */</span>
+<span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">'visibilitychange'</span>, () =&gt; {
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.visibilityState === <span class="hljs-string">'visible'</span>) {
+    <span class="hljs-built_in">document</span>.title = <span class="hljs-string">'Hello again! 😀'</span>;
+    favoritos.setIcon(<span class="hljs-string">'./on-visible.png'</span>)
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">document</span>.title = <span class="hljs-string">'I miss you! 😭'</span>;
+    favoritos.setIcon(<span class="hljs-string">'./on-visible.png'</span>)
+  }
+})
+
+<span class="hljs-comment">/* Change favicon on theme change */</span>
+<span class="hljs-built_in">window</span>.matchMedia(<span class="hljs-string">'(prefers-color-scheme: dark)'</span>).addEventListener(<span class="hljs-string">'change'</span>, (event) =&gt; {
+  <span class="hljs-keyword">const</span> newColorScheme = event.matches ? <span class="hljs-string">"dark"</span> : <span class="hljs-string">"light"</span>;
+  <span class="hljs-keyword">if</span> (newColorScheme === <span class="hljs-string">'dark'</span>) {
+    favoritos.setIcon(<span class="hljs-string">'./dark-favicon.png'</span>)
+  } <span class="hljs-keyword">else</span> {
+    favoritos.setIcon(<span class="hljs-string">'./light-favicon.png'</span>)
+  }
+});</code></pre>
+			<p>Simply draws a new favicon.</p>
+			<hr>
+			<p><strong>favoritos.reset()</strong></p>
+			<pre><code class="language-js">favoritos.reset();</code></pre>
+			<p>Resets the library to its original state. Draws your default favicon.</p>
+			<hr>
 			<a href="#browsers-support-🌎" id="browsers-support-🌎" style="color: inherit; text-decoration: none;">
 				<h2>Browsers support 🌎</h2>
 			</a>
-			<p>TBD</p>
+			<table>
+				<thead>
+					<tr>
+						<th><a href="http://godban.github.io/browsers-support-badges/"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" /></a><br/>IE / Edge</th>
+						<th><a href="http://godban.github.io/browsers-support-badges/"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" /></a><br/>Firefox</th>
+						<th><a href="http://godban.github.io/browsers-support-badges/"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" /></a><br/>Chrome</th>
+						<th><a href="http://godban.github.io/browsers-support-badges/"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" /></a><br/>Safari</th>
+						<th><a href="http://godban.github.io/browsers-support-badges/"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" /></a><br/>iOS Safari</th>
+						<th><a href="http://godban.github.io/browsers-support-badges/"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" /></a><br/>Opera</th>
+						<th><a href="http://godban.github.io/browsers-support-badges/"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/yandex/yandex_48x48.png" alt="Yandex" width="24px" height="24px" /></a><br/>Yandex</th>
+					</tr>
+				</thead>
+				<tbody><tr>
+						<td>IE11*, Edge 12+</td>
+						<td>40+</td>
+						<td>42+</td>
+						<td>10.1+</td>
+						<td>10.3+</td>
+						<td>29+</td>
+						<td>15.6+</td>
+					</tr>
+			</tbody></table>
+			<p><code>*</code> – For IE11 you need to install <strong>Object.assign</strong> polyfill. Also IE11 cannot render base64 icons, so the <code>setIcon</code> method only works there.</p>
+			<p>If you want to send a polyfill only to browsers that need it, there&#39;s a handy service called <a href="https://polyfill.io/v3/url-builder/">Polyfill.io</a> which does just that, it offers a wide array of polyfills.</p>
+			<p>Here&#39;s an example of using <a href="https://polyfill.io/v3/url-builder/">polyfill.io</a> to polyfill only the <code>Object.assign</code>  feature, so if we put this right before closing <code>&lt;/body&gt;</code> tag of <code>index.html</code> and <code>Favoritos</code> script, Polyfill.io will read the user agent and use that information to determine if the browser requires a polyfill for the feature or features listed. Since I&#39;m using Chrome it will send back an empty response since my browser doesn&#39;t need it, pretty slick.</p>
+			<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://polyfill.io/v3/polyfill.min.js?features=Object.assign"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 			<a href="#license-📄" id="license-📄" style="color: inherit; text-decoration: none;">
 				<h2>License 📄</h2>
 			</a>
@@ -2895,7 +3195,19 @@ or
 			<a href="#contributors-✨" id="contributors-✨" style="color: inherit; text-decoration: none;">
 				<h2>Contributors ✨</h2>
 			</a>
-			<p>TBD</p>
+			<p>Thanks goes to these wonderful people (<a href="https://allcontributors.org/docs/en/emoji-key">emoji key</a>):</p>
+			<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+			<!-- prettier-ignore-start -->
+			<!-- markdownlint-disable -->
+			<table>
+				<tr>
+					<td align="center"><a href="https://github.com/webistomin"><img src="https://avatars0.githubusercontent.com/u/30475699?v=4" width="100px;" alt=""/><br /><sub><b>Alexey Istomin</b></sub></a><br /><a href="#infra-webistomin" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/webistomin/favoritos/commits?author=webistomin" title="Code">💻</a> <a href="#ideas-webistomin" title="Ideas, Planning, & Feedback">🤔</a></td>
+				</tr>
+			</table>
+			<!-- markdownlint-enable -->
+			<!-- prettier-ignore-end -->
+			<!-- ALL-CONTRIBUTORS-LIST:END -->
+			<p>This project follows the <a href="https://github.com/all-contributors/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
 		</div>
 		<div style="position:relative;"><a name="typedoc-main-index" class="tsd-anchor"></a></div>
 		<section class="tsd-panel-group tsd-index-group">
@@ -2961,7 +3273,7 @@ or
 				<div class="tsd-signature tsd-kind-icon">DEBUG_<wbr>NOT_<wbr>FOUND<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"Favoritos: debugger was enabled but debug element wasn&#x27;t found"</span><span class="tsd-signature-symbol"> = &#x60;Favoritos: debugger was enabled but debug element wasn&#x27;t found&#x60;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/debug-not-found-message.ts#L1">helpers/debug-not-found-message.ts:1</a></li>
+						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/debug-not-found-message.ts#L1">helpers/debug-not-found-message.ts:1</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2971,7 +3283,7 @@ or
 				<div class="tsd-signature tsd-kind-icon">ICON_<wbr>NOT_<wbr>FOUND<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"Favoritos: favicon element wasn&#x27;t foundPlease, add &lt;link rel&#x3D;&quot;shortcut icon&quot; href&#x3D;&quot;...&quot;&gt; to head section"</span><span class="tsd-signature-symbol"> = &#x60;Favoritos: favicon element wasn&#x27;t found \n Please, add &lt;link rel&#x3D;&quot;shortcut icon&quot; href&#x3D;&quot;...&quot;&gt; to head section&#x60;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/icon-not-found-message.ts#L1">helpers/icon-not-found-message.ts:1</a></li>
+						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/icon-not-found-message.ts#L1">helpers/icon-not-found-message.ts:1</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2981,7 +3293,7 @@ or
 				<div class="tsd-signature tsd-kind-icon">NOT_<wbr>SUPPORTED_<wbr>MESSAGE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"Your browser does not support ..."</span><span class="tsd-signature-symbol"> = &#x60;Your browser does not support ...&#x60;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/not-supported-message.ts#L1">helpers/not-supported-message.ts:1</a></li>
+						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/not-supported-message.ts#L1">helpers/not-supported-message.ts:1</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2991,7 +3303,7 @@ or
 				<div class="tsd-signature tsd-kind-icon">SSR_<wbr>MESSAGE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"Favoritos was not initialised! Probably it is used in SSR."</span><span class="tsd-signature-symbol"> = &quot;Favoritos was not initialised! Probably it is used in SSR.&quot;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/ssr-message.ts#L1">helpers/ssr-message.ts:1</a></li>
+						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/ssr-message.ts#L1">helpers/ssr-message.ts:1</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -3001,7 +3313,7 @@ or
 				<div class="tsd-signature tsd-kind-icon">get<wbr>Object<wbr>Keys<span class="tsd-signature-symbol">:</span> &lt;T&gt;<span class="tsd-signature-symbol">(</span>o<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Extract</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = Object.keys as &lt;T&gt;(o: T) &#x3D;&gt; Extract&lt;keyof T, string&gt;[]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/merge-deep.ts#L1">helpers/merge-deep.ts:1</a></li>
+						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/merge-deep.ts#L1">helpers/merge-deep.ts:1</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-type-declaration">
@@ -3038,7 +3350,7 @@ or
 				<div class="tsd-signature tsd-kind-icon">media<wbr>Dark<wbr>Theme<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">MediaQueryList</span><span class="tsd-signature-symbol"> = window.matchMedia(&#x27;(prefers-color-scheme: dark)&#x27;)</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/media-dark-theme.ts#L1">helpers/media-dark-theme.ts:1</a></li>
+						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/media-dark-theme.ts#L1">helpers/media-dark-theme.ts:1</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -3055,7 +3367,7 @@ or
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/fire-event.ts#L1">helpers/fire-event.ts:1</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/fire-event.ts#L1">helpers/fire-event.ts:1</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3081,7 +3393,7 @@ or
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/get-context-gradient-entries.ts#L1">helpers/get-context-gradient-entries.ts:1</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/get-context-gradient-entries.ts#L1">helpers/get-context-gradient-entries.ts:1</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3104,7 +3416,7 @@ or
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/merge-deep.ts#L3">helpers/merge-deep.ts:3</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/merge-deep.ts#L3">helpers/merge-deep.ts:3</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3127,7 +3439,7 @@ or
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/load-image.ts#L1">helpers/load-image.ts:1</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/load-image.ts#L1">helpers/load-image.ts:1</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3153,7 +3465,7 @@ or
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/merge-deep.ts#L7">helpers/merge-deep.ts:7</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/merge-deep.ts#L7">helpers/merge-deep.ts:7</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3179,7 +3491,7 @@ or
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/rounded-rect.ts#L1">helpers/rounded-rect.ts:1</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/rounded-rect.ts#L1">helpers/rounded-rect.ts:1</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3216,7 +3528,7 @@ or
 				<div class="tsd-signature tsd-kind-icon">DEFAULT_<wbr>OPTIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L6">helpers/default-options.ts:6</a></li>
+						<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L6">helpers/default-options.ts:6</a></li>
 					</ul>
 				</aside>
 				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
@@ -3225,7 +3537,7 @@ or
 					<div class="tsd-signature tsd-kind-icon">badge<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L15">helpers/default-options.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L15">helpers/default-options.ts:15</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -3234,7 +3546,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">background<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;#d21f3c&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L18">helpers/default-options.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L18">helpers/default-options.ts:18</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3244,7 +3556,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;#ffffff&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L19">helpers/default-options.ts:19</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L19">helpers/default-options.ts:19</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3254,7 +3566,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">font<wbr>Family<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Helvetica, Arial, sans-serif&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L17">helpers/default-options.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L17">helpers/default-options.ts:17</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3264,7 +3576,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">font<wbr>Size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 18</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L16">helpers/default-options.ts:16</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L16">helpers/default-options.ts:16</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3274,7 +3586,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">min<wbr>Height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 22</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L24">helpers/default-options.ts:24</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L24">helpers/default-options.ts:24</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3284,7 +3596,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">min<wbr>Width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 22</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L23">helpers/default-options.ts:23</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L23">helpers/default-options.ts:23</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3294,7 +3606,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">:</span> <a href="enums/ifavoritospositions.html#bottom_right" class="tsd-signature-type">BOTTOM_RIGHT</a><span class="tsd-signature-symbol"> = IFavoritosPositions.BOTTOM_RIGHT</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L20">helpers/default-options.ts:20</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L20">helpers/default-options.ts:20</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3304,7 +3616,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">shape<span class="tsd-signature-symbol">:</span> <a href="enums/ifavoritosshape.html#circle" class="tsd-signature-type">CIRCLE</a><span class="tsd-signature-symbol"> = IFavoritosShape.CIRCLE</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L22">helpers/default-options.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L22">helpers/default-options.ts:22</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3315,7 +3627,7 @@ or
 					<div class="tsd-signature tsd-kind-icon">debug<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L26">helpers/default-options.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L26">helpers/default-options.ts:26</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -3324,7 +3636,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">debug<wbr>Selector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;#favoritos-debug&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L28">helpers/default-options.ts:28</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L28">helpers/default-options.ts:28</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3334,7 +3646,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> = false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L27">helpers/default-options.ts:27</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L27">helpers/default-options.ts:27</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3345,7 +3657,7 @@ or
 					<div class="tsd-signature tsd-kind-icon">icon<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L7">helpers/default-options.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L7">helpers/default-options.ts:7</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -3354,7 +3666,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">background<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;#d21f3c&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L9">helpers/default-options.ts:9</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L9">helpers/default-options.ts:9</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3364,7 +3676,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 32</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L13">helpers/default-options.ts:13</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L13">helpers/default-options.ts:13</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3374,7 +3686,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">icon<wbr>Selector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;link[rel*&#x3D;&quot;icon&quot;]&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L8">helpers/default-options.ts:8</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L8">helpers/default-options.ts:8</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3384,7 +3696,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">line<wbr>Width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 4</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L11">helpers/default-options.ts:11</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L11">helpers/default-options.ts:11</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3394,7 +3706,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">shape<span class="tsd-signature-symbol">:</span> <a href="enums/ifavoritosshape.html#circle" class="tsd-signature-type">CIRCLE</a><span class="tsd-signature-symbol"> = IFavoritosShape.CIRCLE</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L10">helpers/default-options.ts:10</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L10">helpers/default-options.ts:10</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -3404,7 +3716,7 @@ or
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 32</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/b1b5860/src/helpers/default-options.ts#L12">helpers/default-options.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/webistomin/favoritos/blob/9536ba3/src/helpers/default-options.ts#L12">helpers/default-options.ts:12</a></li>
 							</ul>
 						</aside>
 					</section>

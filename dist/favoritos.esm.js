@@ -1,7 +1,7 @@
 /**
 * favoritos
 *
-* @version 0.0.1-beta.0
+* @version 1.0.0
 * @author webistomin
 * @email: webistomin@gmail.com
 * @license: MIT
