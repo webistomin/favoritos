@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "types": ["node", "cypress", "@types/cypress-image-snapshot"]
+  },
+  "include": [
+    "../node_modules/cypress",
+    "./*/*.ts"
+  ]
+}

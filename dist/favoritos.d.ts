@@ -10,9 +10,9 @@ export default class Favoritos {
     private debugElement;
     private readonly arcDegrees;
     constructor(options?: IFavoritosOption);
+    private init;
     private initIconCanvas;
     private getContextBackgroundColor;
-    private init;
     setOptions(options: IFavoritosOption): void;
     setIcon(newIcon: string): void;
     reset(): void;
@@ -29,3 +29,4 @@ export default class Favoritos {
     private drawRectProgressBar;
     private setDebugger;
 }
+//# sourceMappingURL=favoritos.d.ts.map

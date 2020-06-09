@@ -3,6 +3,8 @@ import { IFavoritosPositions } from './types/options/positions';
 import { IFavoritosShape } from './types/options/shapes';
 
 import { SSR_MESSAGE } from './helpers/ssr-message';
+import { ICON_NOT_FOUND } from './helpers/icon-not-found-message';
+import { DEBUG_NOT_FOUND } from './helpers/debug-not-found-message';
 import { DEFAULT_OPTIONS } from './helpers/default-options';
 import { getContextGradientEntries } from './helpers/get-context-gradient-entries';
 import { mergeDeep } from './helpers/merge-deep';
@@ -43,6 +45,33 @@ export default class Favoritos {
       this.options = mergeDeep(DEFAULT_OPTIONS, options) as IFavoritosOption;
       this.init();
     }
+  }
+
+  private init(): void {
+    const options = this.options;
+    const iconOptions = options.icon;
+    const debugOptions = options.debug;
+
+    this.iconElement = document.querySelector(iconOptions.iconSelector);
+
+    if (!this.iconElement) {
+      console.warn(ICON_NOT_FOUND);
+    } else {
+      this.userIconHref = this.iconElement.href;
+      loadImage(this.userIconHref, (img: HTMLImageElement) => {
+        this.userIconCache = img;
+      });
+    }
+
+    if (debugOptions.enabled) {
+      this.debugElement = document.querySelector(debugOptions.debugSelector);
+
+      if (!this.debugElement) {
+        console.warn(DEBUG_NOT_FOUND);
+      }
+    }
+
+    this.initIconCanvas();
   }
 
   private initIconCanvas(): void {
@@ -94,35 +123,6 @@ export default class Favoritos {
     }
 
     return resultBackground;
-  }
-
-  private init(): void {
-    const options = this.options;
-    const iconOptions = options.icon;
-    const debugOptions = options.debug;
-
-    this.iconElement = document.querySelector(iconOptions.iconSelector);
-
-    if (!this.iconElement) {
-      console.warn(`Favoritos: favicon element wasn't found`);
-      return;
-    }
-
-    this.userIconHref = this.iconElement.href;
-
-    if (debugOptions.enabled) {
-      this.debugElement = document.querySelector(debugOptions.debugSelector);
-
-      if (!this.debugElement) {
-        console.warn(`Favoritos: debugger was enabled but debug element wasn't found`);
-      }
-    }
-
-    loadImage(this.userIconHref, (img: HTMLImageElement) => {
-      this.userIconCache = img;
-    });
-
-    this.initIconCanvas();
   }
 
   public setOptions(options: IFavoritosOption): void {

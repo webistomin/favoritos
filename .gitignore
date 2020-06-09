@@ -38,3 +38,7 @@ stats.html
 .env
 
 .now
+
+# cypress temp
+test/e2e/screenshots
+test/e2e/fixtures/dist
