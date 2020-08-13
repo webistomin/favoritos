@@ -68,7 +68,7 @@
     "@commitlint/config-angular": "^9.0.1",
     "@cypress/webpack-preprocessor": "^5.4.1",
     "@ls-lint/ls-lint": "^1.8.0",
-    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-inject": "^4.0.1",
     "@rollup/plugin-json": "^4.0.2",
     "@rollup/plugin-node-resolve": "^8.0.0",
