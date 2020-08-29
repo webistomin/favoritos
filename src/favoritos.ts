@@ -132,8 +132,13 @@ export default class Favoritos {
   }
 
   public reset(): void {
+    const context = this.iconCanvasContext;
+    const iconOptions = this.options.icon;
+    const { width: iconWidth, height: iconHeight } = iconOptions;
     this.options = DEFAULT_OPTIONS;
     this.setIcon(this.userIconHref);
+    context.clearRect(0, 0, iconWidth, iconHeight);
+    this.setDebugger();
     delete this.badgeContent;
   }
 

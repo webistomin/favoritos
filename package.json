@@ -24,7 +24,7 @@
     "src/*"
   ],
   "scripts": {
-    "build": "run-s prebuild build:all build:dts typedoc",
+    "build": "run-s prebuild build:all build:dts",
     "build:all": "cross-env NODE_ENV=production rollup --config config/rollup.config.js",
     "build:cjs": "cross-env NODE_ENV=production rollup --config config/rollup.config.js --format cjs",
     "build:dts": "tsc -d --declarationDir dist --declarationMap --emitDeclarationOnly",
