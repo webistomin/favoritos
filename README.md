@@ -31,7 +31,7 @@
 <a href="https://www.npmjs.com/package/favoritos"><img alt="downloads" src="https://img.shields.io/npm/dm/favoritos" /></a>
   <a href="https://www.jsdelivr.com/package/npm/favoritos"><img alt="jsdeliver" src="https://data.jsdelivr.com/v1/package/npm/favoritos/badge?style=rounded"/></a>
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-  <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="contributors"> 
+  <img src="https://img.shields.io/badge/all_contributors-1-orange.svg" alt="contributors"> 
   <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
@@ -57,10 +57,7 @@
 
 ## Demo 👀
 
-### [BADGE MAGIC](https://webistomin.github.io/favoritos/example/badge/)
-### [CIRCULAR PROGRESS](https://webistomin.github.io/favoritos/example/circle-progress/)
-### [RECTANGLE PROGRESS](https://webistomin.github.io/favoritos/example/rect-progress/)
-### [VIDEO MAGIC](https://webistomin.github.io/favoritos/example/draw-video/)
+### [DEMO](https://webistomin.github.io/favoritos/)
 
 ## Installation 🚀
 
