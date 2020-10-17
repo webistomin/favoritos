@@ -3,7 +3,6 @@ import banner from 'rollup-plugin-banner2';
 import babel from 'rollup-plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-// import webWorkerLoader from 'rollup-plugin-web-worker-loader';
 
 import { baseConfig } from '../base.config';
 import { EXTERNALS } from '../partials/externals';
@@ -21,10 +20,10 @@ export const cjsConfig = {
     file: pkg.main,
     format: 'cjs',
     globals: GLOBALS,
+    exports: 'named',
   },
   plugins: [
     ...baseConfig.plugins.common,
-    // webWorkerLoader(),
     babel(baseConfig.plugins.babel),
     resolve({
       extensions: ['.mjs', '.js', '.json', '.node', '.ts'],

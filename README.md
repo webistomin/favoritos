@@ -21,8 +21,8 @@
   <img alt="GitHub issues" src="https://img.shields.io/github/issues/webistomin/favoritos">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/webistomin/favoritos">
   <img alt="npm type definitions" src="https://img.shields.io/npm/types/favoritos">
-  <a href="https://bundlephobia.com/result?p=favoritos@1.0.0">
-  <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/favoritos/1.0.0">
+  <a href="https://bundlephobia.com/result?p=favoritos@1.0.1">
+  <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/favoritos/1.0.1">
   </a>
 </p>
 
@@ -78,9 +78,9 @@ $ yarn add favoritos
 Add script right before closing `</body>` tag
 
 ```html
-<script src="https://unpkg.com/favoritos@1.0.0/dist/favoritos.iife.js"></script>
+<script src="https://unpkg.com/favoritos@1.0.1/dist/favoritos.iife.js"></script>
 or
-<script src="https://cdn.jsdelivr.net/npm/favoritos@1.0.0/dist/favoritos.iife.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/favoritos@1.0.1/dist/favoritos.iife.js"></script>
 ```
 
 _Hint:_ for a better performance add [preconnect](https://css-tricks.com/using-relpreconnect-to-establish-network-connections-early-and-increase-performance/) link in the head of your document. 

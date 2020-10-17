@@ -3,9 +3,6 @@ import banner from 'rollup-plugin-banner2';
 import babel from 'rollup-plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import fs from 'fs';
-import path from 'path';
-// import webWorkerLoader from 'rollup-plugin-web-worker-loader';
 
 import { baseConfig } from '../base.config';
 import * as pkg from '../../package.json';
@@ -13,12 +10,7 @@ import { LIBRARY_NAME } from '../partials/libraryName';
 import { BANNER_TEXT } from '../partials/bannerText';
 import { EXTERNALS } from '../partials/externals';
 
-// Get browserslist config and remove ie from es build targets
-const esbrowserslist = fs
-  .readFileSync(path.resolve('.', '.browserslistrc'))
-  .toString()
-  .split('\n')
-  .filter((entry) => entry && !entry.startsWith('ie'));
+// Get browserslist config
 
 export const esConfig = {
   ...baseConfig,
@@ -31,18 +23,7 @@ export const esConfig = {
   },
   plugins: [
     ...baseConfig.plugins.common,
-    // webWorkerLoader(),
-    babel({
-      ...baseConfig.plugins.babel,
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            targets: esbrowserslist,
-          },
-        ],
-      ],
-    }),
+    babel(baseConfig.plugins.babel),
     resolve({
       extensions: ['.mjs', '.js', '.json', '.node', '.ts'],
     }),
