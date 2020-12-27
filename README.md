@@ -57,7 +57,7 @@
 
 ## Demo 👀
 
-### [DEMO](https://webistomin.github.io/favoritos/)
+### [DEMO](https://favoritos.vercel.app/)
 
 ## Installation 🚀
 
