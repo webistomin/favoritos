@@ -15,7 +15,7 @@ export default {
 
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/tailwindcss'],
 
-  modules: ['@nuxtjs/pwa', '@nuxt/content'],
+  modules: ['@nuxt/content'],
 
   content: {},
 
