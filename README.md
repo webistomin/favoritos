@@ -1,7 +1,7 @@
 <!-- Favoritos is a JavaScript plugin that adds some HTML5 canvas magic to your favicon. With just a wee bit of code, we can make some really cool effects. -->
 
 <p align="center">
-  <img width="130" height="120" src="https://raw.githubusercontent.com/webistomin/favoritos/master/assets/logo.png" alt="Favoritos">
+  <img width="130" height="120" src="https://raw.githubusercontent.com/webistomin/favoritos/master/assets/logo.svg" alt="Favoritos">
 </p>
 <h1 align="center">Favoritos</h1>
 
@@ -21,8 +21,8 @@
   <img alt="GitHub issues" src="https://img.shields.io/github/issues/webistomin/favoritos">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/webistomin/favoritos">
   <img alt="npm type definitions" src="https://img.shields.io/npm/types/favoritos">
-  <a href="https://bundlephobia.com/result?p=favoritos@1.0.1">
-  <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/favoritos/1.0.1">
+  <a href="https://bundlephobia.com/result?p=favoritos">
+  <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/favoritos">
   </a>
 </p>
 
@@ -47,12 +47,11 @@
 
 ## Key Features ✨
 
-* **Small.** ~ 2.76KB (minified and gzipped). <a href="https://github.com/ai/size-limit">Size Limit</a> controls the size.
+* **Small.** ~ 2.78KB (minified and gzipped). <a href="https://github.com/ai/size-limit">Size Limit</a> controls the size.
 * **No dependencies.**
 * **Friendly and flexible configuration**
 * **Easy to use**
 * **Typescript** support
-* **Tree shakeable**
 * **SSR friendly**
 
 ## Demo 👀

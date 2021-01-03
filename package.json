@@ -20,6 +20,14 @@
   "unpkg": "./dist/favoritos.iife.js",
   "jsdelivr": "./dist/favoritos.iife.js",
   "typings": "./dist/favoritos.d.ts",
+  "exports": {
+    ".": {
+      "browser": "./dist/favoritos.esm.js",
+      "import": "./dist/favoritos.esm.js",
+      "require": "./dist/favoritos.cjs.js",
+      "default": "./dist/favoritos.esm.js"
+    }
+  },
   "files": [
     "dist/*",
     "src/*"
@@ -39,10 +47,7 @@
     "typedoc": "typedoc --out docs --target es6 --theme minimal --mode file src",
     "prebuild": "rimraf dist",
     "start": "npm run dev",
-    "test:unit": "jest --config jest.config.js --coverage",
-    "test:unit:watch": "jest --config jest.config.js --coverage --watch",
-    "delete:dist": "rimraf test/e2e/fixtures/dist",
-    "copy:dist": "cp dist/ test/e2e/fixtures -r"
+    "test:unit": "jest --config jest.config.js --coverage"
   },
   "repository": {
     "type": "git",
