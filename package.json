@@ -66,7 +66,7 @@
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
-    "@commitlint/cli": "^11.0.0",
+    "@commitlint/cli": "^12.0.0",
     "@commitlint/config-angular": "^11.0.0",
     "@ls-lint/ls-lint": "^1.9.2",
     "@rollup/plugin-commonjs": "^17.0.0",
