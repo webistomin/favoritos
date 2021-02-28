@@ -3,7 +3,7 @@
     <video id="video"
            ref="video"
            class="demo__video"
-           src="http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv"
+           src="https://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv"
            controls="false" crossorigin="anonymous" muted>
     </video>
 
