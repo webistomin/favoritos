@@ -109,7 +109,7 @@
     "scriptlint": "^2.1.2",
     "size-limit": "^4.6.0",
     "ts-jest": "^26.4.1",
-    "ts-loader": "^8.0.4",
+    "ts-loader": "^9.1.1",
     "tslib": "^2.0.1",
     "typedoc": "^0.20.5",
     "typescript": "^4.0.3"
