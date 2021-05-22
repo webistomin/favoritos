@@ -10,9 +10,9 @@
 <h5 align="center">⭐️ Star me on GitHub — it helps!</h5>
 
 <p align="center">
-  <a href="https://travis-ci.org/webistomin/favoritos">
-    <img src="https://travis-ci.org/webistomin/favoritos.svg?branch=master"
-         alt="Travis CI">
+  <a href="https://github.com/webistomin/favoritos/actions/workflows/ci.yml">
+    <img src="https://github.com/webistomin/favoritos/actions/workflows/ci.yml/badge.svg"
+         alt="GitHub Actions">
   </a>
   <a href="https://codecov.io/gh/webistomin/favoritos">
     <img src="https://codecov.io/gh/webistomin/favoritos/branch/master/graph/badge.svg" alt="codecoverage" />
@@ -28,8 +28,8 @@
 
 <p align="center">
 <a href="https://www.npmjs.com/package/favoritos"><img alt="npm" src="https://img.shields.io/npm/v/favoritos" /></a>
-<a href="https://www.npmjs.com/package/favoritos"><img alt="downloads" src="https://img.shields.io/npm/dm/favoritos" /></a>
-  <a href="https://www.jsdelivr.com/package/npm/favoritos"><img alt="jsdeliver" src="https://data.jsdelivr.com/v1/package/npm/favoritos/badge?style=rounded"/></a>
+<a href="https://www.npmjs.com/package/favoritos"><img alt="downloads" src="https://img.shields.io/npm/dt/favoritos" /></a>
+  <a href="https://www.jsdelivr.com/package/npm/favoritos"><img alt="jsdeliver" src="https://img.shields.io/jsdelivr/npm/hy/favoritos?style=rounded"/></a>
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
   <img src="https://img.shields.io/badge/all_contributors-1-orange.svg" alt="contributors"> 
   <!-- ALL-CONTRIBUTORS-BADGE:END -->
