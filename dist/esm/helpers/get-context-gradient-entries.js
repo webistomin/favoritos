@@ -2,7 +2,7 @@
 *
 * favoritos
 *
-* @version 1.0.1
+* @version 1.1.0
 * @author Alexey Istomin
 * @email: webistomin@gmail.com
 * @license: MIT

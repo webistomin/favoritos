@@ -1,6 +1,6 @@
 {
   "name": "favoritos",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Favoritos is a JavaScript plugin that adds some HTML5 canvas magic to your favicon. With just a wee bit of code, we can make some really cool effects.",
   "reveal": true,
   "sideEffects": false,
