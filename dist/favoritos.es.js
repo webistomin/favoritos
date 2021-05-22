@@ -3,8 +3,8 @@
 * favoritos
 *
 * @version 1.0.1
-* @author undefined
-* @email: undefined
+* @author Alexey Istomin
+* @email: webistomin@gmail.com
 * @license: MIT
 *
 **/

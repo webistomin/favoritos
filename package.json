@@ -53,8 +53,11 @@
     "type": "git",
     "url": "git+https://github.com/webistomin/favoritos.git"
   },
-  "author": "webistomin",
-  "email": "webistomin@gmail.com",
+  "author": {
+    "name": "Alexey Istomin",
+    "email": "webistomin@gmail.com",
+    "url": "https://github.com/webistomin"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=10"
