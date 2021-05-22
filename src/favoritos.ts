@@ -1,6 +1,6 @@
 import { IFavoritosOption } from './types/options/options';
-import { IFavoritosPositions } from './types/options/positions';
-import { IFavoritosShape } from './types/options/shapes';
+import { FAVORITOS_POSITIONS } from './types/options/positions';
+import { FAVORITOS_SHAPES } from './types/options/shapes';
 
 import { SSR_MESSAGE } from './helpers/ssr-message';
 import { ICON_NOT_FOUND } from './helpers/icon-not-found-message';
@@ -33,14 +33,14 @@ export default class Favoritos {
   };
 
   constructor(options: IFavoritosOption = {}) {
-    /*
-      Check SSR
+    /**
+     * Check SSR
      */
     if (typeof window === 'undefined') {
       console.warn(SSR_MESSAGE);
     } else {
-      /*
-        Overwrite default options to user options
+      /**
+       * Overwrite default options to user options
        */
       this.options = mergeDeep(DEFAULT_OPTIONS, options) as IFavoritosOption;
       this.init();
@@ -75,15 +75,15 @@ export default class Favoritos {
   }
 
   private initIconCanvas(): void {
-    /*
-      Set default canvas params
+    /**
+     * Set default canvas params
      */
     const options = this.options;
     const { icon: iconOptions, badge: badgeOptions } = options;
     const { width: iconWidth, height: iconHeight } = iconOptions;
 
-    /*
-      Fix retina blur with DPR calculation
+    /**
+     * Fix retina blur with DPR calculation
      */
     const DPR = window.devicePixelRatio || 1;
 
@@ -143,8 +143,8 @@ export default class Favoritos {
   }
 
   public drawImage(content: CanvasImageSource): void {
-    /*
-      Draw video, image, etc. to context
+    /**
+     * Draw video, image, etc. to context
      */
     const context = this.iconCanvasContext;
     const iconOptions = this.options.icon;
@@ -187,7 +187,7 @@ export default class Favoritos {
       context.fillStyle = this.getContextBackgroundColor(badgeBackgroundColor, iconWidth, iconHeight);
 
       context.beginPath();
-      if (badgeShape === IFavoritosShape.CIRCLE) {
+      if (badgeShape === FAVORITOS_SHAPES.CIRCLE) {
         this.drawCircleBadge(textWidth, textHeight, newValue);
       } else {
         this.drawRectBadge(textWidth, textHeight);
@@ -240,7 +240,7 @@ export default class Favoritos {
       context.beginPath();
       context.lineWidth = iconLineWidth;
 
-      if (iconOptions.shape === IFavoritosShape.CIRCLE) {
+      if (iconOptions.shape === FAVORITOS_SHAPES.CIRCLE) {
         this.drawCircleProgressBar(progress);
       } else {
         this.drawRectProgressBar(progress);
@@ -279,27 +279,27 @@ export default class Favoritos {
       badgeMinWidth >= textWidth ? badgeMinWidth : textWidth >= badgeMaxWidth ? badgeMaxWidth : textWidth;
 
     switch (badgePosition) {
-      case IFavoritosPositions.TOP_LEFT:
-      case IFavoritosPositions.BOTTOM_LEFT:
+      case FAVORITOS_POSITIONS.TOP_LEFT:
+      case FAVORITOS_POSITIONS.BOTTOM_LEFT:
         switch (badgeShape) {
-          case IFavoritosShape.CIRCLE:
+          case FAVORITOS_SHAPES.CIRCLE:
             if (shouldUseShape) {
               return 0;
             }
             return finalBadgeWidth / 2;
-          case IFavoritosShape.RECT:
+          case FAVORITOS_SHAPES.RECT:
             return 0;
         }
         break;
-      case IFavoritosPositions.TOP_RIGHT:
-      case IFavoritosPositions.BOTTOM_RIGHT:
+      case FAVORITOS_POSITIONS.TOP_RIGHT:
+      case FAVORITOS_POSITIONS.BOTTOM_RIGHT:
         switch (badgeShape) {
-          case IFavoritosShape.CIRCLE:
+          case FAVORITOS_SHAPES.CIRCLE:
             if (shouldUseShape) {
               return iconWidth - finalBadgeWidth;
             }
             return iconWidth - finalBadgeWidth / 2;
-          case IFavoritosShape.RECT:
+          case FAVORITOS_SHAPES.RECT:
             return iconWidth - finalBadgeWidth;
         }
         break;
@@ -316,27 +316,27 @@ export default class Favoritos {
     const finalBadgeHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
 
     switch (badgePosition) {
-      case IFavoritosPositions.TOP_LEFT:
-      case IFavoritosPositions.TOP_RIGHT:
+      case FAVORITOS_POSITIONS.TOP_LEFT:
+      case FAVORITOS_POSITIONS.TOP_RIGHT:
         switch (badgeShape) {
-          case IFavoritosShape.CIRCLE:
+          case FAVORITOS_SHAPES.CIRCLE:
             if (shouldUseShape) {
               return 0;
             }
             return finalBadgeHeight / 2;
-          case IFavoritosShape.RECT:
+          case FAVORITOS_SHAPES.RECT:
             return 0;
         }
         break;
-      case IFavoritosPositions.BOTTOM_LEFT:
-      case IFavoritosPositions.BOTTOM_RIGHT:
+      case FAVORITOS_POSITIONS.BOTTOM_LEFT:
+      case FAVORITOS_POSITIONS.BOTTOM_RIGHT:
         switch (badgeShape) {
-          case IFavoritosShape.CIRCLE:
+          case FAVORITOS_SHAPES.CIRCLE:
             if (shouldUseShape) {
               return iconHeight - finalBadgeHeight;
             }
             return iconHeight - finalBadgeHeight / 2;
-          case IFavoritosShape.RECT:
+          case FAVORITOS_SHAPES.RECT:
             return iconHeight - finalBadgeHeight;
         }
     }
@@ -352,11 +352,11 @@ export default class Favoritos {
       badgeMinWidth >= textWidth ? badgeMinWidth : textWidth >= badgeMaxWidth ? badgeMaxWidth : textWidth;
 
     switch (badgePosition) {
-      case IFavoritosPositions.TOP_RIGHT:
-      case IFavoritosPositions.BOTTOM_RIGHT:
+      case FAVORITOS_POSITIONS.TOP_RIGHT:
+      case FAVORITOS_POSITIONS.BOTTOM_RIGHT:
         return Math.abs(iconWidth - finalBadgeTextWidth / 2);
-      case IFavoritosPositions.TOP_LEFT:
-      case IFavoritosPositions.BOTTOM_LEFT:
+      case FAVORITOS_POSITIONS.TOP_LEFT:
+      case FAVORITOS_POSITIONS.BOTTOM_LEFT:
         return Math.abs(finalBadgeTextWidth / 2);
     }
   }
@@ -373,11 +373,11 @@ export default class Favoritos {
     const finalHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
 
     switch (badgePosition) {
-      case IFavoritosPositions.TOP_RIGHT:
-      case IFavoritosPositions.TOP_LEFT:
+      case FAVORITOS_POSITIONS.TOP_RIGHT:
+      case FAVORITOS_POSITIONS.TOP_LEFT:
         return Math.abs(finalHeight / 2 + additionalHeight);
-      case IFavoritosPositions.BOTTOM_RIGHT:
-      case IFavoritosPositions.BOTTOM_LEFT:
+      case FAVORITOS_POSITIONS.BOTTOM_RIGHT:
+      case FAVORITOS_POSITIONS.BOTTOM_LEFT:
         return Math.abs(iconHeight - finalHeight / 2 + additionalHeight);
     }
   }

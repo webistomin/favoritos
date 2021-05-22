@@ -1,5 +1,5 @@
-import Favoritos from 'src/favoritos';
-import { IFavoritosShape } from 'src/types/options/shapes';
+import Favoritos from '../../../src/favoritos';
+import { FAVORITOS_SHAPES } from '../../../src/types/options/shapes';
 
 describe('Favoritos: drawBadge method', () => {
   beforeEach(() => {
@@ -35,7 +35,7 @@ describe('Favoritos: drawBadge method', () => {
   it('Draw badge with circle shape', () => {
     const lib = new Favoritos({
       badge: {
-        shape: IFavoritosShape.CIRCLE,
+        shape: FAVORITOS_SHAPES.CIRCLE,
       },
     });
     expect(() => lib['drawBadge'](50)).not.toThrow(TypeError);
@@ -47,7 +47,7 @@ describe('Favoritos: drawBadge method', () => {
   it('Draw badge with rect shape', () => {
     const lib = new Favoritos({
       badge: {
-        shape: IFavoritosShape.RECT,
+        shape: FAVORITOS_SHAPES.RECT,
       },
     });
     expect(() => lib['drawBadge'](25)).not.toThrow(TypeError);

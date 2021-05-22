@@ -12,42 +12,42 @@
     "favicon-dynamic"
   ],
   "main": "./dist/favoritos.cjs.js",
-  "module": "./dist/favoritos.esm.js",
-  "browser": {
-    "dist/favoritos.js": "./dist/favoritos.iife.js",
-    "dist/favoritos.esm.js": "./dist/favoritos.esm.js"
-  },
+  "module": "./dist/esm/favoritos.js",
   "unpkg": "./dist/favoritos.iife.js",
   "jsdelivr": "./dist/favoritos.iife.js",
   "typings": "./dist/favoritos.d.ts",
   "exports": {
     ".": {
-      "browser": "./dist/favoritos.esm.js",
-      "import": "./dist/favoritos.esm.js",
+      "browser": "./dist/esm/favoritos.js",
+      "import": "./dist/esm/favoritos.js",
       "require": "./dist/favoritos.cjs.js",
-      "default": "./dist/favoritos.esm.js"
-    }
+      "default": "./dist/esm/favoritos.js"
+    },
+    "./": "./",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist/*",
     "src/*"
   ],
   "scripts": {
+    "prebuild": "rimraf dist",
     "build": "run-s prebuild build:all build:dts",
     "build:all": "cross-env NODE_ENV=production rollup --config config/rollup.config.js",
-    "build:cjs": "cross-env NODE_ENV=production rollup --config config/rollup.config.js --format cjs",
     "build:dts": "tsc -d --declarationDir dist --declarationMap --emitDeclarationOnly",
+    "build:cjs": "cross-env NODE_ENV=production rollup --config config/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config config/rollup.config.js --format es",
+    "build:esm": "cross-env NODE_ENV=production rollup --config config/rollup.config.js --format esm",
     "build:iife": "cross-env NODE_ENV=production rollup --config config/rollup.config.js --format iife",
-    "dev": "rollup -c config/rollup.config.js -w",
+    "build:size": "run-s prebuild build check-size",
     "lint": "run-s eslint:write prettier:write",
-    "eslint:write": "eslint --ext .js,.tsx,.ts . --fix",
-    "prettier:write": "prettier --write \"**/*.+(js|ts|tsx)\"",
-    "sizelimit": "size-limit",
-    "typedoc": "typedoc --out docs --target es6 --theme minimal --mode file src",
-    "prebuild": "rimraf dist",
-    "start": "npm run dev",
-    "test:unit": "jest --config jest.config.js --coverage"
+    "eslint:write": "eslint --ext .js,.ts {src,test}/* --fix --max-warnings 0",
+    "prettier:write": "prettier --write \"{src,test}/**/*.{js,ts}\"",
+    "test": "jest --config jest.config.js --coverage --silent",
+    "tree-shake": "agadoo",
+    "check-size": "size-limit",
+    "release": "dotenv release-it --verbose",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -69,6 +69,7 @@
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-angular": "^12.1.4",
     "@ls-lint/ls-lint": "^1.9.2",
+    "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-inject": "^4.0.2",
     "@rollup/plugin-json": "^4.1.0",
@@ -79,12 +80,15 @@
     "@types/node": "^15.6.0",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
+    "agadoo": "^2.0.0",
     "babel-jest": "^26.6.3",
     "cross-env": "^7.0.3",
+    "dotenv-cli": "^4.0.0",
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^24.3.6",
     "eslint-plugin-prettier": "^3.4.0",
+    "fast-async": "^6.3.8",
     "http-server": "^0.12.3",
     "husky": "^6.0.0",
     "jest": "^26.6.3",

@@ -1,43 +1,36 @@
 module.exports = {
   root: true,
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    project: './tsconfig.json',
+    createDefaultProgram: true,
+  },
   env: {
     node: true,
-    browser: true
+    browser: true,
+  },
+  extends: ['eslint:recommended', 'prettier'],
+  plugins: ['prettier'],
+  rules: {
+    'prettier/prettier': ['warn'],
   },
   overrides: [
     {
-      files: ['./test/unit/**/*.spec.ts'],
-      env: {
-        jest: true,
+      files: ['*.ts'],
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'prettier',
+      ],
+      plugins: ['@typescript-eslint', 'prettier'],
+      rules: {
+        '@typescript-eslint/interface-name-prefix': 0,
+        '@typescript-eslint/camelcase': 0,
       },
-      plugins: ['jest'],
     },
   ],
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "prettier",
-  ],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaVersion: 2020,
-    parser: "babel-eslint",
-    project: "./tsconfig.json",
-    sourceType: "module",
-    createDefaultProgram: true,
-  },
-  plugins: [
-    "@typescript-eslint",
-    "prettier"
-  ],
-  rules: {
-    "prettier/prettier": ["warn"],
-    "@typescript-eslint/interface-name-prefix": 0,
-    "@typescript-eslint/camelcase": 0,
-    "@typescript-eslint/ban-ts-ignore": 0,
-    "@typescript-eslint/no-var-requires": 0,
-  },
 };

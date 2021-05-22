@@ -1,5 +1,5 @@
-import Favoritos from 'src/favoritos';
-import { IFavoritosPositions } from 'src/types/options/positions';
+import Favoritos from '../../../src/favoritos';
+import { FAVORITOS_POSITIONS } from '../../../src/types/options/positions';
 
 describe('Favoritos: getBadgeTextYPosition method', () => {
   beforeEach(() => {
@@ -9,7 +9,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
   it('Return correct Y coord for number and "top-left" position', () => {
     const lib = new Favoritos({
       badge: {
-        position: IFavoritosPositions.TOP_LEFT,
+        position: FAVORITOS_POSITIONS.TOP_LEFT,
       },
     });
     lib['badgeContent'] = 1;
@@ -22,7 +22,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
   it('Return correct Y coord for string and "top-left" position', () => {
     const lib = new Favoritos({
       badge: {
-        position: IFavoritosPositions.TOP_LEFT,
+        position: FAVORITOS_POSITIONS.TOP_LEFT,
       },
     });
     lib['badgeContent'] = 'abc';
@@ -35,7 +35,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
   it('Return correct Y coord for number and "top-right" position', () => {
     const lib = new Favoritos({
       badge: {
-        position: IFavoritosPositions.TOP_RIGHT,
+        position: FAVORITOS_POSITIONS.TOP_RIGHT,
       },
     });
     lib['badgeContent'] = 1;
@@ -48,7 +48,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
   it('Return correct Y coord for string and "top-right" position', () => {
     const lib = new Favoritos({
       badge: {
-        position: IFavoritosPositions.TOP_RIGHT,
+        position: FAVORITOS_POSITIONS.TOP_RIGHT,
       },
     });
     lib['badgeContent'] = 'abc';
@@ -61,7 +61,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
   it('Return correct Y coord for number and "bottom-right" position', () => {
     const lib = new Favoritos({
       badge: {
-        position: IFavoritosPositions.BOTTOM_RIGHT,
+        position: FAVORITOS_POSITIONS.BOTTOM_RIGHT,
       },
     });
     lib['badgeContent'] = 1;
@@ -74,7 +74,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
   it('Return correct Y coord for string and "bottom-right" position', () => {
     const lib = new Favoritos({
       badge: {
-        position: IFavoritosPositions.BOTTOM_RIGHT,
+        position: FAVORITOS_POSITIONS.BOTTOM_RIGHT,
       },
     });
     lib['badgeContent'] = 'abc';
@@ -87,7 +87,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
   it('Return correct Y coord for number and "bottom-left" position', () => {
     const lib = new Favoritos({
       badge: {
-        position: IFavoritosPositions.BOTTOM_LEFT,
+        position: FAVORITOS_POSITIONS.BOTTOM_LEFT,
       },
     });
     lib['badgeContent'] = 1;
@@ -100,7 +100,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
   it('Return correct Y coord for string and "bottom-left" position', () => {
     const lib = new Favoritos({
       badge: {
-        position: IFavoritosPositions.BOTTOM_LEFT,
+        position: FAVORITOS_POSITIONS.BOTTOM_LEFT,
       },
     });
     lib['badgeContent'] = 'abc';
@@ -114,7 +114,7 @@ describe('Favoritos: getBadgeTextYPosition method', () => {
     const lib = new Favoritos({
       badge: {
         minWidth: 22,
-        position: IFavoritosPositions.BOTTOM_RIGHT,
+        position: FAVORITOS_POSITIONS.BOTTOM_RIGHT,
       },
     });
     lib['badgeContent'] = 'abc';

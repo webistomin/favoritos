@@ -1,6 +1,6 @@
-import { IFavoritosShape } from 'src/types/options/shapes';
-import { IFavoritosPositions } from 'src/types/options/positions';
-import Favoritos from 'src/favoritos';
+import Favoritos from '../../../src/favoritos';
+import { FAVORITOS_POSITIONS } from '../../../src/types/options/positions';
+import { FAVORITOS_SHAPES } from '../../../src/types/options/shapes';
 
 describe('Favoritos: options', () => {
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('Favoritos: options', () => {
       icon: {
         iconSelector: 'link[rel*="icon"]',
         backgroundColor: 'red',
-        shape: IFavoritosShape.CIRCLE,
+        shape: FAVORITOS_SHAPES.CIRCLE,
         lineWidth: 8,
         width: 20,
         height: 20,
@@ -23,8 +23,8 @@ describe('Favoritos: options', () => {
         fontFamily: 'Helvetica, Arial, sans-serif',
         backgroundColor: '#d21f3c',
         color: '#ffffff',
-        position: IFavoritosPositions.BOTTOM_RIGHT,
-        shape: IFavoritosShape.CIRCLE,
+        position: FAVORITOS_POSITIONS.BOTTOM_RIGHT,
+        shape: FAVORITOS_SHAPES.CIRCLE,
         minWidth: 22,
         minHeight: 22,
       },
@@ -52,7 +52,7 @@ describe('Favoritos: options', () => {
       icon: {
         iconSelector: 'link[rel*="icon"]',
         backgroundColor: 'red',
-        shape: IFavoritosShape.CIRCLE,
+        shape: FAVORITOS_SHAPES.CIRCLE,
         lineWidth: 8,
         width: 20,
         height: 20,
@@ -62,8 +62,8 @@ describe('Favoritos: options', () => {
         fontFamily: 'Helvetica, Arial, sans-serif',
         backgroundColor: 'blue',
         color: 'black',
-        position: IFavoritosPositions.BOTTOM_RIGHT,
-        shape: IFavoritosShape.CIRCLE,
+        position: FAVORITOS_POSITIONS.BOTTOM_RIGHT,
+        shape: FAVORITOS_SHAPES.CIRCLE,
         minWidth: 22,
         minHeight: 22,
       },

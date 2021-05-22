@@ -1,6 +1,6 @@
-import Favoritos from 'src/favoritos';
-import { IFavoritosPositions } from 'src/types/options/positions';
-import { IFavoritosShape } from 'src/types/options/shapes';
+import Favoritos from '../../../src/favoritos';
+import { FAVORITOS_POSITIONS } from '../../../src/types/options/positions';
+import { FAVORITOS_SHAPES } from '../../../src/types/options/shapes';
 
 describe('Favoritos: getBadgeYPosition method', () => {
   beforeEach(() => {
@@ -10,8 +10,8 @@ describe('Favoritos: getBadgeYPosition method', () => {
   it('Return correct Y coord for number and "top-left" position', () => {
     const lib = new Favoritos({
       badge: {
-        shape: IFavoritosShape.CIRCLE,
-        position: IFavoritosPositions.TOP_LEFT,
+        shape: FAVORITOS_SHAPES.CIRCLE,
+        position: FAVORITOS_POSITIONS.TOP_LEFT,
       },
     });
     lib['badgeContent'] = 1;
@@ -20,7 +20,7 @@ describe('Favoritos: getBadgeYPosition method', () => {
     // @ts-ignore
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
 
-    lib['options']['badge']['shape'] = IFavoritosShape.RECT;
+    lib['options']['badge']['shape'] = FAVORITOS_SHAPES.RECT;
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(TypeError);
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(DOMException);
     // @ts-ignore
@@ -30,8 +30,8 @@ describe('Favoritos: getBadgeYPosition method', () => {
   it('Return correct Y coord for string and "top-left" position', () => {
     const lib = new Favoritos({
       badge: {
-        shape: IFavoritosShape.CIRCLE,
-        position: IFavoritosPositions.TOP_LEFT,
+        shape: FAVORITOS_SHAPES.CIRCLE,
+        position: FAVORITOS_POSITIONS.TOP_LEFT,
       },
     });
     lib['badgeContent'] = 'abc';
@@ -40,7 +40,7 @@ describe('Favoritos: getBadgeYPosition method', () => {
     // @ts-ignore
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
 
-    lib['options']['badge']['shape'] = IFavoritosShape.RECT;
+    lib['options']['badge']['shape'] = FAVORITOS_SHAPES.RECT;
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(TypeError);
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(DOMException);
     // @ts-ignore
@@ -50,8 +50,8 @@ describe('Favoritos: getBadgeYPosition method', () => {
   it('Return correct Y coord for number and "top-right" position', () => {
     const lib = new Favoritos({
       badge: {
-        shape: IFavoritosShape.CIRCLE,
-        position: IFavoritosPositions.TOP_RIGHT,
+        shape: FAVORITOS_SHAPES.CIRCLE,
+        position: FAVORITOS_POSITIONS.TOP_RIGHT,
       },
     });
     lib['badgeContent'] = 1;
@@ -60,7 +60,7 @@ describe('Favoritos: getBadgeYPosition method', () => {
     // @ts-ignore
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
 
-    lib['options']['badge']['shape'] = IFavoritosShape.RECT;
+    lib['options']['badge']['shape'] = FAVORITOS_SHAPES.RECT;
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(TypeError);
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(DOMException);
     // @ts-ignore
@@ -70,8 +70,8 @@ describe('Favoritos: getBadgeYPosition method', () => {
   it('Return correct Y coord for string and "top-right" position', () => {
     const lib = new Favoritos({
       badge: {
-        shape: IFavoritosShape.CIRCLE,
-        position: IFavoritosPositions.TOP_RIGHT,
+        shape: FAVORITOS_SHAPES.CIRCLE,
+        position: FAVORITOS_POSITIONS.TOP_RIGHT,
       },
     });
     lib['badgeContent'] = 'abc';
@@ -80,7 +80,7 @@ describe('Favoritos: getBadgeYPosition method', () => {
     // @ts-ignore
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
 
-    lib['options']['badge']['shape'] = IFavoritosShape.RECT;
+    lib['options']['badge']['shape'] = FAVORITOS_SHAPES.RECT;
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(TypeError);
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(DOMException);
     // @ts-ignore
@@ -90,8 +90,8 @@ describe('Favoritos: getBadgeYPosition method', () => {
   it('Return correct Y coord for number and "bottom-right" position', () => {
     const lib = new Favoritos({
       badge: {
-        shape: IFavoritosShape.CIRCLE,
-        position: IFavoritosPositions.BOTTOM_RIGHT,
+        shape: FAVORITOS_SHAPES.CIRCLE,
+        position: FAVORITOS_POSITIONS.BOTTOM_RIGHT,
       },
     });
     lib['badgeContent'] = 1;
@@ -100,7 +100,7 @@ describe('Favoritos: getBadgeYPosition method', () => {
     // @ts-ignore
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
 
-    lib['options']['badge']['shape'] = IFavoritosShape.RECT;
+    lib['options']['badge']['shape'] = FAVORITOS_SHAPES.RECT;
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(TypeError);
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(DOMException);
     // @ts-ignore
@@ -110,8 +110,8 @@ describe('Favoritos: getBadgeYPosition method', () => {
   it('Return correct Y coord for string and "bottom-right" position', () => {
     const lib = new Favoritos({
       badge: {
-        shape: IFavoritosShape.CIRCLE,
-        position: IFavoritosPositions.BOTTOM_RIGHT,
+        shape: FAVORITOS_SHAPES.CIRCLE,
+        position: FAVORITOS_POSITIONS.BOTTOM_RIGHT,
       },
     });
     lib['badgeContent'] = 'abc';
@@ -120,7 +120,7 @@ describe('Favoritos: getBadgeYPosition method', () => {
     // @ts-ignore
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
 
-    lib['options']['badge']['shape'] = IFavoritosShape.RECT;
+    lib['options']['badge']['shape'] = FAVORITOS_SHAPES.RECT;
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(TypeError);
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(DOMException);
     // @ts-ignore
@@ -130,8 +130,8 @@ describe('Favoritos: getBadgeYPosition method', () => {
   it('Return correct Y coord for number and "bottom-left" position', () => {
     const lib = new Favoritos({
       badge: {
-        shape: IFavoritosShape.CIRCLE,
-        position: IFavoritosPositions.BOTTOM_LEFT,
+        shape: FAVORITOS_SHAPES.CIRCLE,
+        position: FAVORITOS_POSITIONS.BOTTOM_LEFT,
       },
     });
     lib['badgeContent'] = 1;
@@ -140,7 +140,7 @@ describe('Favoritos: getBadgeYPosition method', () => {
     // @ts-ignore
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
 
-    lib['options']['badge']['shape'] = IFavoritosShape.RECT;
+    lib['options']['badge']['shape'] = FAVORITOS_SHAPES.RECT;
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(TypeError);
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(DOMException);
     // @ts-ignore
@@ -150,8 +150,8 @@ describe('Favoritos: getBadgeYPosition method', () => {
   it('Return correct Y coord for string and "bottom-left" position', () => {
     const lib = new Favoritos({
       badge: {
-        shape: IFavoritosShape.CIRCLE,
-        position: IFavoritosPositions.BOTTOM_LEFT,
+        shape: FAVORITOS_SHAPES.CIRCLE,
+        position: FAVORITOS_POSITIONS.BOTTOM_LEFT,
       },
     });
     lib['badgeContent'] = 'abc';
@@ -160,7 +160,7 @@ describe('Favoritos: getBadgeYPosition method', () => {
     // @ts-ignore
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
 
-    lib['options']['badge']['shape'] = IFavoritosShape.RECT;
+    lib['options']['badge']['shape'] = FAVORITOS_SHAPES.RECT;
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(TypeError);
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(DOMException);
     // @ts-ignore
@@ -170,9 +170,9 @@ describe('Favoritos: getBadgeYPosition method', () => {
   it('Return correct Y coord if text width more than badge min width', () => {
     const lib = new Favoritos({
       badge: {
-        shape: IFavoritosShape.CIRCLE,
+        shape: FAVORITOS_SHAPES.CIRCLE,
         minWidth: 22,
-        position: IFavoritosPositions.BOTTOM_RIGHT,
+        position: FAVORITOS_POSITIONS.BOTTOM_RIGHT,
       },
     });
     lib['badgeContent'] = 'abc';
@@ -181,7 +181,7 @@ describe('Favoritos: getBadgeYPosition method', () => {
     // @ts-ignore
     expect(lib['iconCanvasContext'].__getEvents()).toMatchSnapshot();
 
-    lib['options']['badge']['shape'] = IFavoritosShape.RECT;
+    lib['options']['badge']['shape'] = FAVORITOS_SHAPES.RECT;
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(TypeError);
     expect(() => lib['getBadgeYPosition'](10)).not.toThrow(DOMException);
     // @ts-ignore

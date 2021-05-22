@@ -1,11 +1,576 @@
 /**
+*
 * favoritos
 *
 * @version 1.0.1
-* @author webistomin
-* @email: webistomin@gmail.com
+* @author undefined
+* @email: undefined
 * @license: MIT
 *
 **/
 
-"use strict";var t,e;Object.defineProperty(exports,"__esModule",{value:!0}),function(t){t.TOP_LEFT="top-left",t.TOP_RIGHT="top-right",t.BOTTOM_LEFT="bottom-left",t.BOTTOM_RIGHT="bottom-right"}(t||(t={})),function(t){t.CIRCLE="circle",t.RECT="rectangle"}(e||(e={}));var o={icon:{iconSelector:'link[rel*="icon"]',backgroundColor:"#d21f3c",shape:e.CIRCLE,lineWidth:4,width:32,height:32},badge:{fontSize:18,fontFamily:"Helvetica, Arial, sans-serif",backgroundColor:"#d21f3c",color:"#ffffff",position:t.BOTTOM_RIGHT,shape:e.CIRCLE,minWidth:22,minHeight:22},debug:{enabled:!1,debugSelector:"#favoritos-debug"}};function n(t){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var i=Object.keys,s=function(t){return t&&"object"===n(t)&&!Array.isArray(t)&&!0},a=function t(e,o){var n,a,r=i(o);if(s(e)&&s(o))for(var c=0,h=r;c<h.length;c++){var g=h[c];s(o[g])?(e[g]||Object.assign(e,((n={})[g]={},n)),t(e[g],o[g])):Object.assign(e,((a={})[g]=o[g],a))}return e},r=function(t,e){var o=new Image;o.crossOrigin="anonymous",o.addEventListener("load",(function(){return e(o)}),{once:!0}),o.addEventListener("error",(function(){return e(o)}),{once:!0}),o.src=t},c=function(){function n(t){void 0===t&&(t={}),this.userIconCache=null,this.debugElement=null,this.arcDegrees={0:0,90:.5*Math.PI,180:Math.PI,270:1.5*Math.PI,360:2*Math.PI},"undefined"==typeof window?console.warn("Favoritos was not initialised! Probably it is used in SSR."):(this.options=a(o,t),this.init())}return n.prototype.init=function(){var t=this,e=this.options,o=e.icon,n=e.debug,i=n.enabled,s=n.debugSelector;this.iconElement=document.querySelector(o.iconSelector),this.iconElement?(this.userIconHref=this.iconElement.href,r(this.userIconHref,(function(e){t.userIconCache=e}))):console.warn('Favoritos: favicon element wasn\'t found \n Please, add <link rel="shortcut icon" href="..."> to head section'),i&&(this.debugElement=document.querySelector(s),this.debugElement||console.warn("Favoritos: debugger was enabled but debug element wasn't found")),this.initIconCanvas()},n.prototype.initIconCanvas=function(){var t=this.options,e=t.icon,o=t.badge,n=e.width,i=e.height,s=window.devicePixelRatio||1;this.iconCanvas=document.createElement("canvas"),this.iconCanvas.width=n*s,this.iconCanvas.height=i*s,this.iconCanvasContext=this.iconCanvas.getContext("2d"),this.iconCanvasContext.font=o.fontSize+"px "+o.fontFamily,this.iconCanvasContext.textAlign="center",this.iconCanvasContext.textBaseline="middle",this.iconCanvasContext.scale(s,s)},n.prototype.getContextBackgroundColor=function(t,e,o){var n,i,s,a=this.iconCanvasContext;if(Array.isArray(t)){var r=a.createLinearGradient(0,0,e,o);(s=1/((i=t).length-1),i.map((function(t,e){return[e*s,t]}))).map((function(t){r.addColorStop(t[0],t[1])})),n=r}else n=t;return n},n.prototype.setOptions=function(t){this.options=a(this.options,t)},n.prototype.setIcon=function(t){this.iconElement.href=t,this.userIconCache=null},n.prototype.reset=function(){var t=this.iconCanvasContext,e=this.options.icon,n=e.width,i=e.height;this.options=o,this.setIcon(this.userIconHref),t.clearRect(0,0,n,i),this.setDebugger(),delete this.badgeContent},n.prototype.drawImage=function(t){var e=this.iconCanvasContext,o=this.options.icon,n=o.width,i=o.height;"crossOrigin"in t&&(t.crossOrigin="anonymous"),e.drawImage(t,0,0,n,i),this.iconElement.href=this.iconCanvas.toDataURL("image/webp",1),this.setDebugger()},n.prototype.drawBadge=function(t){var o=this;void 0===t&&(t="");var n=function(n){o.badgeContent=t;var i=t,s=o.iconCanvasContext,a=o.options.icon,r=o.options.badge,c=r.fontSize,h=r.backgroundColor,g=r.shape,d=r.color,u=a.width,l=a.height,C=o.iconCanvasContext.measureText(String(i)).width,f=c;s.clearRect(0,0,u,l),s.drawImage(n,0,0,u,l),s.fillStyle=o.getContextBackgroundColor(h,u,l),s.beginPath(),g===e.CIRCLE?o.drawCircleBadge(C,f,i):o.drawRectBadge(C,f),s.fill(),s.fillStyle=d,s.fillText(String(i),o.getBadgeTextXPosition(C),o.getBadgeTextYPosition(f),u),s.closePath(),o.iconElement.href=o.iconCanvas.toDataURL("image/webp",1),o.setDebugger()};this.userIconCache?n(this.userIconCache):r(this.userIconHref,(function(t){o.userIconCache=t,n(t)}))},n.prototype.drawProgressBar=function(t,o){var n=this;void 0===o&&(o=!1);var i=this.userIconCache,s=function(o){var i=n.iconCanvasContext,s=n.options.icon,a=s.width,r=s.height,c=s.backgroundColor,h=s.lineWidth;i.clearRect(0,0,a,r),o&&i.drawImage(o,0,0,a,r),i.beginPath(),i.lineWidth=h,s.shape===e.CIRCLE?n.drawCircleProgressBar(t):n.drawRectProgressBar(t),i.strokeStyle=n.getContextBackgroundColor(c,a,r),i.stroke(),n.iconElement.href=n.iconCanvas.toDataURL("image/webp",1),n.setDebugger()};o?i?s(i):r(this.userIconHref,(function(t){n.userIconCache=t})):s()},n.prototype.getBadgeXPosition=function(o){var n=this.options,i=n.badge,s=i.minWidth,a=i.position,r=n.icon.width,c=n.badge.shape,h=r,g=this.badgeContent,d="number"==typeof g?g>=10:g.length>=1,u=s>=o?s:o>=h?h:o;switch(a){case t.TOP_LEFT:case t.BOTTOM_LEFT:switch(c){case e.CIRCLE:return d?0:u/2;case e.RECT:return 0}break;case t.TOP_RIGHT:case t.BOTTOM_RIGHT:switch(c){case e.CIRCLE:return d?r-u:r-u/2;case e.RECT:return r-u}}},n.prototype.getBadgeYPosition=function(o){var n=this.options,i=this.badgeContent,s=n.badge,a=s.position,r=s.minHeight,c=s.shape,h=n.icon.height,g="number"==typeof i?i>=10:i.length>=1,d=r>=o?r:o;switch(a){case t.TOP_LEFT:case t.TOP_RIGHT:switch(c){case e.CIRCLE:return g?0:d/2;case e.RECT:return 0}break;case t.BOTTOM_LEFT:case t.BOTTOM_RIGHT:switch(c){case e.CIRCLE:return g?h-d:h-d/2;case e.RECT:return h-d}}},n.prototype.getBadgeTextXPosition=function(e){var o=this.options,n=o.badge,i=n.position,s=n.minWidth,a=o.icon.width,r=s>=e?s:e>=a?a:e;switch(i){case t.TOP_RIGHT:case t.BOTTOM_RIGHT:return Math.abs(a-r/2);case t.TOP_LEFT:case t.BOTTOM_LEFT:return Math.abs(r/2)}},n.prototype.getBadgeTextYPosition=function(e){var o=this.options,n=o.badge,i=n.position,s=n.minHeight,a=o.icon.height,r="number"==typeof this.badgeContent?.085*e:0,c=s>=e?s:e;switch(i){case t.TOP_RIGHT:case t.TOP_LEFT:return Math.abs(c/2+r);case t.BOTTOM_RIGHT:case t.BOTTOM_LEFT:return Math.abs(a-c/2+r)}},n.prototype.drawCircleBadge=function(t,e,o){var n=this.options,i=n.icon,s=i.width,a=i.height,r=n.badge,c=r.minWidth,h=r.minHeight,g=r.backgroundColor,d=s,u=this.iconCanvasContext,l=c>=t?c:t>=d?d:t,C=h>=e?h:e;("number"==typeof o?o>=10:o.length>=1)?(u.strokeStyle=this.getContextBackgroundColor(g,s,a),function(t,e,o,n,i,s){var a=e,r=o,c=n,h=i,g=Math.min(Math.max(n-1,1),Math.max(i-1,1),s);t.lineJoin="round",t.lineWidth=g,t.strokeRect(a+g/2,r+g/2,c-g,h-g),t.fillRect(a+g/2,r+g/2,c-g,h-g),t.stroke(),t.fill()}(u,this.getBadgeXPosition(t),this.getBadgeYPosition(e),l,C,10)):u.arc(this.getBadgeXPosition(t),this.getBadgeYPosition(e),l/2,this.arcDegrees[0],this.arcDegrees[360])},n.prototype.drawRectBadge=function(t,e){var o=this.options,n=o.icon.width,i=o.badge,s=i.minWidth,a=i.minHeight,r=s>=t?s:t>=n?n:t,c=a>=e?a:e;this.iconCanvasContext.rect(this.getBadgeXPosition(t),this.getBadgeYPosition(e),r,c)},n.prototype.drawCircleProgressBar=function(t){var e=this.options,o=this.iconCanvasContext,n=e.icon,i=n.width,s=n.height,a=n.lineWidth;o.arc(i/2,s/2,i/2-a/2,this.arcDegrees[270],t*this.arcDegrees[360]/100+this.arcDegrees[270])},n.prototype.drawRectProgressBar=function(t){var e=this.options,o=this.iconCanvasContext,n=e.icon,i=n.width,s=n.height;t<=25?(o.moveTo(0,0),o.lineTo(i/25*t,0)):t>25&&t<=50?(o.moveTo(0,0),o.lineTo(i,0),o.moveTo(i,0),o.lineTo(i,s/25*(t-25))):t>50&&t<=75?(o.moveTo(0,0),o.lineTo(i,0),o.moveTo(i,0),o.lineTo(i,s),o.moveTo(i,s),o.lineTo(-i/25*(t-75),s)):t>75&&t<=100&&(o.moveTo(0,0),o.lineTo(i,0),o.moveTo(i,0),o.lineTo(i,s),o.moveTo(i,s),o.lineTo(0,s),o.moveTo(0,s),o.lineTo(0,-s/25*(t-100)))},n.prototype.setDebugger=function(){this.options.debug.enabled&&this.debugElement&&this.debugElement.appendChild(this.iconCanvas)},n}();exports.default=c;
+'use strict';Object.defineProperty(exports,'__esModule',{value:true});var FAVORITOS_POSITIONS = {
+  TOP_LEFT: 'top-left',
+  TOP_RIGHT: 'top-right',
+  BOTTOM_LEFT: 'bottom-left',
+  BOTTOM_RIGHT: 'bottom-right'
+};var FAVORITOS_SHAPES = {
+  CIRCLE: 'circle',
+  RECT: 'rectangle'
+};var SSR_MESSAGE = 'Favoritos was not initialised! Probably it is used in SSR.';var ICON_NOT_FOUND = "Favoritos: favicon element wasn't found \n Please, add <link rel=\"shortcut icon\" href=\"...\"> to head section";var DEBUG_NOT_FOUND = "Favoritos: debugger was enabled but debug element wasn't found";var DEFAULT_OPTIONS = {
+  icon: {
+    iconSelector: 'link[rel*="icon"]',
+    backgroundColor: '#d21f3c',
+    shape: FAVORITOS_SHAPES.CIRCLE,
+    lineWidth: 4,
+    width: 32,
+    height: 32
+  },
+  badge: {
+    fontSize: 18,
+    fontFamily: 'Helvetica, Arial, sans-serif',
+    backgroundColor: '#d21f3c',
+    color: '#ffffff',
+    position: FAVORITOS_POSITIONS.BOTTOM_RIGHT,
+    shape: FAVORITOS_SHAPES.CIRCLE,
+    minWidth: 22,
+    minHeight: 22
+  },
+  debug: {
+    enabled: false,
+    debugSelector: '#favoritos-debug'
+  }
+};var getContextGradientEntries = function getContextGradientEntries(backgrounds) {
+  var arrayLength = backgrounds.length;
+  var step = 1 / (arrayLength - 1);
+  return backgrounds.map(function (background, index) {
+    return [index * step, background];
+  });
+};var getObjectKeys = Object.keys;
+var isObject = function isObject(item) {
+  return item && typeof item === 'object' && !Array.isArray(item) && true;
+};
+var mergeDeep = function mergeDeep(target, source) {
+  var sourceKeys = getObjectKeys(source);
+
+  if (isObject(target) && isObject(source)) {
+    for (var _i2 = 0; _i2 < sourceKeys.length; _i2++) {
+      var key = sourceKeys[_i2];
+
+      if (isObject(source[key])) {
+        if (!target[key]) {
+          var _Object$assign;
+
+          Object.assign(target, (_Object$assign = {}, _Object$assign[key] = {}, _Object$assign));
+        }
+
+        mergeDeep(target[key], source[key]);
+      } else {
+        var _Object$assign2;
+
+        Object.assign(target, (_Object$assign2 = {}, _Object$assign2[key] = source[key], _Object$assign2));
+      }
+    }
+  }
+
+  return target;
+};var loadImage = function loadImage(src, callback) {
+  var img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.addEventListener('load', function () {
+    return callback(img);
+  }, {
+    once: true
+  });
+  img.addEventListener('error', function () {
+    return callback(img);
+  }, {
+    once: true
+  });
+  img.src = src;
+};var roundedRect = function roundedRect(context, x, y, width, height, radius) {
+  var rectX = x;
+  var rectY = y;
+  var rectWidth = width;
+  var rectHeight = height;
+  var cornerRadius = Math.min(Math.max(width - 1, 1), Math.max(height - 1, 1), radius);
+  context.lineJoin = 'round';
+  context.lineWidth = cornerRadius;
+  context.strokeRect(rectX + cornerRadius / 2, rectY + cornerRadius / 2, rectWidth - cornerRadius, rectHeight - cornerRadius);
+  context.fillRect(rectX + cornerRadius / 2, rectY + cornerRadius / 2, rectWidth - cornerRadius, rectHeight - cornerRadius);
+  context.stroke();
+  context.fill();
+};var Favoritos = /*#__PURE__*/function () {
+  function Favoritos(options) {
+    if (options === void 0) {
+      options = {};
+    }
+
+    this.userIconCache = null;
+    this.debugElement = null;
+    this.arcDegrees = {
+      '0': 0,
+      '90': 0.5 * Math.PI,
+      '180': Math.PI,
+      '270': 1.5 * Math.PI,
+      '360': 2 * Math.PI
+    };
+    /**
+     * Check SSR
+     */
+
+    if (typeof window === 'undefined') {
+      console.warn(SSR_MESSAGE);
+    } else {
+      /**
+       * Overwrite default options to user options
+       */
+      this.options = mergeDeep(DEFAULT_OPTIONS, options);
+      this.init();
+    }
+  }
+
+  var _proto = Favoritos.prototype;
+
+  _proto.init = function init() {
+    var _this = this;
+
+    var options = this.options;
+    var iconOptions = options.icon,
+        debugOptions = options.debug;
+    var isDebugEnabled = debugOptions.enabled,
+        debugSelector = debugOptions.debugSelector;
+    this.iconElement = document.querySelector(iconOptions.iconSelector);
+
+    if (!this.iconElement) {
+      console.warn(ICON_NOT_FOUND);
+    } else {
+      this.userIconHref = this.iconElement.href;
+      loadImage(this.userIconHref, function (img) {
+        _this.userIconCache = img;
+      });
+    }
+
+    if (isDebugEnabled) {
+      this.debugElement = document.querySelector(debugSelector);
+
+      if (!this.debugElement) {
+        console.warn(DEBUG_NOT_FOUND);
+      }
+    }
+
+    this.initIconCanvas();
+  };
+
+  _proto.initIconCanvas = function initIconCanvas() {
+    /**
+     * Set default canvas params
+     */
+    var options = this.options;
+    var iconOptions = options.icon,
+        badgeOptions = options.badge;
+    var iconWidth = iconOptions.width,
+        iconHeight = iconOptions.height;
+    /**
+     * Fix retina blur with DPR calculation
+     */
+
+    var DPR = window.devicePixelRatio || 1;
+    this.iconCanvas = document.createElement('canvas');
+    this.iconCanvas.width = iconWidth * DPR;
+    this.iconCanvas.height = iconHeight * DPR;
+    this.iconCanvasContext = this.iconCanvas.getContext('2d');
+    this.iconCanvasContext.font = badgeOptions.fontSize + "px " + badgeOptions.fontFamily;
+    this.iconCanvasContext.textAlign = 'center';
+    this.iconCanvasContext.textBaseline = 'middle';
+    this.iconCanvasContext.scale(DPR, DPR);
+  };
+
+  _proto.getContextBackgroundColor = function getContextBackgroundColor(backgroundColor, width, height) {
+    var resultBackground;
+    var context = this.iconCanvasContext;
+
+    if (Array.isArray(backgroundColor)) {
+      var gradient = context.createLinearGradient(0, 0, width, height);
+      var backgroundEntries = getContextGradientEntries(backgroundColor);
+      backgroundEntries.map(function (entry) {
+        gradient.addColorStop(entry[0], entry[1]);
+      });
+      resultBackground = gradient;
+    } else {
+      resultBackground = backgroundColor;
+    }
+
+    return resultBackground;
+  };
+
+  _proto.setOptions = function setOptions(options) {
+    this.options = mergeDeep(this.options, options);
+  };
+
+  _proto.setIcon = function setIcon(newIcon) {
+    this.iconElement.href = newIcon;
+    this.userIconCache = null;
+  };
+
+  _proto.reset = function reset() {
+    var context = this.iconCanvasContext;
+    var iconOptions = this.options.icon;
+    var iconWidth = iconOptions.width,
+        iconHeight = iconOptions.height;
+    this.options = DEFAULT_OPTIONS;
+    this.setIcon(this.userIconHref);
+    context.clearRect(0, 0, iconWidth, iconHeight);
+    this.setDebugger();
+    delete this.badgeContent;
+  };
+
+  _proto.drawImage = function drawImage(content) {
+    /**
+     * Draw video, image, etc. to context
+     */
+    var context = this.iconCanvasContext;
+    var iconOptions = this.options.icon;
+    var iconWidth = iconOptions.width,
+        iconHeight = iconOptions.height;
+
+    if ('crossOrigin' in content) {
+      content.crossOrigin = 'anonymous';
+    }
+
+    context.drawImage(content, 0, 0, iconWidth, iconHeight);
+    this.iconElement.href = this.iconCanvas.toDataURL('image/webp', 1.0);
+    this.setDebugger();
+  };
+
+  _proto.drawBadge = function drawBadge(count) {
+    var _this2 = this;
+
+    if (count === void 0) {
+      count = '';
+    }
+
+    var setBadge = function setBadge(img) {
+      _this2.badgeContent = count;
+      var newValue = count;
+      var context = _this2.iconCanvasContext;
+      var iconOptions = _this2.options.icon;
+      var badgeOptions = _this2.options.badge;
+      var badgeFontSize = badgeOptions.fontSize,
+          badgeBackgroundColor = badgeOptions.backgroundColor,
+          badgeShape = badgeOptions.shape,
+          badgeColor = badgeOptions.color;
+      var iconWidth = iconOptions.width,
+          iconHeight = iconOptions.height;
+
+      var textParams = _this2.iconCanvasContext.measureText(String(newValue));
+
+      var textWidth = textParams.width;
+      var textHeight = badgeFontSize;
+      context.clearRect(0, 0, iconWidth, iconHeight);
+      context.drawImage(img, 0, 0, iconWidth, iconHeight);
+      context.fillStyle = _this2.getContextBackgroundColor(badgeBackgroundColor, iconWidth, iconHeight);
+      context.beginPath();
+
+      if (badgeShape === FAVORITOS_SHAPES.CIRCLE) {
+        _this2.drawCircleBadge(textWidth, textHeight, newValue);
+      } else {
+        _this2.drawRectBadge(textWidth, textHeight);
+      }
+
+      context.fill();
+      context.fillStyle = badgeColor;
+      context.fillText(String(newValue), _this2.getBadgeTextXPosition(textWidth), _this2.getBadgeTextYPosition(textHeight), iconWidth);
+      context.closePath();
+      _this2.iconElement.href = _this2.iconCanvas.toDataURL('image/webp', 1.0);
+
+      _this2.setDebugger();
+    };
+
+    if (!this.userIconCache) {
+      loadImage(this.userIconHref, function (img) {
+        _this2.userIconCache = img;
+        setBadge(img);
+      });
+    } else {
+      setBadge(this.userIconCache);
+    }
+  };
+
+  _proto.drawProgressBar = function drawProgressBar(progress, shouldUseFavicon) {
+    var _this3 = this;
+
+    if (shouldUseFavicon === void 0) {
+      shouldUseFavicon = false;
+    }
+
+    var userIconCache = this.userIconCache;
+
+    var setProgress = function setProgress(img) {
+      var context = _this3.iconCanvasContext;
+      var iconOptions = _this3.options.icon;
+      var iconWidth = iconOptions.width,
+          iconHeight = iconOptions.height,
+          iconBackgroundColor = iconOptions.backgroundColor,
+          iconLineWidth = iconOptions.lineWidth;
+      context.clearRect(0, 0, iconWidth, iconHeight);
+
+      if (img) {
+        context.drawImage(img, 0, 0, iconWidth, iconHeight);
+      }
+
+      context.beginPath();
+      context.lineWidth = iconLineWidth;
+
+      if (iconOptions.shape === FAVORITOS_SHAPES.CIRCLE) {
+        _this3.drawCircleProgressBar(progress);
+      } else {
+        _this3.drawRectProgressBar(progress);
+      }
+
+      context.strokeStyle = _this3.getContextBackgroundColor(iconBackgroundColor, iconWidth, iconHeight);
+      context.stroke();
+      _this3.iconElement.href = _this3.iconCanvas.toDataURL('image/webp', 1.0);
+
+      _this3.setDebugger();
+    };
+
+    if (shouldUseFavicon) {
+      if (!userIconCache) {
+        loadImage(this.userIconHref, function (img) {
+          _this3.userIconCache = img;
+        });
+      } else {
+        setProgress(userIconCache);
+      }
+    } else {
+      setProgress();
+    }
+  };
+
+  _proto.getBadgeXPosition = function getBadgeXPosition(textWidth) {
+    var options = this.options;
+    var _options$badge = options.badge,
+        badgeMinWidth = _options$badge.minWidth,
+        badgePosition = _options$badge.position;
+    var iconWidth = options.icon.width;
+    var badgeShape = options.badge.shape;
+    var badgeMaxWidth = iconWidth;
+    var badgeValue = this.badgeContent;
+    var shouldUseShape = typeof badgeValue === 'number' ? badgeValue >= 10 : badgeValue.length >= 1;
+    var finalBadgeWidth = badgeMinWidth >= textWidth ? badgeMinWidth : textWidth >= badgeMaxWidth ? badgeMaxWidth : textWidth;
+
+    switch (badgePosition) {
+      case FAVORITOS_POSITIONS.TOP_LEFT:
+      case FAVORITOS_POSITIONS.BOTTOM_LEFT:
+        switch (badgeShape) {
+          case FAVORITOS_SHAPES.CIRCLE:
+            if (shouldUseShape) {
+              return 0;
+            }
+
+            return finalBadgeWidth / 2;
+
+          case FAVORITOS_SHAPES.RECT:
+            return 0;
+        }
+
+        break;
+
+      case FAVORITOS_POSITIONS.TOP_RIGHT:
+      case FAVORITOS_POSITIONS.BOTTOM_RIGHT:
+        switch (badgeShape) {
+          case FAVORITOS_SHAPES.CIRCLE:
+            if (shouldUseShape) {
+              return iconWidth - finalBadgeWidth;
+            }
+
+            return iconWidth - finalBadgeWidth / 2;
+
+          case FAVORITOS_SHAPES.RECT:
+            return iconWidth - finalBadgeWidth;
+        }
+
+        break;
+    }
+  };
+
+  _proto.getBadgeYPosition = function getBadgeYPosition(textHeight) {
+    var options = this.options;
+    var badgeValue = this.badgeContent;
+    var _options$badge2 = options.badge,
+        badgePosition = _options$badge2.position,
+        badgeMinHeight = _options$badge2.minHeight,
+        badgeShape = _options$badge2.shape;
+    var iconHeight = options.icon.height;
+    var shouldUseShape = typeof badgeValue === 'number' ? badgeValue >= 10 : badgeValue.length >= 1;
+    var finalBadgeHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
+
+    switch (badgePosition) {
+      case FAVORITOS_POSITIONS.TOP_LEFT:
+      case FAVORITOS_POSITIONS.TOP_RIGHT:
+        switch (badgeShape) {
+          case FAVORITOS_SHAPES.CIRCLE:
+            if (shouldUseShape) {
+              return 0;
+            }
+
+            return finalBadgeHeight / 2;
+
+          case FAVORITOS_SHAPES.RECT:
+            return 0;
+        }
+
+        break;
+
+      case FAVORITOS_POSITIONS.BOTTOM_LEFT:
+      case FAVORITOS_POSITIONS.BOTTOM_RIGHT:
+        switch (badgeShape) {
+          case FAVORITOS_SHAPES.CIRCLE:
+            if (shouldUseShape) {
+              return iconHeight - finalBadgeHeight;
+            }
+
+            return iconHeight - finalBadgeHeight / 2;
+
+          case FAVORITOS_SHAPES.RECT:
+            return iconHeight - finalBadgeHeight;
+        }
+
+    }
+  };
+
+  _proto.getBadgeTextXPosition = function getBadgeTextXPosition(textWidth) {
+    var options = this.options;
+    var _options$badge3 = options.badge,
+        badgePosition = _options$badge3.position,
+        badgeMinWidth = _options$badge3.minWidth;
+    var iconWidth = options.icon.width;
+    var badgeMaxWidth = iconWidth;
+    var finalBadgeTextWidth = badgeMinWidth >= textWidth ? badgeMinWidth : textWidth >= badgeMaxWidth ? badgeMaxWidth : textWidth;
+
+    switch (badgePosition) {
+      case FAVORITOS_POSITIONS.TOP_RIGHT:
+      case FAVORITOS_POSITIONS.BOTTOM_RIGHT:
+        return Math.abs(iconWidth - finalBadgeTextWidth / 2);
+
+      case FAVORITOS_POSITIONS.TOP_LEFT:
+      case FAVORITOS_POSITIONS.BOTTOM_LEFT:
+        return Math.abs(finalBadgeTextWidth / 2);
+    }
+  };
+
+  _proto.getBadgeTextYPosition = function getBadgeTextYPosition(textHeight) {
+    var options = this.options;
+    var _options$badge4 = options.badge,
+        badgePosition = _options$badge4.position,
+        badgeMinHeight = _options$badge4.minHeight;
+    var iconHeight = options.icon.height;
+    var badgeValue = this.badgeContent;
+    var isBadgeValueNumber = typeof badgeValue === 'number';
+    var additionalHeight = isBadgeValueNumber ? textHeight * 0.085 : 0;
+    var finalHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
+
+    switch (badgePosition) {
+      case FAVORITOS_POSITIONS.TOP_RIGHT:
+      case FAVORITOS_POSITIONS.TOP_LEFT:
+        return Math.abs(finalHeight / 2 + additionalHeight);
+
+      case FAVORITOS_POSITIONS.BOTTOM_RIGHT:
+      case FAVORITOS_POSITIONS.BOTTOM_LEFT:
+        return Math.abs(iconHeight - finalHeight / 2 + additionalHeight);
+    }
+  };
+
+  _proto.drawCircleBadge = function drawCircleBadge(textWidth, textHeight, newValue) {
+    var options = this.options;
+    var _options$icon = options.icon,
+        iconWidth = _options$icon.width,
+        iconHeight = _options$icon.height;
+    var _options$badge5 = options.badge,
+        badgeMinWidth = _options$badge5.minWidth,
+        badgeMinHeight = _options$badge5.minHeight,
+        badgeBackgroundColor = _options$badge5.backgroundColor;
+    var badgeMaxWidth = iconWidth;
+    var context = this.iconCanvasContext;
+    var finalBadgeWidth = badgeMinWidth >= textWidth ? badgeMinWidth : textWidth >= badgeMaxWidth ? badgeMaxWidth : textWidth;
+    var finalBadgeHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
+
+    if (typeof newValue === 'number' ? newValue >= 10 : newValue.length >= 1) {
+      context.strokeStyle = this.getContextBackgroundColor(badgeBackgroundColor, iconWidth, iconHeight);
+      roundedRect(context, this.getBadgeXPosition(textWidth), this.getBadgeYPosition(textHeight), finalBadgeWidth, finalBadgeHeight, 10);
+    } else {
+      context.arc(this.getBadgeXPosition(textWidth), this.getBadgeYPosition(textHeight), finalBadgeWidth / 2, this.arcDegrees['0'], this.arcDegrees['360']);
+    }
+  };
+
+  _proto.drawRectBadge = function drawRectBadge(textWidth, textHeight) {
+    var options = this.options;
+    var iconWidth = options.icon.width;
+    var _options$badge6 = options.badge,
+        badgeMinWidth = _options$badge6.minWidth,
+        badgeMinHeight = _options$badge6.minHeight;
+    var badgeMaxWidth = iconWidth;
+    var finalBadgeWidth = badgeMinWidth >= textWidth ? badgeMinWidth : textWidth >= badgeMaxWidth ? badgeMaxWidth : textWidth;
+    var finalBadgeHeight = badgeMinHeight >= textHeight ? badgeMinHeight : textHeight;
+    this.iconCanvasContext.rect(this.getBadgeXPosition(textWidth), this.getBadgeYPosition(textHeight), finalBadgeWidth, finalBadgeHeight);
+  };
+
+  _proto.drawCircleProgressBar = function drawCircleProgressBar(progress) {
+    var options = this.options;
+    var context = this.iconCanvasContext;
+    var _options$icon2 = options.icon,
+        iconWidth = _options$icon2.width,
+        iconHeight = _options$icon2.height,
+        iconLineWidth = _options$icon2.lineWidth;
+    context.arc(iconWidth / 2, iconHeight / 2, iconWidth / 2 - iconLineWidth / 2, this.arcDegrees['270'], progress * this.arcDegrees['360'] / 100 + this.arcDegrees['270']);
+  };
+
+  _proto.drawRectProgressBar = function drawRectProgressBar(progress) {
+    var options = this.options;
+    var context = this.iconCanvasContext;
+    var _options$icon3 = options.icon,
+        iconWidth = _options$icon3.width,
+        iconHeight = _options$icon3.height;
+
+    var step = function step() {
+      if (progress <= 25) {
+        context.moveTo(0, 0);
+        context.lineTo(iconWidth / 25 * progress, 0);
+      } else if (progress > 25 && progress <= 50) {
+        context.moveTo(0, 0);
+        context.lineTo(iconWidth, 0);
+        context.moveTo(iconWidth, 0);
+        context.lineTo(iconWidth, iconHeight / 25 * (progress - 25));
+      } else if (progress > 50 && progress <= 75) {
+        context.moveTo(0, 0);
+        context.lineTo(iconWidth, 0);
+        context.moveTo(iconWidth, 0);
+        context.lineTo(iconWidth, iconHeight);
+        context.moveTo(iconWidth, iconHeight);
+        context.lineTo(-(iconWidth / 25 * (progress - 75)), iconHeight);
+      } else if (progress > 75 && progress <= 100) {
+        context.moveTo(0, 0);
+        context.lineTo(iconWidth, 0);
+        context.moveTo(iconWidth, 0);
+        context.lineTo(iconWidth, iconHeight);
+        context.moveTo(iconWidth, iconHeight);
+        context.lineTo(0, iconHeight);
+        context.moveTo(0, iconHeight);
+        context.lineTo(0, -(iconHeight / 25 * (progress - 100)));
+      }
+    };
+
+    step();
+  };
+
+  _proto.setDebugger = function setDebugger() {
+    var debugOptions = this.options.debug;
+
+    if (debugOptions.enabled && this.debugElement) {
+      this.debugElement.appendChild(this.iconCanvas);
+    }
+  };
+
+  return Favoritos;
+}();exports.default=Favoritos;

@@ -1,4 +1,4 @@
-import { fireEvent } from 'src/helpers/fire-event';
+import { fireEvent } from '../../../src/helpers/fire-event';
 
 describe('FireEvent helper', () => {
   beforeAll(() => {

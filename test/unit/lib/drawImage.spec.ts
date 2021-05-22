@@ -1,4 +1,4 @@
-import Favoritos from 'src/favoritos';
+import Favoritos from '../../../src/favoritos';
 
 describe('Favoritos: drawImage method', () => {
   beforeEach(() => {

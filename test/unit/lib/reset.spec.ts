@@ -1,5 +1,5 @@
-import Favoritos from 'src/favoritos';
-import { DEFAULT_OPTIONS } from 'src/helpers/default-options';
+import Favoritos from '../../../src/favoritos';
+import { DEFAULT_OPTIONS } from '../../../src/helpers/default-options';
 
 describe('Favoritos: reset method', () => {
   beforeEach(() => {

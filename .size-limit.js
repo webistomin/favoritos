@@ -1,6 +1,6 @@
 module.exports = [
   {
-    path: "dist/favoritos.iife.js",
+    path: "./dist/esm/favoritos.js",
     limit: "5 KB",
   }
 ];

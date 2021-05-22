@@ -1,5 +1,5 @@
-import Favoritos from 'src/favoritos';
-import { IFavoritosShape } from 'src/types/options/shapes';
+import Favoritos from '../../../src/favoritos';
+import { FAVORITOS_SHAPES } from '../../../src/types/options/shapes';
 
 describe('Favoritos: drawProgressBar method', () => {
   beforeEach(() => {
@@ -35,7 +35,7 @@ describe('Favoritos: drawProgressBar method', () => {
   it('Draw progress bar with circle shape correctly', () => {
     const lib = new Favoritos({
       icon: {
-        shape: IFavoritosShape.CIRCLE,
+        shape: FAVORITOS_SHAPES.CIRCLE,
       },
     });
     expect(() => lib['drawProgressBar'](50)).not.toThrow(TypeError);
@@ -47,7 +47,7 @@ describe('Favoritos: drawProgressBar method', () => {
   it('Draw progress bar with rect shape correctly', () => {
     const lib = new Favoritos({
       icon: {
-        shape: IFavoritosShape.RECT,
+        shape: FAVORITOS_SHAPES.RECT,
       },
     });
     expect(() => lib['drawProgressBar'](50)).not.toThrow(TypeError);

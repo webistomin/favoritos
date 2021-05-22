@@ -1,12 +1,11 @@
 import { IFavoritosPositions } from './positions';
-// import { IFavoritosAnimations } from './animations';
-import { IFavoritosShape } from './shapes';
+import { IFavoritosShapes } from './shapes';
 
 export interface IFavoritosOption {
   icon?: {
     iconSelector?: string;
     backgroundColor?: string | string[];
-    shape?: IFavoritosShape;
+    shape?: IFavoritosShapes;
     lineWidth?: number;
     width?: number;
     height?: number;
@@ -17,8 +16,7 @@ export interface IFavoritosOption {
     backgroundColor?: string | string[];
     color?: string;
     position?: IFavoritosPositions;
-    //animation?: IFavoritosAnimations;
-    shape?: IFavoritosShape;
+    shape?: IFavoritosShapes;
     minWidth?: number;
     minHeight?: number;
   };

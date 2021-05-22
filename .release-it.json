@@ -1,0 +1,12 @@
+{
+  "git": {
+    "commitMessage": "build(favoritos): release v${version}",
+    "requireCleanWorkingDir": false
+  },
+  "github": {
+    "release": true
+  },
+  "hooks": {
+    "after:bump": "npm run build"
+  }
+}
