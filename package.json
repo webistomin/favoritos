@@ -80,7 +80,7 @@
     "@size-limit/preset-small-lib": "^4.10.3",
     "@types/jest": "^26.0.23",
     "@types/jsdom": "^16.2.10",
-    "@types/node": "^15.6.0",
+    "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
     "agadoo": "^2.0.0",
